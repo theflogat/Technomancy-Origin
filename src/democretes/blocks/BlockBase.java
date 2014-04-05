@@ -1,7 +1,7 @@
 package democretes.blocks;
 
 import democretes.Technomancy;
-import democretes.creativetabs.CreativeTabTM;
+import democretes.lib.CreativeTabTM;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

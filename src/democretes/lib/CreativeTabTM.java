@@ -1,10 +1,8 @@
-package democretes.creativetabs;
+package democretes.lib;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import democretes.items.TMItems;
-import democretes.lib.ItemIds;
-import democretes.lib.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
