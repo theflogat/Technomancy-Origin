@@ -1,0 +1,16 @@
+[
+{
+  "modid": "technom",
+  "name": "Technomancy",
+  "description": "Science and magic. What could go wrong?",
+  "version": "",
+  "mcversion": "1.6.4",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Democretes"],
+  "credits": "Azanor for making Thaumcraft, FTB forums for support and ideas, and Mike for breaking everything.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [thaumcraft, ThermalExpansion]
+}
+]

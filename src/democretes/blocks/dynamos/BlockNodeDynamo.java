@@ -1,0 +1,46 @@
+package democretes.blocks.dynamos;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import democretes.blocks.BlockBase;
+import democretes.blocks.dynamos.tiles.TileNodeDynamo;
+import democretes.lib.RenderIds;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
+import net.minecraft.world.World;
+public class BlockNodeDynamo extends BlockBase {
+
+	
+	@SideOnly(Side.CLIENT)
+	public Icon iconDynamo;
+
+	public BlockNodeDynamo(int id) {
+		super(id);
+		setUnlocalizedName("techno:nodeDynamo");
+	}
+	public TileEntity createNewTileEntity(World world) {
+		return new TileNodeDynamo();
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void RegisterIcons(IconRegister icon) {
+		this.iconDynamo = icon.registerIcon("technom:models/nodeDynamo");
+	}
+	
+	public boolean isOpaqueCube(){
+		return false;
+	}
+	
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+	
+	public int getRenderType() {
+		return RenderIds.idNodeDynamo;
+	}
+
+
+}
