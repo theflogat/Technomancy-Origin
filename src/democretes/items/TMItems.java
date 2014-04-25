@@ -11,7 +11,7 @@ import democretes.lib.Reference;
 
 public class TMItems {
 
-    public static void init() {
+    public static void initThaumcraft() {
 
         // Item Initializations
         //essentiaCannon = new ItemEssentiaCannon(ItemIds.idESSENTIA_CANNON);

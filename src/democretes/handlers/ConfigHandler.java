@@ -5,12 +5,18 @@ import java.io.File;
 import democretes.lib.BlockIds;
 import democretes.lib.ItemIds;
 import democretes.lib.LibNames;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
 public class ConfigHandler {
 	
 	public static boolean fancy = true;
+	public static int[] blacklist = {};
+	public static boolean compatiblity = true;
+	public static boolean thaumcraft = false;
+	public static boolean bloodmagic = false;
+	public static boolean botania = false;
 
     public static void Init(File file) {
         Configuration config = new Configuration(file);
@@ -29,6 +35,10 @@ public class ConfigHandler {
         BlockIds.idTESLA_COIL = config.getBlock(LibNames.TESLA_COIL_NAME, BlockIds.idTESLA_COIL_DEFALULT).getInt();
         BlockIds.idELECTRIC_BELLOWS = config.getBlock(LibNames.ELECTRIC_BELLOWS_NAME, BlockIds.idELECTRIC_BELLOWS_DEFAULT).getInt();
         BlockIds.idCREATIVE_JAR = config.getBlock(LibNames.CREATIVE_JAR_NAME, BlockIds.idCREATIVE_JAR_DEFAULT).getInt();
+        BlockIds.idCRYSTAL_BLOCK = config.getBlock(LibNames.CRYSTAL_NAME, BlockIds.idCRYSTAL_BLOCK_DEFAULT).getInt();
+        BlockIds.idRECONSTRUCTOR = config.getBlock(LibNames.RECONSTRUCTOR_NAME, BlockIds.idRECONSTRUCTOR_DEFAULT).getInt();
+        BlockIds.idBLOOD_DYNAMO = config.getBlock(LibNames.BLOOD_DYNAMO_NAME, BlockIds.idBLOOD_DYNAMO_DEFAULT).getInt();
+
 
         //Items
         
@@ -41,6 +51,24 @@ public class ConfigHandler {
         //Render effects
         Property coilfx = config.get("Renderers", "CoilFX", fancy);
         fancy = coilfx.getBoolean(true);
+        
+        //Reconstructor stuff
+        System.out.println("Configurating");
+        Property reconstructor = config.get("Machines", "Blacklisted materials for use in the Essentia Reconstructor", blacklist);
+        blacklist = reconstructor.getIntList();
+        
+        //Compatibility Stuff
+        Property check = config.get("Compatibility", "Check for other mods", compatiblity);
+        compatiblity = check.getBoolean(true);
+        
+        Property tc = config.get("Compatibility", "Enables Thaumcraft", thaumcraft);
+        thaumcraft = tc.getBoolean(thaumcraft);
+        
+        Property bm = config.get("Compatibility", "Enable Blood Magic", bloodmagic);
+        bloodmagic = bm.getBoolean(bloodmagic);
+        
+        Property bo = config.get("Compatibility", "Enable Botania", botania);
+        botania = bo.getBoolean(botania);
 
         config.save();
 

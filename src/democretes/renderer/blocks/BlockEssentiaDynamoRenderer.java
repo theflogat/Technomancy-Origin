@@ -16,8 +16,7 @@ public class BlockEssentiaDynamoRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		GL11.glPushMatrix();
-		GL11.glTranslatef(-1.4F, -0.25F, -0.4F);
-		GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 		TileEntityRenderer.instance.renderTileEntityAt(new TileEssentiaDynamo(), 0.0D, 0.0D, 0.0D, 0.0F);
 		GL11.glPopMatrix();
 	}

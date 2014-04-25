@@ -221,6 +221,9 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 				xx += 6;
 			}
 			TileEntity tile = worldObj.getBlockTileEntity(xx, this.yCoord, zz);
+			if(tile == null) {
+				return 0;
+			}
 			if((this.amount + ((TileNodeGenerator)tile).amount > 64)) {				
 				this.energyCalc =  MathHelper.round((Math.pow(((this.amount + ((TileNodeGenerator)tile).amount))/2, 2))*762.939453125);
 				if(this.getEnergyStored() >= this.energyCalc) {

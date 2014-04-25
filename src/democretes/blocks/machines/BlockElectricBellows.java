@@ -25,17 +25,12 @@ public class BlockElectricBellows extends BlockBase{
 	}
 	
 	private byte facing;
-	private boolean alchemy = false;
-	private boolean infernal = false;
+	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack){
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		if(tile instanceof TileElectricBellows) {
 			((TileElectricBellows)tile).facing = this.facing;
-			((TileElectricBellows)tile).alchemy = this.alchemy;
-			((TileElectricBellows)tile).infernal = this.infernal;
-			this.alchemy = false;
-			this.infernal = false;
 		}
 	}
 	
@@ -59,14 +54,6 @@ public class BlockElectricBellows extends BlockBase{
 		case 5:
 			offsetX += 1;
 		}
-		if(world.getBlockTileEntity(x + offsetX, y, z + offsetZ) instanceof TileAlchemyFurnace) {
-			this.alchemy = true;
-			return true;
-		}
-		if(world.getBlockTileEntity(x + (offsetX*2), y, z + (offsetZ*2)) instanceof TileArcaneFurnace) {
-			this.infernal = true;
-			return true;
-		}		
 		return false;
 	}	
 

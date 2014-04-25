@@ -1,5 +1,6 @@
 package democretes.handlers;
 
+import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,7 @@ public class CraftingHandler {
 	
 
 	
-	public static void init() {
+	public static void initThaumcraftRecipes() {
 		
 		//Infusion Recipes
 		ResearchHandler.recipes.put("NodeGenerator", ThaumcraftApi.addInfusionCraftingRecipe("NODEGENERATOR", new ItemStack(TMBlocks.nodeGenerator, 1, 0), 20, 
@@ -115,6 +116,10 @@ public class CraftingHandler {
 			new Object[]{"  C", " R ", "C  ", 
 			Character.valueOf('C'), ((WandCap)WandCap.caps.get("thaumium")).getItem(), 
 			Character.valueOf('R'), ((WandRod)WandRod.rods.get("electric")).getItem()		});
+	}
+	
+	public static void initBloodMagicRecipes() {
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 1, 5000, 10, 10, true);
 	}
 	
 	static IRecipe oreDictRecipe(ItemStack res, Object[] params) {

@@ -35,7 +35,6 @@ public class TileNodeGeneratorRenderer extends TileEntitySpecialRenderer {
 
 		GL11.glPushMatrix();
 		GL11.glRotatef(((TileNodeGenerator)entity).rotation, 1.0F, 0.0F, 0.0F);
-		System.out.println("Renderer:" + ((TileNodeGenerator)entity).rotation);
 		model.renderCore();
 		GL11.glPopMatrix();				
 		

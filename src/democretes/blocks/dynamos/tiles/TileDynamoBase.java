@@ -31,7 +31,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	public int minPowerLevel = 36000;
 	public int maxPowerLevel = 4000;
 	public int energyRamp = 9;
-	public byte facing;
+	public byte facing = 1;
 	
 	EnergyStorage energyStorage;
 	IEnergyHandler adjacentHandler = null;

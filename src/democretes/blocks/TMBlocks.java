@@ -2,19 +2,23 @@ package democretes.blocks;
 
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
+import democretes.blocks.dynamos.BlockBloodDynamo;
 import democretes.blocks.dynamos.BlockEssentiaDynamo;
 import democretes.blocks.dynamos.BlockNodeDynamo;
+import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
 import democretes.blocks.machines.BlockBiomeMorpher;
 import democretes.blocks.machines.BlockElectricBellows;
 import democretes.blocks.machines.BlockFluxLamp;
 import democretes.blocks.machines.BlockNodeGenerator;
+import democretes.blocks.machines.BlockReconstructor;
 import democretes.blocks.machines.BlockTeslaCoil;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
+import democretes.blocks.machines.tiles.TileReconstructor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
 import democretes.blocks.storage.BlockCreativeJar;
 import democretes.blocks.storage.BlockEssentiaContainer;
@@ -40,9 +44,10 @@ public class TMBlocks {
 	public static Block electricBellows;
 	public static Block creativeJar;
 	public static Block crystalBlock;	
+	public static Block reconstructorBlock;
+	public static Block bloodDynamo;
 	
-	public static void init() {
-		//Block Initialization
+	public static void initThaumcraft() {
 		nodeDynamo = new BlockNodeDynamo(BlockIds.idNODE_DYNAMO);
 		essentiaContainer = new BlockEssentiaContainer(BlockIds.idESSENTIA_CONTAINER);
 		cosmeticOpaque = new BlockCosmeticOpaque(BlockIds.idCOSMETIC_OPAQUE);
@@ -54,7 +59,7 @@ public class TMBlocks {
 		electricBellows = new BlockElectricBellows(BlockIds.idELECTRIC_BELLOWS);
 		creativeJar = new BlockCreativeJar(BlockIds.idCREATIVE_JAR);
 		crystalBlock = new BlockCrystal(BlockIds.idCRYSTAL_BLOCK);
-		
+		reconstructorBlock = new BlockReconstructor(BlockIds.idRECONSTRUCTOR);
 		
 		//Registry
 		GameRegistry.registerBlock(nodeDynamo, LibNames.NODE_DYNAMO_NAME);
@@ -67,7 +72,8 @@ public class TMBlocks {
 		GameRegistry.registerBlock(teslaCoil, LibNames.TESLA_COIL_NAME);
 		GameRegistry.registerBlock(electricBellows, LibNames.ELECTRIC_BELLOWS_NAME);
 		GameRegistry.registerBlock(creativeJar, LibNames.CREATIVE_JAR_NAME);
-		
+		GameRegistry.registerBlock(crystalBlock, LibNames.CRYSTAL_NAME);
+		GameRegistry.registerBlock(reconstructorBlock, LibNames.RECONSTRUCTOR_NAME);
 		
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileEssentiaContainer.class, "TileEssentiacontainer");
@@ -79,7 +85,21 @@ public class TMBlocks {
 		GameRegistry.registerTileEntity(TileTeslaCoil.class, "TileTeslaCoil");
 		GameRegistry.registerTileEntity(TileElectricBellows.class, "TileElectricBellows");
 		GameRegistry.registerTileEntity(TileCreativeJar.class, "TileCreativeJar");
+		GameRegistry.registerTileEntity(TileReconstructor.class, "TileReconstructor");
+
 		
+	}
+	
+	public static void initBloodMagic() {
+		//Block Initialization
+		bloodDynamo = new BlockBloodDynamo(BlockIds.idBLOOD_DYNAMO);	
+		
+		//Registry
+		GameRegistry.registerBlock(bloodDynamo, LibNames.BLOOD_DYNAMO_NAME);		
+
+		//Tiles registry
+		GameRegistry.registerTileEntity(TileBloodDynamo.class, "TileBloodDynamo");
+
 	}
 	
 

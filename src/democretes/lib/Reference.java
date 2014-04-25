@@ -6,7 +6,7 @@ public class Reference {
     public static final String MOD_ID = "technom";
     public static final String MOD_PREFIX = "techno:";
     public static final String MOD_NAME = "Technomancy";
-    public static final String MOD_VERSION = "0.3.2";
+    public static final String MOD_VERSION = "0.4.0";
     public static final String CHANNEL_NAME = MOD_NAME;
     
     //Locations
@@ -22,4 +22,6 @@ public class Reference {
 	public static final String MODEL_FLUX_LAMP_TEXTURE = MODEL_PREFIX + "fluxLamp.png";
 	public static final String MODEL_TESLA_COIL_TEXTURE = MODEL_PREFIX + "essentiaCoil.png";
 	public static final String MODEL_ELECTRIC_BELLOWS_TEXTURE = MODEL_PREFIX + "electricBellows.png";
+	public static final String MODEL_RECONSTRUCTOR_TEXTURE = MODEL_PREFIX + "reconstructor.png";
+	public static final String MODEL_BLOOD_DYNAMO_TEXTURE = MODEL_PREFIX + "bloodDynamo.png";
 }

@@ -15,6 +15,9 @@ public class BlockIds {
 	public static int idELECTRIC_BELLOWS_DEFAULT = 3416;
 	public static int idCREATIVE_JAR_DEFAULT = 3417;
 	public static int idCRYSTAL_BLOCK_DEFAULT = 3418;
+	public static int idRECONSTRUCTOR_DEFAULT = 3419;
+	public static int idBLOOD_DYNAMO_DEFAULT = 3420;
+
 	
 	//Initializers
 	public static int idNODE_DYNAMO;
@@ -29,6 +32,8 @@ public class BlockIds {
 	public static int idELECTRIC_BELLOWS;
 	public static int idCREATIVE_JAR;
 	public static int idCRYSTAL_BLOCK;
+	public static int idRECONSTRUCTOR;
+	public static int idBLOOD_DYNAMO;
 
 
 }

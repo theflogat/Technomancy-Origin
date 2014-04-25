@@ -12,5 +12,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Thaumcraft"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Thermal Expansion"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/COFHCore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Blood Magic"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Botania"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

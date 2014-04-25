@@ -21,6 +21,12 @@ tile.techno:nodeGenerator.name=Node Fabricator
 tile.techno:fluxLamp.name=Orderly Lamp
 tile.techno:teslaCoil.name=Essentia Coil
 tile.techno:electricBellows.name=Galvanized Bellows
+tile.techno:creativeJar.name=Creative Jar
+tile.techno:reconstructorBlock.name=Essentia Reconstructor
+tile.techno:crystalBlock.0.name=Spatial Crystal
+tile.techno:crystalBlock.1.name=Reality Crystal
+tile.techno:crystalBlock.2.name=Energy Crystal
+tile.techno:bloodDynamo.name=Blood Dynamo
 
 #Research Tab
 tc.research_category.TECHNOMANCY=Technomancy

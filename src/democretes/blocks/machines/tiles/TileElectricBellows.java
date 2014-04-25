@@ -13,8 +13,6 @@ import thaumcraft.common.tiles.TileArcaneFurnace;
 
 public class TileElectricBellows extends TileMachineBase {
 
-	public boolean alchemy = false;
-	public boolean infernal = false;
 	public byte facing = 2;	
 	public float inflation = 1.0F;
 	boolean firstrun = false;;
@@ -23,28 +21,22 @@ public class TileElectricBellows extends TileMachineBase {
 	@Override
 	public void writeCustomNBT(NBTTagCompound compound) {
 		compound.setByte("Facing", this.facing);
-		compound.setBoolean("Alchemy", this.alchemy);
-		compound.setBoolean("Infernal", this.infernal);
 	}
 	
 	@Override
 	public void readCustomNBT(NBTTagCompound compound) {
 		this.facing = compound.getByte("Facing");
-		this.alchemy = compound.getBoolean("Alchemy");
-		this.infernal = compound.getBoolean("Infernal");
 	}
 	
 	@Override
 	public void updateEntity() {
 		ForgeDirection dir = ForgeDirection.getOrientation(this.facing);
-		TileEntity furnace = new TileEntity();
-		if(alchemy) {
+		TileEntity furnace = this.worldObj.getBlockTileEntity(this.xCoord + dir.offsetX, this.yCoord, this.zCoord + dir.offsetZ);
+		if(furnace instanceof TileAlchemyFurnace) {
 			furnace = (TileAlchemyFurnace)this.worldObj.getBlockTileEntity(this.xCoord + dir.offsetX, this.yCoord, this.zCoord + dir.offsetZ);
-		}
-		if(infernal) {
+		}else if(this.worldObj.getBlockTileEntity(this.xCoord + (dir.offsetX *2), this.yCoord, this.zCoord + (dir.offsetZ *2)) instanceof TileArcaneFurnace) {
 			furnace = (TileArcaneFurnace)this.worldObj.getBlockTileEntity(this.xCoord + (dir.offsetX *2), this.yCoord, this.zCoord + (dir.offsetZ *2));
-		}
-		
+		}			
 		if(furnace != null) {
 			if(furnace instanceof TileAlchemyFurnace) {
 				if(this.energyStorage.extractEnergy(3000, true) == 3000) {

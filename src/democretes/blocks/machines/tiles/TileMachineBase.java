@@ -32,6 +32,11 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 			this.maxReceive = 5000;
 			this.energyStorage = new EnergyStorage(capacity);
 		}
+		if(this instanceof TileReconstructor) {
+			this.capacity = 40000;
+			this.maxReceive = 5000;
+			this.energyStorage = new EnergyStorage(capacity);
+		}
 	}
 	
 	

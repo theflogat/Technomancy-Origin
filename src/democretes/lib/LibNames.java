@@ -27,6 +27,8 @@ public class LibNames {
 	public static final String ITEM_FUSION_FOCUS_NAME = "fusionFocus";
 	public static final String CRYSTAL_NAME = "crystalBlock";
 	public static final String CREATIVE_JAR_NAME = "creativeJar";
+	public static final String RECONSTRUCTOR_NAME = "reconstructorBlock";
+	public static final String BLOOD_DYNAMO_NAME = "bloodDynamo";
 	
 
 }

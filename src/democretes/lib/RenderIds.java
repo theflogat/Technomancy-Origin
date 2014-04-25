@@ -11,6 +11,8 @@ public class RenderIds {
 	public static int idTeslaCoil;
 	public static int idElectricBellows;
 	public static int idCreativeJar;
+	public static int idReconstructor;
+	public static int idBloodDynamo;
 	
 
 }

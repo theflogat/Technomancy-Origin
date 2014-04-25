@@ -12,6 +12,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import democretes.blocks.TMBlocks;
+import democretes.handlers.CompatibilityHandler;
 import democretes.handlers.ConfigHandler;
 import democretes.handlers.CraftingHandler;
 import democretes.handlers.ResearchHandler;
@@ -44,10 +45,16 @@ public class Technomancy {
 
     @EventHandler
     public void foreplay(FMLPreInitializationEvent event) {
+    	CompatibilityHandler.checkThisShit();
         ConfigHandler.Init(new File(event.getModConfigurationDirectory(), "technomancy.cfg"));
 
-        TMItems.init();
-        TMBlocks.init();
+        if(ConfigHandler.thaumcraft) {
+        	TMItems.initThaumcraft();
+        	TMBlocks.initThaumcraft();
+        }
+        if(ConfigHandler.bloodmagic) {
+        	TMBlocks.initBloodMagic();
+        }
 
     }
 
@@ -59,9 +66,14 @@ public class Technomancy {
     }
 
     @EventHandler
-    public void cuddling(FMLPostInitializationEvent event) {    	
-    	CraftingHandler.init();
-    	ResearchHandler.init();
+    public void cuddling(FMLPostInitializationEvent event) {   
+        if(ConfigHandler.thaumcraft) {
+        	CraftingHandler.initThaumcraftRecipes();
+        	ResearchHandler.init();
+        }
+        if(ConfigHandler.bloodmagic) {
+        	CraftingHandler.initBloodMagicRecipes();
+        }
 
     }
 
