@@ -125,12 +125,10 @@ public class BlockTeslaCoil extends BlockBase {
 	
 	@SideOnly(Side.CLIENT)
 	public Icon iconCoil;
-	public static Icon iconFilter;
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconCoil = icon.registerIcon("technom:models/essentiaCoil");
-		this.iconFilter = icon.registerIcon("thaumcraft:misc/coil");
+		this.iconCoil = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);
 	}
 
 }

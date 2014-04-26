@@ -38,6 +38,7 @@ public class ConfigHandler {
         BlockIds.idCRYSTAL_BLOCK = config.getBlock(LibNames.CRYSTAL_NAME, BlockIds.idCRYSTAL_BLOCK_DEFAULT).getInt();
         BlockIds.idRECONSTRUCTOR = config.getBlock(LibNames.RECONSTRUCTOR_NAME, BlockIds.idRECONSTRUCTOR_DEFAULT).getInt();
         BlockIds.idBLOOD_DYNAMO = config.getBlock(LibNames.BLOOD_DYNAMO_NAME, BlockIds.idBLOOD_DYNAMO_DEFAULT).getInt();
+        BlockIds.idCONDENSER = config.getBlock(LibNames.CONDENSER_NAME, BlockIds.idCONDENSER_DEFAULT).getInt();
 
 
         //Items
@@ -47,6 +48,7 @@ public class ConfigHandler {
         ItemIds.idITEM_PEN = config.getItem(LibNames.ITEM_PEN_NAME, ItemIds.idITEM_PEN_DEFAULT).getInt();
         ItemIds.idITEM_WAND_CORES = config.getItem(LibNames.ITEM_WAND_CORES_NAME, ItemIds.idITEM_WAND_CORES_DEFAULT).getInt();
         ItemIds.idITEM_FUSION_FOCUS = config.getItem(LibNames.ITEM_FUSION_FOCUS_NAME, ItemIds.idITEM_FUSION_FOCUS_DEFAULT).getInt();
+
         
         //Render effects
         Property coilfx = config.get("Renderers", "CoilFX", fancy);

@@ -29,6 +29,7 @@ public class LibNames {
 	public static final String CREATIVE_JAR_NAME = "creativeJar";
 	public static final String RECONSTRUCTOR_NAME = "reconstructorBlock";
 	public static final String BLOOD_DYNAMO_NAME = "bloodDynamo";
+	public static final String CONDENSER_NAME = "condenserBlock";
 	
 
 }

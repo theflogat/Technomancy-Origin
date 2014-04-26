@@ -49,7 +49,7 @@ public class BlockNodeGenerator extends BlockBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconGenerator = icon.registerIcon("technom:models/nodeGenerator");
+		this.iconGenerator = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);
 	}
 	
 	@Override

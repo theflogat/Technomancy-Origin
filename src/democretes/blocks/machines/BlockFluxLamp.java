@@ -51,7 +51,7 @@ public class BlockFluxLamp extends BlockBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconLamp = icon.registerIcon("technom:blocks/lampSide");	
+		this.iconLamp = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);	
 	}
 	
 	@Override

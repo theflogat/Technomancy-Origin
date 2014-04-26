@@ -40,6 +40,7 @@ public class TileFluxLamp extends TileTechnomancy implements IAspectContainer, I
 			compound.setString("Aspect", this.aspect.getTag());
 		}	
 		compound.setBoolean("Placed", this.placed);
+		this.tank.writeToNBT(compound);
 	}
 	
 	@Override
@@ -48,6 +49,8 @@ public class TileFluxLamp extends TileTechnomancy implements IAspectContainer, I
 		this.aspect = Aspect.getAspect(compound.getString("Aspect"));
 		this.stabilize = compound.getBoolean("Stabilize");
 		this.placed = compound.getBoolean("Placed");
+		this.tank = new FluidTankAdv(1000);
+		this.tank.readFromNBT(compound);
 	}
 
 	@Override

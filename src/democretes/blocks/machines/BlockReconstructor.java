@@ -81,7 +81,7 @@ public class BlockReconstructor extends BlockBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconReconstructor = icon.registerIcon("technom:models/reconstructor");
+		this.iconReconstructor = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);
 	}
 
 }

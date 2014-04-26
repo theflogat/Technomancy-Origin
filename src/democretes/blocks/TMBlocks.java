@@ -9,12 +9,14 @@ import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
 import democretes.blocks.machines.BlockBiomeMorpher;
+import democretes.blocks.machines.BlockCondenser;
 import democretes.blocks.machines.BlockElectricBellows;
 import democretes.blocks.machines.BlockFluxLamp;
 import democretes.blocks.machines.BlockNodeGenerator;
 import democretes.blocks.machines.BlockReconstructor;
 import democretes.blocks.machines.BlockTeslaCoil;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
+import democretes.blocks.machines.tiles.TileCondenser;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
@@ -46,6 +48,7 @@ public class TMBlocks {
 	public static Block crystalBlock;	
 	public static Block reconstructorBlock;
 	public static Block bloodDynamo;
+	public static Block condenserBlock;
 	
 	public static void initThaumcraft() {
 		nodeDynamo = new BlockNodeDynamo(BlockIds.idNODE_DYNAMO);
@@ -60,6 +63,7 @@ public class TMBlocks {
 		creativeJar = new BlockCreativeJar(BlockIds.idCREATIVE_JAR);
 		crystalBlock = new BlockCrystal(BlockIds.idCRYSTAL_BLOCK);
 		reconstructorBlock = new BlockReconstructor(BlockIds.idRECONSTRUCTOR);
+		condenserBlock = new BlockCondenser(BlockIds.idCONDENSER);
 		
 		//Registry
 		GameRegistry.registerBlock(nodeDynamo, LibNames.NODE_DYNAMO_NAME);
@@ -74,6 +78,7 @@ public class TMBlocks {
 		GameRegistry.registerBlock(creativeJar, LibNames.CREATIVE_JAR_NAME);
 		GameRegistry.registerBlock(crystalBlock, LibNames.CRYSTAL_NAME);
 		GameRegistry.registerBlock(reconstructorBlock, LibNames.RECONSTRUCTOR_NAME);
+		GameRegistry.registerBlock(condenserBlock, LibNames.CONDENSER_NAME);
 		
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileEssentiaContainer.class, "TileEssentiacontainer");
@@ -86,6 +91,7 @@ public class TMBlocks {
 		GameRegistry.registerTileEntity(TileElectricBellows.class, "TileElectricBellows");
 		GameRegistry.registerTileEntity(TileCreativeJar.class, "TileCreativeJar");
 		GameRegistry.registerTileEntity(TileReconstructor.class, "TileReconstructor");
+		GameRegistry.registerTileEntity(TileCondenser.class, "TileCondenser");
 
 		
 	}

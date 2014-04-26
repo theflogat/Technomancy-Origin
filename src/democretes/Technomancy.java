@@ -59,14 +59,14 @@ public class Technomancy {
     }
 
     @EventHandler
-    public void orgasm(FMLInitializationEvent event) {
+    public void penetration(FMLInitializationEvent event) {
     	
     	proxy.initRenderers();
 
     }
 
     @EventHandler
-    public void cuddling(FMLPostInitializationEvent event) {   
+    public void orgasm(FMLPostInitializationEvent event) {   
         if(ConfigHandler.thaumcraft) {
         	CraftingHandler.initThaumcraftRecipes();
         	ResearchHandler.init();

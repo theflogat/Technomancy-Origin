@@ -1,5 +1,6 @@
 package democretes.blocks.dynamos.tiles;
 
+import thaumcraft.api.aspects.Aspect;
 import WayofTime.alchemicalWizardry.AlchemicalWizardry;
 import WayofTime.alchemicalWizardry.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +17,7 @@ public class TileBloodDynamo extends TileDynamoBase implements IFluidHandler {
 
 	public FluidTankAdv tank = new FluidTankAdv(5000);	
 
-	
+
 	@Override
 	protected boolean canGenerate() {
 		if(this.tank.getFluid() != null) {
@@ -90,12 +91,15 @@ public class TileBloodDynamo extends TileDynamoBase implements IFluidHandler {
 	public void readCustomNBT(NBTTagCompound compound) {
 		this.fuelRF = compound.getInteger("RF");
 		this.facing = compound.getByte("Facing");
+		this.tank = new FluidTankAdv(5000);
+		this.tank.readFromNBT(compound);
 	}
 	
 	@Override
 	public void writeCustomNBT(NBTTagCompound compound) {
 		compound.setInteger("RF", fuelRF);	
 		compound.setByte("Facing", this.facing);
+		this.tank.writeToNBT(compound);
 	}
 	
 

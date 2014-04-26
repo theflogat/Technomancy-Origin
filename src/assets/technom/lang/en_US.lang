@@ -7,6 +7,7 @@ techno:itemMaterial.1.name=Enchanted Coil
 techno:itemMaterial.2.name=Neutronized Gear
 techno:itemMaterial.3.name=Pen Core
 techno:itemMaterial.4.name=Coil Coupler
+techno:itemMaterial.5.name=Sacrificial Ingot
 techno:pen.name=Pen
 techno:wandCores.0.name=Energized Wand Core
 
@@ -27,6 +28,7 @@ tile.techno:crystalBlock.0.name=Spatial Crystal
 tile.techno:crystalBlock.1.name=Reality Crystal
 tile.techno:crystalBlock.2.name=Energy Crystal
 tile.techno:bloodDynamo.name=Blood Dynamo
+tile.techno:condenserBlock.name=Energy Condenser
 
 #Research Tab
 tc.research_category.TECHNOMANCY=Technomancy

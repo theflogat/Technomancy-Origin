@@ -14,7 +14,7 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 	public int energy;
 	public int capacity;
 	public int maxReceive;
-	public int maxExtract;
+	public int maxExtract = this.maxReceive;
 	
 	public TileMachineBase() {
 		if(this instanceof TileBiomeMorpher) {
@@ -35,6 +35,11 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 		if(this instanceof TileReconstructor) {
 			this.capacity = 40000;
 			this.maxReceive = 5000;
+			this.energyStorage = new EnergyStorage(capacity);
+		}
+		if(this instanceof TileCondenser) {
+			this.capacity = 50000000;
+			this.maxReceive = 50000;
 			this.energyStorage = new EnergyStorage(capacity);
 		}
 	}

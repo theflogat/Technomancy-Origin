@@ -17,6 +17,7 @@ public class BlockIds {
 	public static int idCRYSTAL_BLOCK_DEFAULT = 3418;
 	public static int idRECONSTRUCTOR_DEFAULT = 3419;
 	public static int idBLOOD_DYNAMO_DEFAULT = 3420;
+	public static int idCONDENSER_DEFAULT = 3421;
 
 	
 	//Initializers
@@ -34,6 +35,7 @@ public class BlockIds {
 	public static int idCRYSTAL_BLOCK;
 	public static int idRECONSTRUCTOR;
 	public static int idBLOOD_DYNAMO;
+	public static int idCONDENSER;
 
 
 }

@@ -73,7 +73,7 @@ public class BlockBiomeMorpher extends BlockBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconMorpher = icon.registerIcon("technom:models/biomeMorpher");
+		this.iconMorpher = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);
 	}
 
 }

@@ -120,6 +120,7 @@ public class CraftingHandler {
 	
 	public static void initBloodMagicRecipes() {
 		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 1, 5000, 10, 10, true);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemMaterial, 1, 0), new ItemStack(Item.ingotIron), 0, 500, 5, 5, true);
 	}
 	
 	static IRecipe oreDictRecipe(ItemStack res, Object[] params) {

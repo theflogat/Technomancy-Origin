@@ -82,7 +82,7 @@ public class BlockElectricBellows extends BlockBase{
 	
 	@SideOnly(Side.CLIENT)
 	public void RegisterIcons(IconRegister icon) {
-		this.iconBellows = icon.registerIcon("technom:models/electricBellows");
+		this.iconBellows = icon.registerIcon(Reference.TEXTURE_PREFIX + LibNames.CONDENSER_NAME);
 	}
 
 }
