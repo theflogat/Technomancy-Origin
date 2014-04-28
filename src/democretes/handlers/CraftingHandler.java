@@ -17,15 +17,12 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thermalexpansion.block.TEBlocks;
-import thermalexpansion.block.energycell.BlockEnergyCell;
 import thermalexpansion.item.TEItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import democretes.blocks.TMBlocks;
 import democretes.items.TMItems;
 
 public class CraftingHandler {
-	
-
 	
 	public static void initThaumcraftRecipes() {
 		

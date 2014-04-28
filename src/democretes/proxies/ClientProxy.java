@@ -10,6 +10,7 @@ import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
+import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
@@ -20,6 +21,7 @@ import democretes.blocks.storage.TileEssentiaContainer;
 import democretes.lib.RenderIds;
 import democretes.renderer.blocks.BlockBiomeMorpherRenderer;
 import democretes.renderer.blocks.BlockBloodDynamoRenderer;
+import democretes.renderer.blocks.BlockBloodFabricatorRenderer;
 import democretes.renderer.blocks.BlockCreativeJarRenderer;
 import democretes.renderer.blocks.BlockElectricBellowsRenderer;
 import democretes.renderer.blocks.BlockEssentiaContainerRenderer;
@@ -31,6 +33,7 @@ import democretes.renderer.blocks.BlockReconstructorRenderer;
 import democretes.renderer.blocks.BlockTeslaCoilRenderer;
 import democretes.renderer.tiles.TileBiomeMorpherRenderer;
 import democretes.renderer.tiles.TileBloodDynamoRenderer;
+import democretes.renderer.tiles.TileBloodFabricatorRenderer;
 import democretes.renderer.tiles.TileCreativeJarRenderer;
 import democretes.renderer.tiles.TileElectricBellowsRenderer;
 import democretes.renderer.tiles.TileEssentiaContainerRenderer;
@@ -82,6 +85,9 @@ public class ClientProxy extends CommonProxy {
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBloodDynamo.class, new TileBloodDynamoRenderer());
     	RenderIds.idBloodDynamo = RenderingRegistry.getNextAvailableRenderId();
+    	
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileBloodFabricator.class, new TileBloodFabricatorRenderer());
+    	RenderIds.idBloodFabricator = RenderingRegistry.getNextAvailableRenderId();
 
     	RenderingRegistry.registerBlockHandler(new BlockNodeDynamoRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockEssentiaDynamoRenderer());
@@ -94,6 +100,7 @@ public class ClientProxy extends CommonProxy {
     	RenderingRegistry.registerBlockHandler(new BlockCreativeJarRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockReconstructorRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockBloodDynamoRenderer());
+    	RenderingRegistry.registerBlockHandler(new BlockBloodFabricatorRenderer());
 
     	
     }

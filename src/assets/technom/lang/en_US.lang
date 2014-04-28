@@ -29,6 +29,8 @@ tile.techno:crystalBlock.1.name=Reality Crystal
 tile.techno:crystalBlock.2.name=Energy Crystal
 tile.techno:bloodDynamo.name=Blood Dynamo
 tile.techno:condenserBlock.name=Energy Condenser
+tile.techno:bloodFabricator.name=Blood Fabricator
+tile.techno:flowerDynamo.name=Hippie Dynamo
 
 #Research Tab
 tc.research_category.TECHNOMANCY=Technomancy

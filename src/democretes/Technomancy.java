@@ -45,9 +45,9 @@ public class Technomancy {
 
     @EventHandler
     public void foreplay(FMLPreInitializationEvent event) {
-    	CompatibilityHandler.checkThisShit();
         ConfigHandler.Init(new File(event.getModConfigurationDirectory(), "technomancy.cfg"));
-
+        CompatibilityHandler.checkThisShit();
+        
         if(ConfigHandler.thaumcraft) {
         	TMItems.initThaumcraft();
         	TMBlocks.initThaumcraft();
@@ -55,12 +55,14 @@ public class Technomancy {
         if(ConfigHandler.bloodmagic) {
         	TMBlocks.initBloodMagic();
         }
+        if(ConfigHandler.botania) {
+        	TMBlocks.initBotania();
+        }
 
     }
 
     @EventHandler
-    public void penetration(FMLInitializationEvent event) {
-    	
+    public void penetration(FMLInitializationEvent event) {    	
     	proxy.initRenderers();
 
     }

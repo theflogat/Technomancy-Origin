@@ -84,52 +84,5 @@ public class TileTeslaCoilRenderer extends TileEntitySpecialRenderer {
 			GL11.glRotatef(90.0F, 1.0F, 0F, 0.0F);
 		}
 	}
-	
-	public void renderFilter(TileEntity tile)  {
-		if (this.tileEntityRenderer.renderEngine == null) {
-		      return;
-		}	    
-		TileTeslaCoil entity = (TileTeslaCoil)tile;
-		    
-		    
-		GL11.glPushMatrix();
-		GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
-		GL11.glTranslatef(0F, -1.5F, 0F);
-		    
-		RenderBlocks renderBlocks = new RenderBlocks();
-		    
-		GL11.glDisable(2896);
-		    
-	    Tessellator t = Tessellator.instance;
-		    
-		renderBlocks.setRenderBounds(0.4D, 0.1D, 0.4D, 0.5D, 0.3D, 0.5D);
-		    
-		t.startDrawingQuads();
-		
-		t.setColorOpaque_I((entity).aspectFilter.getColor());
-		
-		    
-		Icon icon = BlockTeslaCoil.iconFilter;
-		    
-		this.tileEntityRenderer.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		    
-		Block coil = TMBlocks.teslaCoil;
-
-		renderBlocks.renderFaceYNeg(coil, 0.0D, 0.0D, 0.0D, icon);
-		renderBlocks.renderFaceYPos(coil, 0.0D, 0.0D, 0.0D, icon);
-		renderBlocks.renderFaceZNeg(coil, 0.0D, 0.0D, 0.0D, icon);
-		renderBlocks.renderFaceZPos(coil, 0.0D, 0.0D, 0.0D, icon);
-		renderBlocks.renderFaceXNeg(coil, 0.0D, 0.0D, 0.0D, icon);
-		renderBlocks.renderFaceXPos(coil, 0.0D, 0.0D, 0.0D, icon);
-		    
-		t.draw();	    
-		    
-
-		GL11.glEnable(2896);	    
-		GL11.glPopMatrix();
-		    
-		GL11.glColor3f(1.0F, 1.0F, 1.0F);
-	}
-
 
 }

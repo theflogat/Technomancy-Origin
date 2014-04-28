@@ -39,10 +39,11 @@ public class ConfigHandler {
         BlockIds.idRECONSTRUCTOR = config.getBlock(LibNames.RECONSTRUCTOR_NAME, BlockIds.idRECONSTRUCTOR_DEFAULT).getInt();
         BlockIds.idBLOOD_DYNAMO = config.getBlock(LibNames.BLOOD_DYNAMO_NAME, BlockIds.idBLOOD_DYNAMO_DEFAULT).getInt();
         BlockIds.idCONDENSER = config.getBlock(LibNames.CONDENSER_NAME, BlockIds.idCONDENSER_DEFAULT).getInt();
+        BlockIds.idBLOOD_FABRICATOR = config.getBlock(LibNames.BLOOD_FABRICATOR_NAME, BlockIds.idBLOOD_FABRICATOR_DEFAULT).getInt();
+        BlockIds.idFLOWER_DYNAMO = config.getBlock(LibNames.FLOWER_DYNAMO_NAME, BlockIds.idFLOWER_DYNAMO_DEFAULT).getInt();
 
 
-        //Items
-        
+        //Items        
         ItemIds.idESSENTIA_CANNON = config.getItem(LibNames.ESSENTIA_CANNON_NAME, ItemIds.idESSENTIA_CANNON_DEFAULT).getInt();
         ItemIds.idITEM_MATERIAL = config.getItem(LibNames.ITEM_MATERIAL_NAME, ItemIds.idITEM_MATERIAL_DEFAULT).getInt();
         ItemIds.idITEM_PEN = config.getItem(LibNames.ITEM_PEN_NAME, ItemIds.idITEM_PEN_DEFAULT).getInt();

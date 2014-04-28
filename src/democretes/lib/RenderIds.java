@@ -13,6 +13,7 @@ public class RenderIds {
 	public static int idCreativeJar;
 	public static int idReconstructor;
 	public static int idBloodDynamo;
+	public static int idBloodFabricator;
 	
 
 }

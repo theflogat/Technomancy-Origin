@@ -42,6 +42,11 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 			this.maxReceive = 50000;
 			this.energyStorage = new EnergyStorage(capacity);
 		}
+		if(this instanceof TileBloodFabricator) {
+			this.capacity = 50000000;
+			this.maxReceive = 50000;
+			this.energyStorage = new EnergyStorage(capacity);
+		}
 	}
 	
 	

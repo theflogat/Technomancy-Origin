@@ -21,7 +21,7 @@ import democretes.renderer.tiles.TileEssentiaDynamoRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyHandler, IEnergyInfo, IReconfigurableFacing{
+public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyHandler, IEnergyInfo, IReconfigurableFacing {
 
 	
 	public int minPower = 4;
@@ -74,6 +74,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 		this.energyStorage.modifyEnergyStored(-this.adjacentHandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[(bSide ^ 0x1)], Math.min(this.maxTransfer, this.energyStorage.getEnergyStored()), false));
 	}
 	  
+	@Override
 	public void updateEntity(){
 		if (ServerHelper.isClientWorld(this.worldObj)) {
 			return;
@@ -143,8 +144,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	  
 	public IEnergyStorage getEnergyStorage()	  {
 	    return this.energyStorage;
-	}
- 
+	} 
 	
 	public boolean isActive()	  {
 	    return this.isActive;

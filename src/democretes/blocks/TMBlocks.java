@@ -4,11 +4,14 @@ import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import democretes.blocks.dynamos.BlockBloodDynamo;
 import democretes.blocks.dynamos.BlockEssentiaDynamo;
+import democretes.blocks.dynamos.BlockFlowerDynamo;
 import democretes.blocks.dynamos.BlockNodeDynamo;
 import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
+import democretes.blocks.dynamos.tiles.TileFlowerDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
 import democretes.blocks.machines.BlockBiomeMorpher;
+import democretes.blocks.machines.BlockBloodFabricator;
 import democretes.blocks.machines.BlockCondenser;
 import democretes.blocks.machines.BlockElectricBellows;
 import democretes.blocks.machines.BlockFluxLamp;
@@ -16,6 +19,7 @@ import democretes.blocks.machines.BlockNodeGenerator;
 import democretes.blocks.machines.BlockReconstructor;
 import democretes.blocks.machines.BlockTeslaCoil;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
+import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileCondenser;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
@@ -49,6 +53,8 @@ public class TMBlocks {
 	public static Block reconstructorBlock;
 	public static Block bloodDynamo;
 	public static Block condenserBlock;
+	public static Block bloodFabricator;
+	public static Block flowerDynamo;
 	
 	public static void initThaumcraft() {
 		nodeDynamo = new BlockNodeDynamo(BlockIds.idNODE_DYNAMO);
@@ -99,13 +105,27 @@ public class TMBlocks {
 	public static void initBloodMagic() {
 		//Block Initialization
 		bloodDynamo = new BlockBloodDynamo(BlockIds.idBLOOD_DYNAMO);	
+		bloodFabricator = new BlockBloodFabricator(BlockIds.idBLOOD_FABRICATOR);
 		
 		//Registry
-		GameRegistry.registerBlock(bloodDynamo, LibNames.BLOOD_DYNAMO_NAME);		
+		GameRegistry.registerBlock(bloodDynamo, LibNames.BLOOD_DYNAMO_NAME);
+		GameRegistry.registerBlock(bloodFabricator, LibNames.BLOOD_FABRICATOR_NAME);
 
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileBloodDynamo.class, "TileBloodDynamo");
+		GameRegistry.registerTileEntity(TileBloodFabricator.class, "TileBloodFabricator");
 
+	}
+	
+	public static void initBotania() {
+		//Block Initialization
+		flowerDynamo = new BlockFlowerDynamo(BlockIds.idFLOWER_DYNAMO);
+		
+		//Block Registry
+		GameRegistry.registerBlock(flowerDynamo, LibNames.FLOWER_DYNAMO_NAME);		
+		
+		//Tile Registry
+		GameRegistry.registerTileEntity(TileFlowerDynamo.class, "TileFlowerDynamo");
 	}
 	
 

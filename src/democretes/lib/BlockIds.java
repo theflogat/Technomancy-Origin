@@ -18,6 +18,8 @@ public class BlockIds {
 	public static int idRECONSTRUCTOR_DEFAULT = 3419;
 	public static int idBLOOD_DYNAMO_DEFAULT = 3420;
 	public static int idCONDENSER_DEFAULT = 3421;
+	public static int idBLOOD_FABRICATOR_DEFAULT = 3422;
+	public static int idFLOWER_DYNAMO_DEFAULT = 3423;
 
 	
 	//Initializers
@@ -36,6 +38,8 @@ public class BlockIds {
 	public static int idRECONSTRUCTOR;
 	public static int idBLOOD_DYNAMO;
 	public static int idCONDENSER;
+	public static int idBLOOD_FABRICATOR;
+	public static int idFLOWER_DYNAMO;
 
 
 }
