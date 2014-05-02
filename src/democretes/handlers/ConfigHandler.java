@@ -17,6 +17,7 @@ public class ConfigHandler {
 	public static boolean thaumcraft = false;
 	public static boolean bloodmagic = false;
 	public static boolean botania = false;
+	public static boolean bonus = true;
 
     public static void Init(File file) {
         Configuration config = new Configuration(file);
@@ -50,6 +51,9 @@ public class ConfigHandler {
         ItemIds.idITEM_WAND_CORES = config.getItem(LibNames.ITEM_WAND_CORES_NAME, ItemIds.idITEM_WAND_CORES_DEFAULT).getInt();
         ItemIds.idITEM_FUSION_FOCUS = config.getItem(LibNames.ITEM_FUSION_FOCUS_NAME, ItemIds.idITEM_FUSION_FOCUS_DEFAULT).getInt();
 
+        //Recipe Whatnots
+        Property smelting = config.get("Recipes", "Add/Increase Smelting bonus to dusts/ore", bonus);
+        bonus = smelting.getBoolean(true);
         
         //Render effects
         Property coilfx = config.get("Renderers", "CoilFX", fancy);

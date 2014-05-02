@@ -72,6 +72,7 @@ public class Technomancy {
         if(ConfigHandler.thaumcraft) {
         	CraftingHandler.initThaumcraftRecipes();
         	ResearchHandler.init();
+        	CompatibilityHandler.smeltify();
         }
         if(ConfigHandler.bloodmagic) {
         	CraftingHandler.initBloodMagicRecipes();

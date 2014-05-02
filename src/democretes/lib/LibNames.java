@@ -32,6 +32,7 @@ public class LibNames {
 	public static final String CONDENSER_NAME = "condenserBlock";
 	public static final String BLOOD_FABRICATOR_NAME = "bloodFabricator";
 	public static final String FLOWER_DYNAMO_NAME = "flowerDynamo";
+	public static final String FLOWER_NAME = "flowerBlock";
 	
 
 }
