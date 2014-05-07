@@ -36,7 +36,7 @@ public class TileReconstructorRenderer extends TileEntitySpecialRenderer{
 		model.render();		
 		
 		TileReconstructor recon = (TileReconstructor)entity;
-		if(recon.contents[0] != null) {
+		if(recon.getStackInSlot(0) != null) {
 			EntityItem entityitem = null;
 		    GL11.glPushMatrix();
 		    GL11.glTranslatef((float)x + 0.5F, (float)y + 1.15F, (float)z + 0.5F);

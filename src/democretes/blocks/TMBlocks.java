@@ -15,6 +15,7 @@ import democretes.blocks.machines.BlockBloodFabricator;
 import democretes.blocks.machines.BlockCondenser;
 import democretes.blocks.machines.BlockElectricBellows;
 import democretes.blocks.machines.BlockFluxLamp;
+import democretes.blocks.machines.BlockManaFabricator;
 import democretes.blocks.machines.BlockNodeGenerator;
 import democretes.blocks.machines.BlockReconstructor;
 import democretes.blocks.machines.BlockTeslaCoil;
@@ -23,6 +24,7 @@ import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileCondenser;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
+import democretes.blocks.machines.tiles.TileManaFabricator;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
 import democretes.blocks.machines.tiles.TileReconstructor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
@@ -55,6 +57,7 @@ public class TMBlocks {
 	public static Block condenserBlock;
 	public static Block bloodFabricator;
 	public static Block flowerDynamo;
+	public static Block manaFabricator;
 	
 	public static void initThaumcraft() {
 		nodeDynamo = new BlockNodeDynamo(BlockIds.idNODE_DYNAMO);
@@ -120,12 +123,15 @@ public class TMBlocks {
 	public static void initBotania() {
 		//Block Initialization
 		flowerDynamo = new BlockFlowerDynamo(BlockIds.idFLOWER_DYNAMO);
+		manaFabricator = new BlockManaFabricator(BlockIds.idMANA_FABRICATOR);
 		
 		//Block Registry
-		GameRegistry.registerBlock(flowerDynamo, LibNames.FLOWER_DYNAMO_NAME);		
+		GameRegistry.registerBlock(flowerDynamo, LibNames.FLOWER_DYNAMO_NAME);
+		GameRegistry.registerBlock(manaFabricator, LibNames.MANA_FABRICATOR_NAME);
 		
 		//Tile Registry
 		GameRegistry.registerTileEntity(TileFlowerDynamo.class, "TileFlowerDynamo");
+		GameRegistry.registerTileEntity(TileManaFabricator.class, "ManaFabricator");
 	}
 	
 

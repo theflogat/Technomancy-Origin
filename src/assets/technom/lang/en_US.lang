@@ -7,9 +7,10 @@ techno:itemMaterial.1.name=Enchanted Coil
 techno:itemMaterial.2.name=Neutronized Gear
 techno:itemMaterial.3.name=Pen Core
 techno:itemMaterial.4.name=Coil Coupler
-techno:itemMaterial.5.name=Sacrificial Ingot
 techno:pen.name=Pen
 techno:wandCores.0.name=Energized Wand Core
+techno:itemBM.0.name=SacrificialIngot
+techno:itemBM.1.name=Life Coil
 
 #Block Names
 tile.techno:cosmeticOpaque.name=Quantized Glass
@@ -31,6 +32,7 @@ tile.techno:bloodDynamo.name=Blood Dynamo
 tile.techno:condenserBlock.name=Energy Condenser
 tile.techno:bloodFabricator.name=Blood Fabricator
 tile.techno:flowerDynamo.name=Hippie Dynamo
+tile.techno:manaFabricator.name=Mana Fabricator
 
 #Research Tab
 tc.research_category.TECHNOMANCY=Technomancy
@@ -56,7 +58,7 @@ techno.research_page.PEN.1=Do you realise how stupid you are to use an ink and q
 tc.research_name.NODEGENERATOR=Node Generation
 tc.research_text.NODEGENERATOR=Totally OP.
 techno.research_page.NODEGENERATOR.1=Converting magic to energy is easy enough, but the other way around is far more difficult and expensive. The fabricators need to have 5 blocks space between the two of them as well as facing each other. If done properly, they will start drawing the appropriate essentia. If there is a node between the two blocks (one block higher than the fabricators), then the fabricators will draw all types of essentia and add them to the node, but won't exceed the max vis size. If there is no node, they will either draw taint or aurum depending on their location. You can put however much essentia into either fabricator as long as it exceeds a total of 64.
-techno.research_page.NODEGENERATOR.2= To generate the node, simply right click one of the fabricators and both will lose all essentia they contain and the fabricator clicked will draw energy ((((Aurum+Taint)/2)^2)*762.939453125 = Energy(RF)) from their internal storage. The size of the node is determined by the total amount of essentia divided by two. The type/modifier is determined by the ratio of aurum to taint and the total amount of essentia. Making a node too big or too small isn't going to turn out pretty as well as putting in too much of one aspect.
+techno.research_page.NODEGENERATOR.2= To generate the node, simply right click one of the fabricators with a wand and both will lose all essentia they contain and the fabricator clicked will draw energy ((((Aurum+Taint)/2)^2)*762.939453125 = Energy(RF)) from their internal storage. The size of the node is determined by the total amount of essentia divided by two. The type/modifier is determined by the ratio of aurum to taint and the total amount of essentia. Making a node too big or too small isn't going to turn out pretty as well as putting in too much of one aspect.
 
 tc.research_name.BIOMEMORPHER=Biome Transmutation
 tc.research_text.BIOMEMORPHER=Stupid taint...
@@ -79,5 +81,9 @@ tc.research_name.ELECTRICBELLOWS=Powered Magic
 tc.research_text.ELECTRICBELLOWS=Power power for magic power.
 techno.research_page.ELECTRICBELLOWS.1=After messing around with the power of bellows, you've discovered a way to add some energy into them making them even more powerful. These new bellows can be attatched to either Infernal or Alchemy furnaces. When attatched to the Infernal furnace and supplied with power, the speed at which the furnace cooks is increased greatly. When attatched to an Alchemy furnace and supplied with power, the bellows supplies the furnace with heat to decompose items within it without using any other fuel.
 
+
+tc.research_name.CONDENSER=Condensing Energy
+tc.research_text.CONDENSER=WE NEED MORE POWAH
+techno.research_page.CONDENSER.1=Too much power is never a thing, and now you've got a machine to put it to good use. By hooking up a Energy Condenser to some conduits, you can turn RF into some potentia. The potentia can then easily be piped out of the condenser into your favorite jar.
 #Creative Tab
 itemGroup.Technomancy=Technomancy

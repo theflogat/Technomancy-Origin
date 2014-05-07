@@ -2,6 +2,7 @@ package democretes.blocks.flowers;
 
 import java.util.List;
 
+import vazkii.botania.common.block.BlockSpecialFlower;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import democretes.blocks.BlockBase;
 import democretes.blocks.machines.tiles.TileFlower;
 
-public class BlockTechnoFlower extends BlockFlower {
+public class BlockTechnoFlower extends BlockSpecialFlower {
 
 	public BlockTechnoFlower(int id) {
-		super(id);		
+		super();		
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package democretes.handlers;
 
+import WayofTime.alchemicalWizardry.ModBlocks;
 import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -17,6 +18,7 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thermalexpansion.block.TEBlocks;
+import thermalexpansion.block.machine.BlockMachine;
 import thermalexpansion.item.TEItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import democretes.blocks.TMBlocks;
@@ -36,6 +38,10 @@ public class CraftingHandler {
 		ResearchHandler.recipes.put("EnergizedWandRod", ThaumcraftApi.addInfusionCraftingRecipe("ENERGIZEDWAND", new ItemStack(TMItems.itemWandCores, 1, 0), 25,
 				new AspectList().add(Aspect.ENERGY, 50).add(Aspect.TOOL, 50).add(Aspect.MAGIC, 50).add(Aspect.MECHANISM, 50).add(Aspect.EXCHANGE, 50), new ItemStack(ConfigItems.itemWandRod, 1, 1),
 				new ItemStack[] { new ItemStack((TEItems.capacitorResonant).itemID, 1, 4), new ItemStack((TEItems.powerCoilElectrum).itemID, 1, 193), new ItemStack((TEItems.powerCoilSilver).itemID, 1, 194), new ItemStack((TEItems.powerCoilGold).itemID, 1, 195), new ItemStack(TMItems.itemMaterial, 1, 1) }));
+		ResearchHandler.recipes.put("Condenser", ThaumcraftApi.addInfusionCraftingRecipe("CONDENSER", new ItemStack(TMBlocks.condenserBlock), 25,
+				new AspectList().add(Aspect.ENERGY, 100).add(Aspect.MECHANISM, 50).add(Aspect.EXCHANGE, 25).add(Aspect.ORDER, 25), new ItemStack(TMBlocks.reconstructorBlock), 
+				new ItemStack[] { BlockMachine.machineFrame, new ItemStack(TMItems.itemMaterial, 1, 1), new ItemStack(TMItems.itemMaterial, 1, 1), new ItemStack((ItemApi.getBlock("blockCosmeticSolid", 4)).itemID, 1, 4), new ItemStack((ItemApi.getBlock("blockCosmeticSolid", 4)).itemID, 1, 4)}));
+		
 		//Arcane Recipes
 		ResearchHandler.recipes.put("QuantumGlass", ThaumcraftApi.addArcaneCraftingRecipe("QUANTUMJARS", new ItemStack(TMBlocks.cosmeticOpaque, 4, 0), new AspectList().add(Aspect.ORDER, 5).add(Aspect.FIRE, 5), 
 			new Object[] { "GG", "GG", 
@@ -103,7 +109,7 @@ public class CraftingHandler {
 			'I', new ItemStack(Item.ingotIron),
 			'C', new ItemStack((ItemApi.getItem("itemWandCap", 0).itemID), 1, 0),
 			'P', new ItemStack(TMItems.itemMaterial, 1, 3),
-			'N', new ItemStack(Item.goldNugget)		}));	
+			'N', new ItemStack(Item.goldNugget)		}));
 		
 		//Wand Recipes
 		ItemStack electric = ItemApi.getItem("itemWandCasting", 72);
@@ -116,8 +122,19 @@ public class CraftingHandler {
 	}
 	
 	public static void initBloodMagicRecipes() {
-		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 1, 5000, 10, 10, true);
-		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemMaterial, 1, 0), new ItemStack(Item.ingotIron), 0, 500, 5, 5, true);
+		//Altar Recipes
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 1, 10000, 100, 100, true);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 0), new ItemStack(Item.ingotIron), 0, 1000, 100, 100, true);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 1), TEItems.powerCoilGold, 0, 1000, 100, 100, true);
+		
+		//Normal Recipes
+		GameRegistry.addShapedRecipe(new ItemStack(TMBlocks.bloodFabricator), 
+			new Object[] {" T ", "IMI", "CAC",
+			'T', new ItemStack(TEBlocks.blockTank, 1, 2),
+			'I', new ItemStack(TMItems.itemBM, 1, 0),
+			'M', BlockMachine.machineFrame,
+			'C', new ItemStack(TMItems.itemBM, 1, 1),
+			'A', new ItemStack(ModBlocks.blockAltar)		});
 	}
 	
 	static IRecipe oreDictRecipe(ItemStack res, Object[] params) {

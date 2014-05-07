@@ -29,7 +29,7 @@ public class ItemMaterial extends ItemBase {
 	}
 
 	
-	public Icon[] itemIcon = new Icon[6];
+	public Icon[] itemIcon = new Icon[5];
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister icon) {
@@ -38,7 +38,6 @@ public class ItemMaterial extends ItemBase {
 		itemIcon[2] = icon.registerIcon(Reference.TEXTURE_PREFIX + "neutronizedGear");
 		itemIcon[3] = icon.registerIcon(Reference.TEXTURE_PREFIX + "penCore");
 		itemIcon[4] = icon.registerIcon(Reference.TEXTURE_PREFIX + "coilCoupler");
-		itemIcon[5] = icon.registerIcon(Reference.TEXTURE_PREFIX + "bloodIngot");
 	}
 	
 	@SideOnly(Side.CLIENT)

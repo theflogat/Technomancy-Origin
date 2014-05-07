@@ -54,6 +54,7 @@ public class Technomancy {
         }
         if(ConfigHandler.bloodmagic) {
         	TMBlocks.initBloodMagic();
+        	TMItems.initBloodMagic();
         }
         if(ConfigHandler.botania) {
         	TMBlocks.initBotania();

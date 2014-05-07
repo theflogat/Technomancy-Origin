@@ -9,7 +9,7 @@ public class LibNames {
 	public static final String ITEM_MATERIAL_NAME = "itemMaterial";
 	public static final String ITEM_PEN_NAME = "pen";
 	public static final String ITEM_WAND_CORES_NAME = "wandCores";
-
+	public static final String ITEM_BM_MATERIAL_NAME = "itemBM";
 
     /*
      * Blocks
@@ -32,7 +32,7 @@ public class LibNames {
 	public static final String CONDENSER_NAME = "condenserBlock";
 	public static final String BLOOD_FABRICATOR_NAME = "bloodFabricator";
 	public static final String FLOWER_DYNAMO_NAME = "flowerDynamo";
-	public static final String FLOWER_NAME = "flowerBlock";
+	public static final String MANA_FABRICATOR_NAME = "manaFabricator";
 	
 
 }

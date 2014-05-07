@@ -21,6 +21,8 @@ public class BlockNodeDynamo extends BlockBase {
 		super(id);
 		setUnlocalizedName("techno:nodeDynamo");
 	}
+	
+	@Override
 	public TileEntity createNewTileEntity(World world) {
 		return new TileNodeDynamo();
 	}
@@ -30,17 +32,19 @@ public class BlockNodeDynamo extends BlockBase {
 		this.iconDynamo = icon.registerIcon("technom:models/nodeDynamo");
 	}
 	
+	@Override
 	public boolean isOpaqueCube(){
 		return false;
 	}
 	
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
 	
+	@Override
 	public int getRenderType() {
 		return RenderIds.idNodeDynamo;
 	}
-
 
 }

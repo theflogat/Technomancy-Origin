@@ -11,7 +11,16 @@ import democretes.lib.Reference;
 
 public class TMItems {
 
-    public static void initThaumcraft() {
+	// Item Instances
+    public static Item essentiaCannon;
+    public static Item itemMaterial;
+    public static Item itemPen;
+    public static Item itemWandCores;
+    public static Item itemFusionFocus;
+    
+    public static WandRod WAND_ROD_ELECTRIC;
+    
+    public static void initThaumcraft() { 	
 
         // Item Initializations
         //essentiaCannon = new ItemEssentiaCannon(ItemIds.idESSENTIA_CANNON);
@@ -29,17 +38,20 @@ public class TMItems {
         
         GameRegistry.registerItem(itemWandCores, LibNames.ITEM_WAND_CORES_NAME);
         WAND_ROD_ELECTRIC = new WandRod("electric", 25, new ItemStack(itemWandCores, 1, 0), 9, new ElectricWandUpdate(), new ResourceLocation("technom", "textures/models/electricWand.png"));
+    }
+    
+    //Instances
+    public static Item itemBM;
+    
+    public static void initBloodMagic() {
 
-
+    	//Initializations
+        itemBM = new ItemBMMaterial(ItemIds.idITEM_BM_MATERIAL);        
+        
+        //Registry
+        GameRegistry.registerItem(itemBM, LibNames.ITEM_BM_MATERIAL_NAME);
     }
 
-    // Item Instances
-    public static Item essentiaCannon;
-    public static Item itemMaterial;
-    public static Item itemPen;
-    public static Item itemWandCores;
-    public static Item itemFusionFocus;
     
-    public static WandRod WAND_ROD_ELECTRIC;
 
 }

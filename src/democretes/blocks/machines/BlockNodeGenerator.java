@@ -72,6 +72,7 @@ public class BlockNodeGenerator extends BlockBase {
 		}
 	}
 	
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)	  {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		if(tile instanceof TileNodeGenerator) {
@@ -85,17 +86,17 @@ public class BlockNodeGenerator extends BlockBase {
 	  }
 	
 
-	  
-	  public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
-		  TileEntity tile = access.getBlockTileEntity(x, y, z);
-			if(((TileNodeGenerator)tile).facing == 1 || ((TileNodeGenerator)tile).facing == 3) {
-				setBlockBounds(-1.0F, 0.0F, 0.0F, 2.0F, 3.0F, 1.0F);
-			}else if(((TileNodeGenerator)tile).facing == 2 || ((TileNodeGenerator)tile).facing == 4){
-				setBlockBounds(0.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F);
-			}
-	  }
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
+		TileEntity tile = access.getBlockTileEntity(x, y, z);
+		if(((TileNodeGenerator)tile).facing == 1 || ((TileNodeGenerator)tile).facing == 3) {
+			setBlockBounds(-1.0F, 0.0F, 0.0F, 2.0F, 3.0F, 1.0F);
+		}else if(((TileNodeGenerator)tile).facing == 2 || ((TileNodeGenerator)tile).facing == 4){
+			setBlockBounds(0.0F, 0.0F, -1.0F, 1.0F, 3.0F, 2.0F);
+		}
+	}
 
-	
+	@Override
 	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);		
 		int xx = z;
@@ -116,6 +117,7 @@ public class BlockNodeGenerator extends BlockBase {
 				((TileNodeGenerator)entity).active = false;
 			}
 		}
+		super.breakBlock(world, x, y, z, id, meta);
 	}
 
 }

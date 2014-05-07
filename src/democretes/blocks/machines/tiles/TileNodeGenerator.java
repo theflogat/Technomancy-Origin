@@ -109,28 +109,23 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 		al.add(ra, (aurum + taint)/ 2);			
 		if (aurum == taint && (aurum + taint == 122 || aurum + taint == 152 || aurum + taint == 218 || aurum + taint == 510)) {
 			type = NodeType.PURE;
-		}
-		if (aurum + taint > 256 ) {
+		}else if (aurum + taint > 256 ) {
 			type = NodeType.HUNGRY;
-		}
-		if (aurum - 64 > taint) {
+		}else if (aurum - 64 > taint) {
 			type = NodeType.UNSTABLE;
-		}
-		if (taint - 64 > aurum) {
+		}else if (taint - 64 > aurum) {
 			if (taint > 96) {
 				type = NodeType.TAINTED;
 			}else{
 				type = NodeType.DARK;
 			}				
-		}			
+		}
 		if(aurum + taint < 80) {
 			mod = NodeModifier.FADING;
-		}
-		if((aurum + taint > 200 && aurum + taint < 256) || (aurum + taint == 510)) {
+		}else if((aurum + taint > 200 && aurum + taint < 256) || (aurum + taint == 510)) {
 			mod = NodeModifier.BRIGHT;
-		}
-		if(aurum + taint > 350 && aurum + taint != 510) {
-		mod = NodeModifier.PALE;
+		}else if(aurum + taint > 350 && aurum + taint != 510) {
+			mod = NodeModifier.PALE;
 		}
 		int xx = this.xCoord;
 		int zz = this.zCoord;
@@ -256,6 +251,7 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 	}
 	
 	
+	@Override
 	public void readCustomNBT(NBTTagCompound compound)  {
 		this.aspect = Aspect.getAspect(compound.getString("Aspect"));
 		this.amount = compound.getShort("Amount");
@@ -265,7 +261,7 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 
 	}
 	
-	
+	@Override
 	public void writeCustomNBT(NBTTagCompound compound)  {
 		if (this.aspect != null) {
 			compound.setString("Aspect", this.aspect.getTag());
@@ -303,6 +299,15 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 
 	@Override
 	public boolean takeFromContainer(Aspect tag, int amount)  {
+		if(this.amount >= amount && this.aspect == tag) {
+			this.amount -= amount;
+			if(this.amount <= 0) {
+				this.aspect = null;
+				this.amount = 0;					
+			}
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+			return true;			
+		}
 		return false;
 	}
 

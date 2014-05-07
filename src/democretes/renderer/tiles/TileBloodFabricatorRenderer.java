@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 
@@ -36,10 +37,10 @@ public class TileBloodFabricatorRenderer extends TileEntitySpecialRenderer {
 			GL11.glTranslatef((float)x, (float)y, (float)z);
 			GL11.glScalef(-1F, -1F, 1f);
 			GL11.glTranslatef(-.5F, -1.5F, .5F);
+			renderLiquid(entity, x, y, z, t);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			bindTexture(modelTexture);
-			renderLiquid(entity, x, y, z, t);
 			model.render();
 		
 			GL11.glPopMatrix();
@@ -64,15 +65,21 @@ public class TileBloodFabricatorRenderer extends TileEntitySpecialRenderer {
 	    
 	    GL11.glDisable(2896);
 	    
-	    float level = fabricator.tank.getFluidAmount()/fabricator.tank.getCapacity();
+	    float level = ((MathHelper.abs(fabricator.tank.getFluidAmount()/100))/(MathHelper.abs(fabricator.tank.getCapacity()/100))) * 0.75F;
 	    
 	    Tessellator t = Tessellator.instance;
 	    
-	    renderBlocks.setRenderBounds(0.25D, 0.25D, 0.25D, 0.75D, 0.25D + level, 0.75D);
+	    renderBlocks.setRenderBounds(0.26D, 0.24D, 0.26D, 0.76D, 0.24D + level, 0.76D);
 	    
 	    t.startDrawingQuads();
-	    	    
-	    Icon icon = RenderHelper.getFluidTexture(AlchemicalWizardry.lifeEssenceFluid);
+	    
+	    int bright = 200;
+	    if (tile.getWorldObj() != null) {
+	    	bright = Math.max(200, Block.blocksList[thaumcraft.common.config.Config.blockJarId].getMixedBrightnessForBlock(tile.worldObj, tile.xCoord, tile.yCoord, tile.zCoord));
+	    }
+	    t.setBrightness(bright);
+	    
+	    Icon icon = AlchemicalWizardry.lifeEssenceFluid.getIcon();
 	    
 	    this.tileEntityRenderer.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 	    

@@ -42,7 +42,7 @@ public class ConfigHandler {
         BlockIds.idCONDENSER = config.getBlock(LibNames.CONDENSER_NAME, BlockIds.idCONDENSER_DEFAULT).getInt();
         BlockIds.idBLOOD_FABRICATOR = config.getBlock(LibNames.BLOOD_FABRICATOR_NAME, BlockIds.idBLOOD_FABRICATOR_DEFAULT).getInt();
         BlockIds.idFLOWER_DYNAMO = config.getBlock(LibNames.FLOWER_DYNAMO_NAME, BlockIds.idFLOWER_DYNAMO_DEFAULT).getInt();
-
+        BlockIds.idMANA_FABRICATOR = config.getBlock(LibNames.MANA_FABRICATOR_NAME, BlockIds.idMANA_FABRICATOR_DEFAULT).getInt();
 
         //Items        
         ItemIds.idESSENTIA_CANNON = config.getItem(LibNames.ESSENTIA_CANNON_NAME, ItemIds.idESSENTIA_CANNON_DEFAULT).getInt();
@@ -50,6 +50,7 @@ public class ConfigHandler {
         ItemIds.idITEM_PEN = config.getItem(LibNames.ITEM_PEN_NAME, ItemIds.idITEM_PEN_DEFAULT).getInt();
         ItemIds.idITEM_WAND_CORES = config.getItem(LibNames.ITEM_WAND_CORES_NAME, ItemIds.idITEM_WAND_CORES_DEFAULT).getInt();
         ItemIds.idITEM_FUSION_FOCUS = config.getItem(LibNames.ITEM_FUSION_FOCUS_NAME, ItemIds.idITEM_FUSION_FOCUS_DEFAULT).getInt();
+        ItemIds.idITEM_BM_MATERIAL = config.getItem(LibNames.ITEM_BM_MATERIAL_NAME, ItemIds.idITEM_BM_MATERIAL_DEFAULT).getInt();
 
         //Recipe Whatnots
         Property smelting = config.get("Recipes", "Add/Increase Smelting bonus to dusts/ore", bonus);

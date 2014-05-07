@@ -17,8 +17,8 @@ public class TileCondenser extends TileMachineBase implements IEssentiaTransport
 	
 	@Override
 	public void updateEntity() {
-		if(this.energyStorage.getEnergyStored() >= 1000000 && this.amount < this.maxAmount) {
-			this.energyStorage.extractEnergy(1000000, false);
+		if(this.energyStorage.getEnergyStored() >= 10000000 && this.amount < this.maxAmount) {
+			this.energyStorage.extractEnergy(10000000, false);
 			this.addToContainer(Aspect.ENERGY, 1);
 		}
 		fill();

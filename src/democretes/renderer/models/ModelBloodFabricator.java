@@ -58,7 +58,7 @@ public class ModelBloodFabricator extends ModelBase {
   
   public void render()  {
     final float f5 = 1F/16F;
-   //Base.render(f5);
+    Base.render(f5);
     Post1.render(f5);
     Post2.render(f5);
     Post3.render(f5);

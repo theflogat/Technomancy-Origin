@@ -51,6 +51,7 @@ public class ResearchHandler {
 	
 		new ResearchItem("ELECTRICBELLOWS", "TECHNOMANCY", new AspectList().add(Aspect.ENERGY, 5).add(Aspect.AIR, 5).add(Aspect.FIRE, 5), -3, -2, 2, new ItemStack(TMBlocks.electricBellows)).setPages(new ResearchPage[] { new ResearchPage("techno.research_page.ELECTRICBELLOWS.1"), new ResearchPage((IArcaneRecipe)recipes.get("ElectricBellows"))}).setParents(new String[]  {"BIOMEMORPHER", "BELLOWS"}).registerResearchItem();
 		
+		new ResearchItem("CONDENSER", "TECHNOMANCY", new AspectList().add(Aspect.ENERGY, 5).add(Aspect.ORDER, 5).add(Aspect.EXCHANGE, 5), 2, 3, 3, new ItemStack(TMBlocks.condenserBlock)).setPages(new ResearchPage [] { new ResearchPage("techno.research_page.CONDENSER.1"), new ResearchPage((InfusionRecipe)recipes.get("Condenser"))}).setParents(new String[] {"NODEGENERATOR"}).registerResearchItem();
 	}
 	
 }

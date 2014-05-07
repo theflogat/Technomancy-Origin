@@ -14,6 +14,7 @@ import democretes.blocks.dynamos.tiles.TileDynamoBase;
 import democretes.blocks.dynamos.tiles.TileFlowerDynamo;
 import democretes.lib.LibNames;
 import democretes.lib.Reference;
+import democretes.lib.RenderIds;
 
 public class BlockFlowerDynamo extends BlockBase implements IWandHUD {
 
@@ -56,6 +57,21 @@ public class BlockFlowerDynamo extends BlockBase implements IWandHUD {
 	@Override
 	public void renderHUD(Minecraft mc, ScaledResolution res, World world, int x, int y, int z) {
 		((TileFlowerDynamo)world.getBlockTileEntity(x, y, z)).renderHUD(mc, res);
+	}
+	
+	@Override
+	public boolean isOpaqueCube(){
+		return false;
+	}
+	
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+	
+	@Override
+	public int getRenderType() {
+		return RenderIds.idFlowerDynamo;
 	}
 
 }

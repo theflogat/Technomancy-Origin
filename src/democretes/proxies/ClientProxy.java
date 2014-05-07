@@ -8,11 +8,13 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
+import democretes.blocks.dynamos.tiles.TileFlowerDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
 import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileElectricBellows;
 import democretes.blocks.machines.tiles.TileFluxLamp;
+import democretes.blocks.machines.tiles.TileManaFabricator;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
 import democretes.blocks.machines.tiles.TileReconstructor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
@@ -26,7 +28,9 @@ import democretes.renderer.blocks.BlockCreativeJarRenderer;
 import democretes.renderer.blocks.BlockElectricBellowsRenderer;
 import democretes.renderer.blocks.BlockEssentiaContainerRenderer;
 import democretes.renderer.blocks.BlockEssentiaDynamoRenderer;
+import democretes.renderer.blocks.BlockFlowerDynamoRenderer;
 import democretes.renderer.blocks.BlockFluxLampRenderer;
+import democretes.renderer.blocks.BlockManaFabricatorRenderer;
 import democretes.renderer.blocks.BlockNodeDynamoRenderer;
 import democretes.renderer.blocks.BlockNodeGeneratorRenderer;
 import democretes.renderer.blocks.BlockReconstructorRenderer;
@@ -38,7 +42,9 @@ import democretes.renderer.tiles.TileCreativeJarRenderer;
 import democretes.renderer.tiles.TileElectricBellowsRenderer;
 import democretes.renderer.tiles.TileEssentiaContainerRenderer;
 import democretes.renderer.tiles.TileEssentiaDynamoRenderer;
+import democretes.renderer.tiles.TileFlowerDynamoRenderer;
 import democretes.renderer.tiles.TileFluxLampRenderer;
+import democretes.renderer.tiles.TileManaFabricatorRenderer;
 import democretes.renderer.tiles.TileNodeDynamoRenderer;
 import democretes.renderer.tiles.TileNodeGeneratorRenderer;
 import democretes.renderer.tiles.TileReconstructorRenderer;
@@ -88,6 +94,12 @@ public class ClientProxy extends CommonProxy {
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBloodFabricator.class, new TileBloodFabricatorRenderer());
     	RenderIds.idBloodFabricator = RenderingRegistry.getNextAvailableRenderId();
+    	
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileManaFabricator.class, new TileManaFabricatorRenderer());
+    	RenderIds.idManaFabricator = RenderingRegistry.getNextAvailableRenderId();
+    	
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerDynamo.class, new TileFlowerDynamoRenderer());
+    	RenderIds.idFlowerDynamo = RenderingRegistry.getNextAvailableRenderId();
 
     	RenderingRegistry.registerBlockHandler(new BlockNodeDynamoRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockEssentiaDynamoRenderer());
@@ -101,8 +113,8 @@ public class ClientProxy extends CommonProxy {
     	RenderingRegistry.registerBlockHandler(new BlockReconstructorRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockBloodDynamoRenderer());
     	RenderingRegistry.registerBlockHandler(new BlockBloodFabricatorRenderer());
-
-    	
+    	RenderingRegistry.registerBlockHandler(new BlockManaFabricatorRenderer());
+    	RenderingRegistry.registerBlockHandler(new BlockFlowerDynamoRenderer());    	
     }
     
     

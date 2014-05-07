@@ -131,13 +131,12 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	@Override
 	public boolean canUpdate()  {
 	    return true;
-	  }	
+	}	
 	
 	@Override
 	public boolean takeFromContainer(AspectList ot) {
 	  return false;
-	}	
-	
+	}		
 	
 	@Override
 	public int containerContains(Aspect tag)  {
@@ -156,10 +155,7 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 
 	@Override
 	public ItemStack getStackInSlot(int i) {
-		if(this.contents[i] != null) {
-			return this.contents[i];
-		}
-		return null;
+		return this.contents[i];
 	}
 
 	@Override
@@ -192,8 +188,7 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-    {
+	public void setInventorySlotContents(int slot, ItemStack stack) {
         this.contents[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -207,7 +202,6 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	public String getInvName() {
 		return "reconstructorInv";
 	}
-
 
 	@Override
 	public boolean isInvNameLocalized() {
@@ -232,7 +226,7 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return false;
+		return true;
 	}
 
 }

@@ -47,10 +47,14 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 			this.maxReceive = 50000;
 			this.energyStorage = new EnergyStorage(capacity);
 		}
+		if(this instanceof TileManaFabricator) {
+			this.capacity = 30000;
+			this.maxReceive = 10000;
+			this.energyStorage = new EnergyStorage(capacity);
+		}
 	}
 	
-	
-	
+	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		energyStorage.readFromNBT(compound);	
@@ -60,7 +64,7 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 		compound.setInteger("Energy", energy);
 	}
 
-	
+	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
 		energyStorage.writeToNBT(compound);		

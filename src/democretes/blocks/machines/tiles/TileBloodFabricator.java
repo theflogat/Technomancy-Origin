@@ -16,12 +16,13 @@ public class TileBloodFabricator extends TileMachineBase implements IFluidHandle
 	
 	public FluidTankAdv tank = new FluidTankAdv(10000);
 
-	
+	int count = 0;
 	@Override
 	public void updateEntity() {
-		if(this.energyStorage.getEnergyStored() >= 1000000 && this.tank.getFluidAmount() < this.tank.getCapacity()) {
+		if(this.energyStorage.getEnergyStored() >= 1000000 && this.tank.getFluidAmount() + 100 <= this.tank.getCapacity()) {
 			this.energyStorage.extractEnergy(1000000, false);
-			this.tank.fill(new FluidStack(AlchemicalWizardry.lifeEssenceFluid, 100), true);
+			this.tank.fill(new FluidStack(AlchemicalWizardry.lifeEssenceFluid, 200), true);
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}	
 	}
 	

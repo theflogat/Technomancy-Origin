@@ -25,4 +25,6 @@ public class Reference {
 	public static final String MODEL_RECONSTRUCTOR_TEXTURE = MODEL_PREFIX + "reconstructor.png";
 	public static final String MODEL_BLOOD_DYNAMO_TEXTURE = MODEL_PREFIX + "bloodDynamo.png";
 	public static final String MODEL_BLOOD_FABRICATOR_TEXTURE = MODEL_PREFIX + "bloodFabricator.png";
+	public static final String MODEL_MANA_FABRICATOR_TEXTURE = MODEL_PREFIX + "manaFabricator.png";
+	public static final String MODEL_FLOWER_DYANMO_TEXTURE = MODEL_PREFIX + "flowerDynamo.png";
 }
