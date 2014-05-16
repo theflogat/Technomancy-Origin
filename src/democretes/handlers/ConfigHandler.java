@@ -51,6 +51,7 @@ public class ConfigHandler {
         ItemIds.idITEM_WAND_CORES = config.getItem(LibNames.ITEM_WAND_CORES_NAME, ItemIds.idITEM_WAND_CORES_DEFAULT).getInt();
         ItemIds.idITEM_FUSION_FOCUS = config.getItem(LibNames.ITEM_FUSION_FOCUS_NAME, ItemIds.idITEM_FUSION_FOCUS_DEFAULT).getInt();
         ItemIds.idITEM_BM_MATERIAL = config.getItem(LibNames.ITEM_BM_MATERIAL_NAME, ItemIds.idITEM_BM_MATERIAL_DEFAULT).getInt();
+        ItemIds.idITEM_BO_MATERIAL = config.getItem(LibNames.ITEM_BO_MATERIAL_NAME, ItemIds.idITEM_BO_MATERIAL_DEFAULT).getInt();
 
         //Recipe Whatnots
         Property smelting = config.get("Recipes", "Add/Increase Smelting bonus to dusts/ore", bonus);
@@ -61,13 +62,16 @@ public class ConfigHandler {
         fancy = coilfx.getBoolean(true);
         
         //Reconstructor stuff
-        System.out.println("Configurating");
         Property reconstructor = config.get("Machines", "Blacklisted materials for use in the Essentia Reconstructor", blacklist);
         blacklist = reconstructor.getIntList();
         
         //Compatibility Stuff
         Property check = config.get("Compatibility", "Check for other mods", compatiblity);
-        compatiblity = check.getBoolean(true);
+        compatiblity = check.getBoolean(compatiblity);
+        
+        //Looks good here
+        CompatibilityHandler.checkThisShit();
+        
         
         Property tc = config.get("Compatibility", "Enables Thaumcraft", thaumcraft);
         thaumcraft = tc.getBoolean(thaumcraft);

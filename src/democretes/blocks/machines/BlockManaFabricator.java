@@ -14,7 +14,6 @@ import vazkii.botania.api.IWandHUD;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import democretes.blocks.BlockBase;
-import democretes.blocks.dynamos.tiles.TileFlowerDynamo;
 import democretes.blocks.machines.tiles.TileManaFabricator;
 import democretes.lib.LibNames;
 import democretes.lib.Reference;

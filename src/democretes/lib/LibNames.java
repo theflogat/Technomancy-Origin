@@ -10,6 +10,7 @@ public class LibNames {
 	public static final String ITEM_PEN_NAME = "pen";
 	public static final String ITEM_WAND_CORES_NAME = "wandCores";
 	public static final String ITEM_BM_MATERIAL_NAME = "itemBM";
+	public static final String ITEM_BO_MATERIAL_NAME = "itemBO";
 
     /*
      * Blocks

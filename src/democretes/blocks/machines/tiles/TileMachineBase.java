@@ -6,6 +6,7 @@ import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
 import democretes.blocks.TileTechnomancy;
+import democretes.handlers.ConfigHandler;
 
 public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, IEnergyStorage {
 	
@@ -17,40 +18,46 @@ public class TileMachineBase extends TileTechnomancy implements IEnergyHandler, 
 	public int maxExtract = this.maxReceive;
 	
 	public TileMachineBase() {
-		if(this instanceof TileBiomeMorpher) {
-			this.capacity = 800000;
-			this.maxReceive = 20000;
-			this.energyStorage = new EnergyStorage(capacity);
+		if(ConfigHandler.thaumcraft) {
+			if(this instanceof TileBiomeMorpher) {
+				this.capacity = 800000;
+				this.maxReceive = 20000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
+			if(this instanceof TileNodeGenerator) {
+				this.capacity = 50000000;
+				this.maxReceive = 40000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
+			if(this instanceof TileElectricBellows) {
+				this.capacity = 20000;
+				this.maxReceive = 5000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
+			if(this instanceof TileReconstructor) {
+				this.capacity = 40000;
+				this.maxReceive = 5000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
+			if(this instanceof TileCondenser) {
+				this.capacity = 50000000;
+				this.maxReceive = 50000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
 		}
-		if(this instanceof TileNodeGenerator) {
-			this.capacity = 50000000;
-			this.maxReceive = 40000;
-			this.energyStorage = new EnergyStorage(capacity);
+		if(ConfigHandler.bloodmagic) {
+			if(this instanceof TileBloodFabricator) {
+				this.capacity = 50000000;
+				this.maxReceive = 50000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
 		}
-		if(this instanceof TileElectricBellows) {
-			this.capacity = 20000;
-			this.maxReceive = 5000;
-			this.energyStorage = new EnergyStorage(capacity);
-		}
-		if(this instanceof TileReconstructor) {
-			this.capacity = 40000;
-			this.maxReceive = 5000;
-			this.energyStorage = new EnergyStorage(capacity);
-		}
-		if(this instanceof TileCondenser) {
-			this.capacity = 50000000;
-			this.maxReceive = 50000;
-			this.energyStorage = new EnergyStorage(capacity);
-		}
-		if(this instanceof TileBloodFabricator) {
-			this.capacity = 50000000;
-			this.maxReceive = 50000;
-			this.energyStorage = new EnergyStorage(capacity);
-		}
-		if(this instanceof TileManaFabricator) {
-			this.capacity = 30000;
-			this.maxReceive = 10000;
-			this.energyStorage = new EnergyStorage(capacity);
+		if(ConfigHandler.botania) {
+			if(this instanceof TileManaFabricator) {
+				this.capacity = 30000;
+				this.maxReceive = 10000;
+				this.energyStorage = new EnergyStorage(capacity);
+			}
 		}
 	}
 	

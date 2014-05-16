@@ -5,10 +5,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -36,7 +36,7 @@ public class TileReconstructorRenderer extends TileEntitySpecialRenderer{
 		model.render();		
 		
 		TileReconstructor recon = (TileReconstructor)entity;
-		if(recon.getStackInSlot(0) != null) {
+		if(recon.worldObj != null && recon.contents[0] != null) {
 			EntityItem entityitem = null;
 		    GL11.glPushMatrix();
 		    GL11.glTranslatef((float)x + 0.5F, (float)y + 1.15F, (float)z + 0.5F);
@@ -58,9 +58,9 @@ public class TileReconstructorRenderer extends TileEntitySpecialRenderer{
 		        RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 		    }
 		    GL11.glPopMatrix();
-		    System.out.println("Is this even working?");
+		    //System.out.println("Is this even working?");
 		}else{
-		    System.out.println("This isn't even working.");
+		    //System.out.println("This isn't even working.");
 		}
 		
 		GL11.glPopMatrix();

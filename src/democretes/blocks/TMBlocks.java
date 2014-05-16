@@ -38,8 +38,7 @@ import democretes.lib.LibNames;
 public class TMBlocks {
 	
 	
-	//Block Instances
-	
+	//Block Instances	
 	public static Block nodeDynamo;
 	public static Block essentiaContainer;
 	public static Block cosmeticOpaque;
@@ -60,6 +59,7 @@ public class TMBlocks {
 	public static Block manaFabricator;
 	
 	public static void initThaumcraft() {
+		//Block Initializaton
 		nodeDynamo = new BlockNodeDynamo(BlockIds.idNODE_DYNAMO);
 		essentiaContainer = new BlockEssentiaContainer(BlockIds.idESSENTIA_CONTAINER);
 		cosmeticOpaque = new BlockCosmeticOpaque(BlockIds.idCOSMETIC_OPAQUE);

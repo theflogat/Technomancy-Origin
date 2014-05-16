@@ -17,9 +17,9 @@ public class TileManaFabricator extends TileMachineBase implements IManaPool {
 	
 	@Override
 	public void updateEntity() {
-		if(this.getEnergyStored() > 10000 && this.mana + 100 < this.maxMana) {
+		if(this.getEnergyStored() > 20000 && this.mana + 100 < this.maxMana) {
 			this.mana += 100;
-			this.energyStorage.extractEnergy(10000, false);
+			this.energyStorage.extractEnergy(200000, false);
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 	}

@@ -11,6 +11,8 @@ techno:pen.name=Pen
 techno:wandCores.0.name=Energized Wand Core
 techno:itemBM.0.name=SacrificialIngot
 techno:itemBM.1.name=Life Coil
+techno:itemBO.0.name=Mana Coil
+techno:itemBO.1.name=Manasteel Gear
 
 #Block Names
 tile.techno:cosmeticOpaque.name=Quantized Glass

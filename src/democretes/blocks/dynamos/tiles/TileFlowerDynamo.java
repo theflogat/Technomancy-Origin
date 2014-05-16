@@ -4,17 +4,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.StatCollector;
-import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
-import democretes.blocks.TMBlocks;
-import vazkii.botania.api.IWandHUD;
 import vazkii.botania.api.mana.IManaPool;
 import vazkii.botania.api.mana.IManaReceiver;
 import vazkii.botania.client.core.handler.HUDHandler;
-import vazkii.botania.common.block.ModBlocks;
+import democretes.blocks.TMBlocks;
 
 public class TileFlowerDynamo extends TileDynamoBase implements IManaReceiver {
 

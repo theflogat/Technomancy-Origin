@@ -1,7 +1,5 @@
 package democretes.handlers;
 
-import WayofTime.alchemicalWizardry.ModBlocks;
-import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,8 +16,13 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thermalexpansion.block.TEBlocks;
+import thermalexpansion.block.ender.BlockTesseract;
 import thermalexpansion.block.machine.BlockMachine;
 import thermalexpansion.item.TEItems;
+import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.recipe.RecipeManaInfusion;
+import vazkii.botania.common.item.ModItems;
+import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import democretes.blocks.TMBlocks;
 import democretes.items.TMItems;
@@ -39,7 +42,7 @@ public class CraftingHandler {
 				new AspectList().add(Aspect.ENERGY, 50).add(Aspect.TOOL, 50).add(Aspect.MAGIC, 50).add(Aspect.MECHANISM, 50).add(Aspect.EXCHANGE, 50), new ItemStack(ConfigItems.itemWandRod, 1, 1),
 				new ItemStack[] { new ItemStack((TEItems.capacitorResonant).itemID, 1, 4), new ItemStack((TEItems.powerCoilElectrum).itemID, 1, 193), new ItemStack((TEItems.powerCoilSilver).itemID, 1, 194), new ItemStack((TEItems.powerCoilGold).itemID, 1, 195), new ItemStack(TMItems.itemMaterial, 1, 1) }));
 		ResearchHandler.recipes.put("Condenser", ThaumcraftApi.addInfusionCraftingRecipe("CONDENSER", new ItemStack(TMBlocks.condenserBlock), 25,
-				new AspectList().add(Aspect.ENERGY, 100).add(Aspect.MECHANISM, 50).add(Aspect.EXCHANGE, 25).add(Aspect.ORDER, 25), new ItemStack(TMBlocks.reconstructorBlock), 
+				new AspectList().add(Aspect.ENERGY, 100).add(Aspect.MECHANISM, 50).add(Aspect.EXCHANGE, 25).add(Aspect.ORDER, 25), new ItemStack(ConfigBlocks.blockStoneDevice, 1, 2), 
 				new ItemStack[] { BlockMachine.machineFrame, new ItemStack(TMItems.itemMaterial, 1, 1), new ItemStack(TMItems.itemMaterial, 1, 1), new ItemStack((ItemApi.getBlock("blockCosmeticSolid", 4)).itemID, 1, 4), new ItemStack((ItemApi.getBlock("blockCosmeticSolid", 4)).itemID, 1, 4)}));
 		
 		//Arcane Recipes
@@ -130,11 +133,36 @@ public class CraftingHandler {
 		//Normal Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TMBlocks.bloodFabricator), 
 			new Object[] {" T ", "IMI", "CAC",
-			'T', new ItemStack(TEBlocks.blockTank, 1, 2),
+			'T', new ItemStack(TEBlocks.blockTank, 1, 3),
 			'I', new ItemStack(TMItems.itemBM, 1, 0),
 			'M', BlockMachine.machineFrame,
 			'C', new ItemStack(TMItems.itemBM, 1, 1),
-			'A', new ItemStack(ModBlocks.blockAltar)		});
+			'A', new ItemStack(BlockTesseract.tesseractFrameFull.getItem())		});
+	}
+	
+	public static RecipeManaInfusion manaCoilRecipe;
+	
+	public static void initBotaniaRecipes() {
+		//ManaInfusion
+		manaCoilRecipe = BotaniaAPI.registerManaInfusionRecipe(new ItemStack(TMItems.itemBO, 1, 0), TEItems.powerCoilSilver, 3000);
+		
+		//Normal Recipes
+		oreDictRecipe(new ItemStack(TMItems.itemBO, 1, 1),
+			new Object[] {" M ", "MIM", " M ",
+			'M', new ItemStack(ModItems.manaResource, 1, 0),
+			'I', "ingotIron"		});
+		GameRegistry.addRecipe(new ItemStack(TMBlocks.flowerDynamo), 
+			new Object[] {" C ", "GIG", "IWI",
+			'W', new ItemStack(Item.redstone),
+			'C', new ItemStack(TMItems.itemBO, 1, 0),
+			'G', new ItemStack(TMItems.itemBO, 1, 1),
+			'I', new ItemStack(ModItems.manaResource, 1, 0)				});
+		GameRegistry.addRecipe(new ItemStack(TMBlocks.manaFabricator), 
+				new Object[] {"CDC", "IDI", " P ",
+				'C', new ItemStack(TMItems.itemBO, 1, 1),
+				'I', new ItemStack(ModItems.manaResource, 1, 0),
+				'D', new ItemStack(ModItems.manaResource, 1, 2),
+				'P', new ItemStack(Item.flowerPot)				});
 	}
 	
 	static IRecipe oreDictRecipe(ItemStack res, Object[] params) {

@@ -20,6 +20,7 @@ import democretes.blocks.machines.tiles.TileReconstructor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
 import democretes.blocks.storage.TileCreativeJar;
 import democretes.blocks.storage.TileEssentiaContainer;
+import democretes.handlers.ConfigHandler;
 import democretes.lib.RenderIds;
 import democretes.renderer.blocks.BlockBiomeMorpherRenderer;
 import democretes.renderer.blocks.BlockBloodDynamoRenderer;
@@ -59,62 +60,71 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void initRenderers() {
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileNodeDynamo.class, new TileNodeDynamoRenderer());
-    	RenderIds.idNodeDynamo = RenderingRegistry.getNextAvailableRenderId();
+    	if(ConfigHandler.thaumcraft) {
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeDynamo.class, new TileNodeDynamoRenderer());
+    		RenderIds.idNodeDynamo = RenderingRegistry.getNextAvailableRenderId();
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaDynamo.class, new TileEssentiaDynamoRenderer());
-    	RenderIds.idEssentiaDynamo = RenderingRegistry.getNextAvailableRenderId();
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaDynamo.class, new TileEssentiaDynamoRenderer());
+    		RenderIds.idEssentiaDynamo = RenderingRegistry.getNextAvailableRenderId();
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaContainer.class, new TileEssentiaContainerRenderer());
-    	RenderIds.idEssentiaContainer = RenderingRegistry.getNextAvailableRenderId();    	
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaContainer.class, new TileEssentiaContainerRenderer());
+    		RenderIds.idEssentiaContainer = RenderingRegistry.getNextAvailableRenderId();    	
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileBiomeMorpher.class, new TileBiomeMorpherRenderer());
-    	RenderIds.idBiomeMorpher = RenderingRegistry.getNextAvailableRenderId(); 
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileBiomeMorpher.class, new TileBiomeMorpherRenderer());
+    		RenderIds.idBiomeMorpher = RenderingRegistry.getNextAvailableRenderId(); 
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileNodeGenerator.class, new TileNodeGeneratorRenderer());
-    	RenderIds.idNodeGenerator = RenderingRegistry.getNextAvailableRenderId(); 
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeGenerator.class, new TileNodeGeneratorRenderer());
+    		RenderIds.idNodeGenerator = RenderingRegistry.getNextAvailableRenderId(); 
 
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileFluxLamp.class, new TileFluxLampRenderer());
-    	RenderIds.idFluxLamp = RenderingRegistry.getNextAvailableRenderId();
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileFluxLamp.class, new TileFluxLampRenderer());
+    		RenderIds.idFluxLamp = RenderingRegistry.getNextAvailableRenderId();
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileTeslaCoil.class, new TileTeslaCoilRenderer());
-    	RenderIds.idTeslaCoil = RenderingRegistry.getNextAvailableRenderId(); 
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileTeslaCoil.class, new TileTeslaCoilRenderer());
+    		RenderIds.idTeslaCoil = RenderingRegistry.getNextAvailableRenderId(); 
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileElectricBellows.class, new TileElectricBellowsRenderer());
-    	RenderIds.idElectricBellows = RenderingRegistry.getNextAvailableRenderId();
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileElectricBellows.class, new TileElectricBellowsRenderer());
+    		RenderIds.idElectricBellows = RenderingRegistry.getNextAvailableRenderId();
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileCreativeJar.class, new TileCreativeJarRenderer());
-    	RenderIds.idCreativeJar = RenderingRegistry.getNextAvailableRenderId(); 
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileCreativeJar.class, new TileCreativeJarRenderer());
+    		RenderIds.idCreativeJar = RenderingRegistry.getNextAvailableRenderId(); 
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileReconstructor.class, new TileReconstructorRenderer());
-    	RenderIds.idReconstructor = RenderingRegistry.getNextAvailableRenderId();
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileReconstructor.class, new TileReconstructorRenderer());
+    		RenderIds.idReconstructor = RenderingRegistry.getNextAvailableRenderId();
+    		
+    		RenderingRegistry.registerBlockHandler(new BlockNodeDynamoRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockEssentiaDynamoRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockEssentiaContainerRenderer());  	
+        	RenderingRegistry.registerBlockHandler(new BlockBiomeMorpherRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockNodeGeneratorRenderer()); 
+        	RenderingRegistry.registerBlockHandler(new BlockFluxLampRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockTeslaCoilRenderer());  
+        	RenderingRegistry.registerBlockHandler(new BlockElectricBellowsRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockCreativeJarRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockReconstructorRenderer());
+    	}
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileBloodDynamo.class, new TileBloodDynamoRenderer());
-    	RenderIds.idBloodDynamo = RenderingRegistry.getNextAvailableRenderId();
+    	if(ConfigHandler.bloodmagic) {
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileBloodDynamo.class, new TileBloodDynamoRenderer());
+    		RenderIds.idBloodDynamo = RenderingRegistry.getNextAvailableRenderId();
     	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileBloodFabricator.class, new TileBloodFabricatorRenderer());
-    	RenderIds.idBloodFabricator = RenderingRegistry.getNextAvailableRenderId();
-    	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileManaFabricator.class, new TileManaFabricatorRenderer());
-    	RenderIds.idManaFabricator = RenderingRegistry.getNextAvailableRenderId();
-    	
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerDynamo.class, new TileFlowerDynamoRenderer());
-    	RenderIds.idFlowerDynamo = RenderingRegistry.getNextAvailableRenderId();
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileBloodFabricator.class, new TileBloodFabricatorRenderer());
+    		RenderIds.idBloodFabricator = RenderingRegistry.getNextAvailableRenderId();    		
 
-    	RenderingRegistry.registerBlockHandler(new BlockNodeDynamoRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockEssentiaDynamoRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockEssentiaContainerRenderer());  	
-    	RenderingRegistry.registerBlockHandler(new BlockBiomeMorpherRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockNodeGeneratorRenderer()); 
-    	RenderingRegistry.registerBlockHandler(new BlockFluxLampRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockTeslaCoilRenderer());  
-    	RenderingRegistry.registerBlockHandler(new BlockElectricBellowsRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockCreativeJarRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockReconstructorRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockBloodDynamoRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockBloodFabricatorRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockManaFabricatorRenderer());
-    	RenderingRegistry.registerBlockHandler(new BlockFlowerDynamoRenderer());    	
+        	RenderingRegistry.registerBlockHandler(new BlockBloodDynamoRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockBloodFabricatorRenderer());
+    	}
+    	
+    	if(ConfigHandler.botania) {
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileManaFabricator.class, new TileManaFabricatorRenderer());
+    		RenderIds.idManaFabricator = RenderingRegistry.getNextAvailableRenderId();
+    	
+    		ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerDynamo.class, new TileFlowerDynamoRenderer());
+    		RenderIds.idFlowerDynamo = RenderingRegistry.getNextAvailableRenderId();
+    		
+        	RenderingRegistry.registerBlockHandler(new BlockManaFabricatorRenderer());
+        	RenderingRegistry.registerBlockHandler(new BlockFlowerDynamoRenderer());  
+    	}	    	
+    	  	
     }
     
     

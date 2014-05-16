@@ -44,7 +44,7 @@ public class BlockBloodDynamo extends BlockBase {
 				TileEntity entity = world.getBlockTileEntity(x, y, z);
 				if (entity instanceof TileBloodDynamo) {
 					if (player.getHeldItem().getItem() instanceof IToolWrench) {
-						((TileEssentiaDynamo)entity).rotateBlock();
+						((TileBloodDynamo)entity).rotateBlock();
 					}		
 				}
 			}else{

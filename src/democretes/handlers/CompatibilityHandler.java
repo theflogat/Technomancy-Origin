@@ -7,6 +7,7 @@ import thaumcraft.common.config.ConfigItems;
 import cpw.mods.fml.common.Loader;
 
 public class CompatibilityHandler {
+	
 		
 	public static void checkThisShit() {
 		if(ConfigHandler.compatiblity) {

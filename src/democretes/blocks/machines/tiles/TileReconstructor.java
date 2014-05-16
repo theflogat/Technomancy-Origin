@@ -27,7 +27,7 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote) {
-			if(this.contents[0] != null) {				
+			if(this.contents[0] != null) {
 				for(int number : ConfigHandler.blacklist) {
 					if(contents[0].itemID == number) {	
 						pass = false;

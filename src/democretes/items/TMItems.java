@@ -51,6 +51,17 @@ public class TMItems {
         //Registry
         GameRegistry.registerItem(itemBM, LibNames.ITEM_BM_MATERIAL_NAME);
     }
+    
+    //Instances
+    public static Item itemBO;
+    
+    public static void initBotania() {
+    	//Initializations
+    	itemBO = new ItemBOMaterial(ItemIds.idITEM_BO_MATERIAL);
+    	
+    	//Registry
+    	GameRegistry.registerItem(itemBO, LibNames.ITEM_BO_MATERIAL_NAME);
+    }
 
     
 
