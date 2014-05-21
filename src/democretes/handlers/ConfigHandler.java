@@ -52,6 +52,7 @@ public class ConfigHandler {
         ItemIds.idITEM_FUSION_FOCUS = config.getItem(LibNames.ITEM_FUSION_FOCUS_NAME, ItemIds.idITEM_FUSION_FOCUS_DEFAULT).getInt();
         ItemIds.idITEM_BM_MATERIAL = config.getItem(LibNames.ITEM_BM_MATERIAL_NAME, ItemIds.idITEM_BM_MATERIAL_DEFAULT).getInt();
         ItemIds.idITEM_BO_MATERIAL = config.getItem(LibNames.ITEM_BO_MATERIAL_NAME, ItemIds.idITEM_BO_MATERIAL_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_IRON = config.getItem(LibNames.ITEM_PROCESSED_IRON_NAME, ItemIds.idITEM_PROCESSED_IRON_DEFAULT).getInt();
 
         //Recipe Whatnots
         Property smelting = config.get("Recipes", "Add/Increase Smelting bonus to dusts/ore", bonus);

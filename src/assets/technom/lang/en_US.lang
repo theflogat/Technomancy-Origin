@@ -13,6 +13,7 @@ techno:itemBM.0.name=SacrificialIngot
 techno:itemBM.1.name=Life Coil
 techno:itemBO.0.name=Mana Coil
 techno:itemBO.1.name=Manasteel Gear
+techno:pureIron.name=Purified Iron
 
 #Block Names
 tile.techno:cosmeticOpaque.name=Quantized Glass
@@ -35,6 +36,11 @@ tile.techno:condenserBlock.name=Energy Condenser
 tile.techno:bloodFabricator.name=Blood Fabricator
 tile.techno:flowerDynamo.name=Hippie Dynamo
 tile.techno:manaFabricator.name=Mana Fabricator
+
+#Information
+info.techno:purity=Purity
+info.techno:shift=-Hold shift for info-
+info.techno:process=Processed by
 
 #Research Tab
 tc.research_category.TECHNOMANCY=Technomancy

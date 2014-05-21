@@ -47,11 +47,11 @@ public class TileBloodFabricatorRenderer extends TileEntitySpecialRenderer {
 		}
 	}
 	
-	public void renderLiquid(TileEntity tile, double x, double y, double z, float f)  {
+	public void renderLiquid(TileEntity entity, double x, double y, double z, float f)  {
 	    if (this.tileEntityRenderer.renderEngine == null) {
 	      return;
 	    }	    
-	    TileBloodFabricator fabricator = (TileBloodFabricator)tile;
+	    TileBloodFabricator fabricator = (TileBloodFabricator)entity;
 	    
 	    if(fabricator.tank.getFluidAmount() <= 0) {
 	    	return;
@@ -72,12 +72,6 @@ public class TileBloodFabricatorRenderer extends TileEntitySpecialRenderer {
 	    renderBlocks.setRenderBounds(0.26D, 0.24D, 0.26D, 0.76D, 0.24D + level, 0.76D);
 	    
 	    t.startDrawingQuads();
-	    
-	    int bright = 200;
-	    if (tile.getWorldObj() != null) {
-	    	bright = Math.max(200, Block.blocksList[thaumcraft.common.config.Config.blockJarId].getMixedBrightnessForBlock(tile.worldObj, tile.xCoord, tile.yCoord, tile.zCoord));
-	    }
-	    t.setBrightness(bright);
 	    
 	    Icon icon = AlchemicalWizardry.lifeEssenceFluid.getIcon();
 	    

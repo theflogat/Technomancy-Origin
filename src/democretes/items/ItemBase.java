@@ -13,7 +13,6 @@ public class ItemBase extends Item {
         super(id - 256);
         setMaxStackSize(1);
         setCreativeTab(Technomancy.tabsTM);
-
     }
 
 }

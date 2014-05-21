@@ -270,7 +270,6 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 		compound.setBoolean("Active", this.active);
 		compound.setBoolean("Spawn", this.canSpawn);
 		compound.setByte("Facing", this.facing);
-
 	}
 
 	@Override

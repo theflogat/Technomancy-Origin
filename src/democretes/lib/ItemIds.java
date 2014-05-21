@@ -9,7 +9,8 @@ public class ItemIds {
     public static int idITEM_WAND_CORES_DEFAULT = 18003;
     public static int idITEM_FUSION_FOCUS_DEFAULT = 18004;
     public static int idITEM_BM_MATERIAL_DEFAULT = 18005;
-	public static int idITEM_BO_MATERIAL_DEFAULT = 18006;
+	public static int idITEM_BO_MATERIAL_DEFAULT = 18006;	
+	public static int idITEM_PROCESSED_IRON_DEFAULT = 18007;
 
     public static int idESSENTIA_CANNON;
 	public static int idITEM_MATERIAL;
@@ -18,5 +19,6 @@ public class ItemIds {
 	public static int idITEM_FUSION_FOCUS;
 	public static int idITEM_BM_MATERIAL;
 	public static int idITEM_BO_MATERIAL;
+	public static int idITEM_PROCESSED_IRON;
 
 }

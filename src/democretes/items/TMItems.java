@@ -17,8 +17,24 @@ public class TMItems {
     public static Item itemPen;
     public static Item itemWandCores;
     public static Item itemFusionFocus;
+    public static Item processedIron;
+    public static Item processedGold;
+    public static Item processedCopper;
+    public static Item processedTin;
+    public static Item processedSilver;
+    public static Item processedLead;
+    public static Item processedNickel;
     
     public static WandRod WAND_ROD_ELECTRIC;
+    
+    public static ItemStack[] ores = { 
+    	new ItemStack(processedIron), 
+    	new ItemStack(processedGold), 
+    	new ItemStack(processedCopper), 
+    	new ItemStack(processedTin), 
+    	new ItemStack(processedSilver), 
+    	new ItemStack(processedLead), 
+    	new ItemStack(processedNickel)};
     
     public static void initThaumcraft() { 	
 
@@ -28,12 +44,14 @@ public class TMItems {
         itemPen = new ItemPen(ItemIds.idITEM_PEN);
         itemWandCores = new ItemWandCores(ItemIds.idITEM_WAND_CORES);
         itemFusionFocus = new ItemFusionFocus(ItemIds.idITEM_FUSION_FOCUS);
+        processedIron = new ItemProcessedIron(ItemIds.idITEM_PROCESSED_IRON);
         
         //Registry
         //GameRegistry.registerItem(essentiaCannon, LibNames.ESSENTIA_CANNON_NAME);
         GameRegistry.registerItem(itemMaterial, LibNames.ITEM_MATERIAL_NAME);
         GameRegistry.registerItem(itemPen, LibNames.ITEM_PEN_NAME);
         GameRegistry.registerItem(itemFusionFocus, LibNames.ITEM_FUSION_FOCUS_NAME);
+        GameRegistry.registerItem(processedIron, LibNames.ITEM_PROCESSED_IRON_NAME);
         
         
         GameRegistry.registerItem(itemWandCores, LibNames.ITEM_WAND_CORES_NAME);

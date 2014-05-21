@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import thaumcraft.api.ItemApi;
@@ -28,6 +29,12 @@ import democretes.blocks.TMBlocks;
 import democretes.items.TMItems;
 
 public class CraftingHandler {
+	
+	public static void initFurnaceRecipe() {
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedIron.itemID, i, new ItemStack(Item.ingotGold, 1 + i, 0), 100);
+		}
+	}
 	
 	public static void initThaumcraftRecipes() {
 		

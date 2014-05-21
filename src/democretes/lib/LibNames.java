@@ -34,6 +34,8 @@ public class LibNames {
 	public static final String BLOOD_FABRICATOR_NAME = "bloodFabricator";
 	public static final String FLOWER_DYNAMO_NAME = "flowerDynamo";
 	public static final String MANA_FABRICATOR_NAME = "manaFabricator";
+	public static final String TC_PROCESSOR_NAME = "processorTC";
+	public static final String ITEM_PROCESSED_IRON_NAME = "pureIron";
 	
 
 }
