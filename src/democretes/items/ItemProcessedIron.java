@@ -8,8 +8,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.ResourceLocation;
 import democretes.lib.LibNames;
 import democretes.lib.Reference;
 
@@ -27,11 +29,11 @@ public class ItemProcessedIron extends ItemBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister icon) {
-		itemIcon[0] = icon.registerIcon(Reference.TEXTURE_PREFIX + "iron0");
-		itemIcon[1] = icon.registerIcon(Reference.TEXTURE_PREFIX + "iron1");
-		itemIcon[2] = icon.registerIcon(Reference.TEXTURE_PREFIX + "iron2");
-		itemIcon[3] = icon.registerIcon(Reference.TEXTURE_PREFIX + "iron3");
-		itemIcon[4] = icon.registerIcon(Reference.TEXTURE_PREFIX + "iron4");
+		itemIcon[0] = icon.registerIcon(Reference.TEXTURE_PREFIX + "ore0");
+		itemIcon[1] = icon.registerIcon(Reference.TEXTURE_PREFIX + "ore1");
+		itemIcon[2] = icon.registerIcon(Reference.TEXTURE_PREFIX + "ore2");
+		itemIcon[3] = icon.registerIcon(Reference.TEXTURE_PREFIX + "ore3");
+		itemIcon[4] = icon.registerIcon(Reference.TEXTURE_PREFIX + "ore4");
 	}
 	
 	@Override	
@@ -40,6 +42,13 @@ public class ItemProcessedIron extends ItemBase {
 		return itemIcon[par];
 	}
 	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack stack, int par2)	  {
+		return 16777215;
+	}
+	
+	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		return Reference.MOD_PREFIX + LibNames.ITEM_PROCESSED_IRON_NAME;
 	}

@@ -2,6 +2,7 @@ package democretes.blocks.machines.tiles;
 
 import java.util.Random;
 
+import cofh.api.energy.EnergyStorage;
 import net.minecraft.world.biome.BiomeGenBase;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -17,6 +18,11 @@ public class TileBiomeMorpher extends TileMachineBase implements INode{
 	private AspectList aspects = new AspectList();
 	private int amount = 35;
 	
+	public TileBiomeMorpher() {
+		this.capacity = 800000;
+		this.maxReceive = 20000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void updateEntity() {
 		if(!this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord)) {

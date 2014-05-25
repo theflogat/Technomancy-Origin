@@ -2,6 +2,7 @@ package democretes.blocks.machines.tiles;
 
 import java.util.Random;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -40,7 +41,12 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 	private Aspect aspectSuction;
 	public int rotation = 0;
 	
-	
+	public TileNodeGenerator() {
+		this.capacity = 50000000;
+		this.maxReceive = 40000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
+	@Override
 	public void updateEntity() {
 		if(!this.worldObj.isRemote) {
 			int xx = this.xCoord;

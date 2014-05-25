@@ -18,8 +18,11 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	private int amount;
 	private Aspect aspect = Aspect.ENERGY;
 	private int maxAmount = 1;
-	private static int nodeRF = 36000;	
-	public byte facing = 0;
+	private static int nodeRF = 36000;
+	
+	public TileNodeDynamo() {
+		this.facing = 0;
+	}
 	
 	protected boolean canGenerate() {
 		if (this.facing == 0) {

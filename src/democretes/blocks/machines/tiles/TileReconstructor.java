@@ -1,5 +1,6 @@
 package democretes.blocks.machines.tiles;
 
+import cofh.api.energy.EnergyStorage;
 import democretes.handlers.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,11 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	int list = 0;
 	boolean pass = true;
 
-	
+	public TileReconstructor() {
+		this.capacity = 40000;
+		this.maxReceive = 5000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote) {

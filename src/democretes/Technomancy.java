@@ -15,6 +15,7 @@ import democretes.blocks.TMBlocks;
 import democretes.handlers.CompatibilityHandler;
 import democretes.handlers.ConfigHandler;
 import democretes.handlers.CraftingHandler;
+import democretes.handlers.GuiHandler;
 import democretes.handlers.ResearchHandler;
 import democretes.items.TMItems;
 import democretes.lib.CreativeTabTM;
@@ -65,7 +66,7 @@ public class Technomancy {
     @EventHandler
     public void penetration(FMLInitializationEvent event) {    	
     	proxy.initRenderers();
-
+    	new GuiHandler();
     }
 
     @EventHandler

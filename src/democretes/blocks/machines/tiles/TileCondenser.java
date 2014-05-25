@@ -1,5 +1,6 @@
 package democretes.blocks.machines.tiles;
 
+import cofh.api.energy.EnergyStorage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -15,6 +16,11 @@ public class TileCondenser extends TileMachineBase implements IEssentiaTransport
 	public int amount = 0;
 	public int maxAmount = 64;
 	
+	public TileCondenser() {
+		this.capacity = 50000000;
+		this.maxReceive = 50000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void updateEntity() {
 		if(this.energyStorage.getEnergyStored() >= 10000000 && this.amount < this.maxAmount) {

@@ -2,6 +2,7 @@ package democretes.blocks.machines.tiles;
 
 import thaumcraft.api.aspects.Aspect;
 import WayofTime.alchemicalWizardry.AlchemicalWizardry;
+import cofh.api.energy.EnergyStorage;
 import cofh.util.FluidHelper;
 import cofh.util.fluid.FluidTankAdv;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,8 +16,13 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileBloodFabricator extends TileMachineBase implements IFluidHandler {
 	
 	public FluidTankAdv tank = new FluidTankAdv(10000);
-
 	int count = 0;
+	
+	public TileBloodFabricator() {
+		this.capacity = 50000000;
+		this.maxReceive = 50000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void updateEntity() {
 		if(this.energyStorage.getEnergyStored() >= 1000000 && this.tank.getFluidAmount() + 100 <= this.tank.getCapacity()) {

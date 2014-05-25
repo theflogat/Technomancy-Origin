@@ -1,5 +1,6 @@
 package democretes.blocks.machines.tiles;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.util.fluid.FluidTankAdv;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -14,7 +15,11 @@ public class TileManaFabricator extends TileMachineBase implements IManaPool {
 	public int mana;
 	public int facing;
 
-	
+	public TileManaFabricator() {
+		this.capacity = 30000;
+		this.maxReceive = 10000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void updateEntity() {
 		if(this.getEnergyStored() > 20000 && this.mana + 100 < this.maxMana) {

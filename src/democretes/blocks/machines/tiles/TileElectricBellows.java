@@ -1,5 +1,6 @@
 package democretes.blocks.machines.tiles;
 
+import cofh.api.energy.EnergyStorage;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +19,11 @@ public class TileElectricBellows extends TileMachineBase {
 	boolean firstrun = false;;
 	boolean direction = false;
 	
+	public TileElectricBellows() {
+		this.capacity = 20000;
+		this.maxReceive = 5000;
+		this.energyStorage = new EnergyStorage(capacity);
+	}
 	@Override
 	public void writeCustomNBT(NBTTagCompound compound) {
 		compound.setByte("Facing", this.facing);
