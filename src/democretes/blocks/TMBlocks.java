@@ -18,6 +18,7 @@ import democretes.blocks.machines.BlockFluxLamp;
 import democretes.blocks.machines.BlockManaFabricator;
 import democretes.blocks.machines.BlockNodeGenerator;
 import democretes.blocks.machines.BlockReconstructor;
+import democretes.blocks.machines.BlockTCProcessor;
 import democretes.blocks.machines.BlockTeslaCoil;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
 import democretes.blocks.machines.tiles.TileBloodFabricator;
@@ -27,6 +28,7 @@ import democretes.blocks.machines.tiles.TileFluxLamp;
 import democretes.blocks.machines.tiles.TileManaFabricator;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
 import democretes.blocks.machines.tiles.TileReconstructor;
+import democretes.blocks.machines.tiles.TileTCProcessor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
 import democretes.blocks.storage.BlockCreativeJar;
 import democretes.blocks.storage.BlockEssentiaContainer;
@@ -57,6 +59,7 @@ public class TMBlocks {
 	public static Block bloodFabricator;
 	public static Block flowerDynamo;
 	public static Block manaFabricator;
+	public static Block processorTC;
 	
 	public static void initThaumcraft() {
 		//Block Initializaton
@@ -73,6 +76,7 @@ public class TMBlocks {
 		crystalBlock = new BlockCrystal(BlockIds.idCRYSTAL_BLOCK);
 		reconstructorBlock = new BlockReconstructor(BlockIds.idRECONSTRUCTOR);
 		condenserBlock = new BlockCondenser(BlockIds.idCONDENSER);
+		processorTC = new BlockTCProcessor(BlockIds.idPROCESSOR_TC);
 		
 		//Registry
 		GameRegistry.registerBlock(nodeDynamo, LibNames.NODE_DYNAMO_NAME);
@@ -88,6 +92,7 @@ public class TMBlocks {
 		GameRegistry.registerBlock(crystalBlock, LibNames.CRYSTAL_NAME);
 		GameRegistry.registerBlock(reconstructorBlock, LibNames.RECONSTRUCTOR_NAME);
 		GameRegistry.registerBlock(condenserBlock, LibNames.CONDENSER_NAME);
+		GameRegistry.registerBlock(processorTC, LibNames.PROCESSOR_TC_NAME);
 		
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileEssentiaContainer.class, "TileEssentiacontainer");
@@ -101,7 +106,7 @@ public class TMBlocks {
 		GameRegistry.registerTileEntity(TileCreativeJar.class, "TileCreativeJar");
 		GameRegistry.registerTileEntity(TileReconstructor.class, "TileReconstructor");
 		GameRegistry.registerTileEntity(TileCondenser.class, "TileCondenser");
-
+		GameRegistry.registerTileEntity(TileTCProcessor.class, "TileProcessorTC");
 		
 	}
 	

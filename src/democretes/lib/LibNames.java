@@ -11,7 +11,13 @@ public class LibNames {
 	public static final String ITEM_WAND_CORES_NAME = "wandCores";
 	public static final String ITEM_BM_MATERIAL_NAME = "itemBM";
 	public static final String ITEM_BO_MATERIAL_NAME = "itemBO";
-
+	public static final String ITEM_PROCESSED_IRON_NAME = "pureIron";
+	public static final String ITEM_PROCESSED_GOLD_NAME = "pureGold";
+	public static final String ITEM_PROCESSED_COPPER_NAME = "pureCopper";
+	public static final String ITEM_PROCESSED_TIN_NAME = "pureTin";
+	public static final String ITEM_PROCESSED_SILVER_NAME = "pureSilver";
+	public static final String ITEM_PROCESSED_LEAD_NAME = "pureLead";
+	public static final String ITEM_PROCESSED_NICKEL_NAME = "pureNickel";
     /*
      * Blocks
      */
@@ -34,8 +40,7 @@ public class LibNames {
 	public static final String BLOOD_FABRICATOR_NAME = "bloodFabricator";
 	public static final String FLOWER_DYNAMO_NAME = "flowerDynamo";
 	public static final String MANA_FABRICATOR_NAME = "manaFabricator";
-	public static final String TC_PROCESSOR_NAME = "processorTC";
-	public static final String ITEM_PROCESSED_IRON_NAME = "pureIron";
+	public static final String PROCESSOR_TC_NAME = "processorTC";
 	
 
 }

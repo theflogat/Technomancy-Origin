@@ -27,15 +27,6 @@ public class TMItems {
     
     public static WandRod WAND_ROD_ELECTRIC;
     
-    public static ItemStack[] ores = { 
-    	new ItemStack(processedIron), 
-    	new ItemStack(processedGold), 
-    	new ItemStack(processedCopper), 
-    	new ItemStack(processedTin), 
-    	new ItemStack(processedSilver), 
-    	new ItemStack(processedLead), 
-    	new ItemStack(processedNickel)};
-    
     public static void initThaumcraft() { 	
 
         // Item Initializations
@@ -43,8 +34,14 @@ public class TMItems {
         itemMaterial = new ItemMaterial(ItemIds.idITEM_MATERIAL);
         itemPen = new ItemPen(ItemIds.idITEM_PEN);
         itemWandCores = new ItemWandCores(ItemIds.idITEM_WAND_CORES);
-        itemFusionFocus = new ItemFusionFocus(ItemIds.idITEM_FUSION_FOCUS);
-        processedIron = new ItemProcessedIron(ItemIds.idITEM_PROCESSED_IRON);
+        itemFusionFocus = new ItemFusionFocus(ItemIds.idITEM_FUSION_FOCUS);        
+        processedIron = new ItemProcessedOre.ItemProcessedIron(ItemIds.idITEM_PROCESSED_IRON);
+        processedGold = new ItemProcessedOre.ItemProcessedGold(ItemIds.idITEM_PROCESSED_GOLD);
+        processedCopper = new ItemProcessedOre.ItemProcessedCopper(ItemIds.idITEM_PROCESSED_COPPER);
+        processedTin = new ItemProcessedOre.ItemProcessedTin(ItemIds.idITEM_PROCESSED_TIN);
+        processedSilver = new ItemProcessedOre.ItemProcessedSilver(ItemIds.idITEM_PROCESSED_SILVER);
+        processedLead = new ItemProcessedOre.ItemProcessedLead(ItemIds.idITEM_PROCESSED_LEAD);
+        processedNickel = new ItemProcessedOre.ItemProcessedNickel(ItemIds.idITEM_PROCESSED_NICKEL);
         
         //Registry
         //GameRegistry.registerItem(essentiaCannon, LibNames.ESSENTIA_CANNON_NAME);

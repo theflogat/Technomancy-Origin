@@ -43,6 +43,7 @@ public class ConfigHandler {
         BlockIds.idBLOOD_FABRICATOR = config.getBlock(LibNames.BLOOD_FABRICATOR_NAME, BlockIds.idBLOOD_FABRICATOR_DEFAULT).getInt();
         BlockIds.idFLOWER_DYNAMO = config.getBlock(LibNames.FLOWER_DYNAMO_NAME, BlockIds.idFLOWER_DYNAMO_DEFAULT).getInt();
         BlockIds.idMANA_FABRICATOR = config.getBlock(LibNames.MANA_FABRICATOR_NAME, BlockIds.idMANA_FABRICATOR_DEFAULT).getInt();
+        BlockIds.idPROCESSOR_TC = config.getBlock(LibNames.PROCESSOR_TC_NAME, BlockIds.idPROCESSOR_TC_DEFAULT).getInt();
 
         //Items        
         ItemIds.idESSENTIA_CANNON = config.getItem(LibNames.ESSENTIA_CANNON_NAME, ItemIds.idESSENTIA_CANNON_DEFAULT).getInt();
@@ -53,6 +54,12 @@ public class ConfigHandler {
         ItemIds.idITEM_BM_MATERIAL = config.getItem(LibNames.ITEM_BM_MATERIAL_NAME, ItemIds.idITEM_BM_MATERIAL_DEFAULT).getInt();
         ItemIds.idITEM_BO_MATERIAL = config.getItem(LibNames.ITEM_BO_MATERIAL_NAME, ItemIds.idITEM_BO_MATERIAL_DEFAULT).getInt();
         ItemIds.idITEM_PROCESSED_IRON = config.getItem(LibNames.ITEM_PROCESSED_IRON_NAME, ItemIds.idITEM_PROCESSED_IRON_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_GOLD = config.getItem(LibNames.ITEM_PROCESSED_GOLD_NAME, ItemIds.idITEM_PROCESSED_GOLD_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_COPPER = config.getItem(LibNames.ITEM_PROCESSED_COPPER_NAME, ItemIds.idITEM_PROCESSED_COPPER_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_TIN = config.getItem(LibNames.ITEM_PROCESSED_TIN_NAME, ItemIds.idITEM_PROCESSED_TIN_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_SILVER = config.getItem(LibNames.ITEM_PROCESSED_SILVER_NAME, ItemIds.idITEM_PROCESSED_SILVER_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_LEAD = config.getItem(LibNames.ITEM_PROCESSED_LEAD_NAME, ItemIds.idITEM_PROCESSED_LEAD_DEFAULT).getInt();
+        ItemIds.idITEM_PROCESSED_NICKEL = config.getItem(LibNames.ITEM_PROCESSED_NICKEL_NAME, ItemIds.idITEM_PROCESSED_NICKEL_DEFAULT).getInt();
 
         //Recipe Whatnots
         Property smelting = config.get("Recipes", "Add/Increase Smelting bonus to dusts/ore", bonus);

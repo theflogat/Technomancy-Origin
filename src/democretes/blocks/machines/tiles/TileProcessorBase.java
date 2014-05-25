@@ -22,53 +22,67 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	public int maxTime = 100;
 	public String tagCompound;
 	
+	 public static ItemStack[] ores = { 
+	    	new ItemStack(TMItems.processedIron), 
+	    	new ItemStack(TMItems.processedGold), 
+	    	new ItemStack(TMItems.processedCopper), 
+	    	new ItemStack(TMItems.processedTin), 
+	    	new ItemStack(TMItems.processedSilver), 
+	    	new ItemStack(TMItems.processedLead), 
+	    	new ItemStack(TMItems.processedNickel)};
+
+	boolean ore1 = false;
+	boolean ore2 = false;
+	
 	@Override
 	public void updateEntity() {
 		int f = 0;
-		boolean oreTE = false;
-		boolean oreVanilla = false;
-		if((oreTE || oreVanilla) && this.inventory[0] != null) {
-			if(!this.inventory[0].stackTagCompound.getBoolean(this.tagCompound)) {
-				if(canProcess()) {
-					do {
-						if(this.inventory[0] != null) {
-							this.time++;
-						}else{
-							return;
-						}
-					}while(time < maxTime);
-					processStuff(f, oreTE, oreVanilla);
-				}
-			}else{
+		if((ore1 || ore2) && this.inventory[0] != null) {
+			if(this.inventory[0].stackTagCompound.getBoolean(this.tagCompound)) {
 				return;
 			}
-		}
+			System.out.println("No Compound");
+			if(canProcess()) {
+				do {
+					if(this.inventory[0] != null) {
+						this.time++;
+					}else{
+						return;
+					}
+				}while(time < maxTime);					
+				System.out.println("Processes fine");
+				processStuff(f, ore1, ore2);
+			}
+		}		
 		if(canProcess() && this.inventory[0] != null) {
-			for(int i = 0; i < TMItems.ores.length; i++) {
-				if(this.inventory[0].getItem() == TMItems.ores[i].getItem()) {
+			System.out.println("ore1: " + ore1);
+			System.out.println("ore2: " + ore2);
+			String name = this.inventory[0].getUnlocalizedName();
+			if((name == Block.oreGold.getUnlocalizedName()) || (name  == Block.oreIron.getUnlocalizedName())  || (name  == TEBlocks.blockOre.getUnlocalizedName())) {
+				System.out.println("WTF?");
+				ore2 = true;
+			}
+			for(int i = 0; i < this.ores.length; i++) {
+				if(this.inventory[0].getItem() == this.ores[i].getItem()) {
 					f = i;					
-					oreTE = true;
-					break;
-				}
-				if(this.inventory[0].itemID == Block.oreGold.blockID || this.inventory[0].itemID == Block.oreIron.blockID || this.inventory[0].itemID == TEBlocks.blockOre.blockID) {
-					oreVanilla = true;
+					ore1 = true;
 					break;
 				}
 			}
-		}		
+		}
 	}
 	
-	void processStuff(int f, boolean oreTE, boolean oreVanilla) {
-		if(oreTE) {
+	void processStuff(int f, boolean ore1, boolean ore2) {
+		if(ore1) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(TMItems.ores[f].getItem(), this.inventory[1].getItemDamage() + 1, 1);
+				ItemStack stack = new ItemStack(this.ores[f].getItem(), this.inventory[1].getItemDamage() + 1, 1);
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
 				this.inventory[0].stackSize -= 1;
 				if(this.inventory[0].stackSize == 0) {
 					this.inventory[0] = null;
 				}
-			}else if(this.inventory[1].getItem() == TMItems.ores[f].getItem()) {
+			}else if(this.inventory[1].getItem() == this.ores[f].getItem()) {
 				if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 					this.inventory[1].stackSize += 1;
 					this.inventory[0].stackSize -= 1;
@@ -78,13 +92,13 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				}
 			}
 		}
-		if(oreVanilla) {
+		if(ore2) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(getOreEquivalencies(this.inventory[0].itemID, this.inventory[0].getItemDamage()), 1, 1);
+				ItemStack stack = new ItemStack(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()), 1, 1);
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
 			}else if(this.inventory[1] != null) {
-				if(getOreEquivalencies(this.inventory[0].itemID, this.inventory[0].getItemDamage()) == this.inventory[1].getItem()) {
+				if(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()) == this.inventory[1].getItem()) {
 					if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 						this.inventory[1].stackSize += 1;
 						this.inventory[0].stackSize -= 1;
@@ -97,19 +111,19 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		}
 	}
 	
-	Item getOreEquivalencies(int id, int meta) {
-		if(id == Block.oreGold.blockID) {
-			return TMItems.ores[0].getItem();
-		}else if(id == Block.oreIron.blockID) {
-			return TMItems.ores[1].getItem();
-		}else if(id == TEBlocks.blockOre.blockID) {
-			TMItems.ores[2 + meta].getItem();
+	Item getOreEquivalencies(String name, int meta) {
+		if(name == Block.oreGold.getUnlocalizedName() ) {
+			return this.ores[0].getItem();
+		}else if(name == Block.oreIron.getUnlocalizedName() ) {
+			return this.ores[1].getItem();
+		}else if(name == TEBlocks.blockOre.getUnlocalizedName() ) {
+			this.ores[2 + meta].getItem();
 		}
 		return null;		
 	}
 	
 	boolean canProcess() {
-		return false;
+		return true;
 	}	
 	
 	@Override
@@ -169,7 +183,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		this.inventory[i] = itemstack.copy();	
+		this.inventory[i] = itemstack;		
 	}
 
 	@Override

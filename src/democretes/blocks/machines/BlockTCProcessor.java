@@ -13,7 +13,7 @@ public class BlockTCProcessor extends BlockBase {
 
 	public BlockTCProcessor(int id) {
 		super(id);
-		setUnlocalizedName(Reference.MOD_PREFIX + LibNames.TC_PROCESSOR_NAME);
+		setUnlocalizedName(Reference.MOD_PREFIX + LibNames.PROCESSOR_TC_NAME);
 	}
 
 	@Override

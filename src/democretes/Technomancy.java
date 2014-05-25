@@ -11,6 +11,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import democretes.blocks.TMBlocks;
 import democretes.handlers.CompatibilityHandler;
 import democretes.handlers.ConfigHandler;
@@ -66,7 +67,7 @@ public class Technomancy {
     @EventHandler
     public void penetration(FMLInitializationEvent event) {    	
     	proxy.initRenderers();
-    	new GuiHandler();
+    	NetworkRegistry.instance().registerGuiHandler(Technomancy.instance, new GuiHandler());
     }
 
     @EventHandler

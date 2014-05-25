@@ -21,6 +21,7 @@ public class BlockIds {
 	public static int idBLOOD_FABRICATOR_DEFAULT = 3422;
 	public static int idFLOWER_DYNAMO_DEFAULT = 3423;
 	public static int idMANA_FABRICATOR_DEFAULT = 3424;
+	public static int idPROCESSOR_TC_DEFAULT = 3425;
 
 	
 	//Initializers
@@ -42,6 +43,7 @@ public class BlockIds {
 	public static int idBLOOD_FABRICATOR;
 	public static int idFLOWER_DYNAMO;
 	public static int idMANA_FABRICATOR;
+	public static int idPROCESSOR_TC;
 
 
 }
