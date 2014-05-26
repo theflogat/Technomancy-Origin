@@ -35,6 +35,11 @@ public class TileTCProcessor extends TileProcessorBase implements IAspectContain
 		return false;		
 	}
 	
+	@Override
+	void getFuel() {
+		this.takeFromContainer(this.aspect, 1);
+	}
+	
 	void fill() {
 		TileEntity te = null;
 		IEssentiaTransport ic = null;

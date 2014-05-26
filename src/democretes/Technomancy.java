@@ -83,7 +83,7 @@ public class Technomancy {
         if(ConfigHandler.botania) {
         	CraftingHandler.initBotaniaRecipes();
         }
-
+        CraftingHandler.initFurnaceRecipe();
     }
 
 }

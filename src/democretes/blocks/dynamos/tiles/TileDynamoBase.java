@@ -38,6 +38,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	int fuelRF;
 	boolean isActive = false;
 	boolean cached = false;
+	int check;
 	
 	
 	public TileDynamoBase() {
@@ -68,9 +69,10 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	}
 	  
 	protected void transferEnergy(int bSide){
+		this.updateAdjacentHandlers();
 		if (this.adjacentHandler == null){
 			return;
-		}
+		}		
 		this.energyStorage.modifyEnergyStored(-this.adjacentHandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[(bSide ^ 0x1)], Math.min(this.maxTransfer, this.energyStorage.getEnergyStored()), false));
 	}
 	  
@@ -106,9 +108,9 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	public boolean rotateBlock() {
 		for (int i = this.facing + 1; i < this.facing + 6; i++){
 			TileEntity theTile = BlockHelper.getAdjacentTileEntity(this, i % 6);
-			if ((theTile instanceof TileConduitEnergy)) {
+			if ((theTile instanceof IEnergyHandler)) {
 				this.facing = ((byte)(i % 6));
-				this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, TEBlocks.blockDynamo.blockID);
+				this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord));
 				updateAdjacentHandlers();
 				return true;
 			}
@@ -116,7 +118,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 		for (int i = this.facing + 1; i < this.facing + 6; i++) {
 			if (EnergyHelper.isAdjacentEnergyHandlerFromSide(this, i % 6)) {
 				this.facing = ((byte)(i % 6));
-				this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, TEBlocks.blockDynamo.blockID);
+				this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord));
 				updateAdjacentHandlers();
 				return true;
 			}

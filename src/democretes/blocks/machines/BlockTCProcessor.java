@@ -27,7 +27,7 @@ public class BlockTCProcessor extends BlockBase {
 		if(player != null && tile instanceof TileTCProcessor) {
 			player.openGui(Technomancy.instance, 0, world, x, y, z);
 		}
-		return false;
+		return true;
 	}
 	
 	

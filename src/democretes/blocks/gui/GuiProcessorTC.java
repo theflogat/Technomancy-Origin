@@ -12,8 +12,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiProcessorTC extends GuiContainer {
 
+	TileTCProcessor processor;
 	public GuiProcessorTC(InventoryPlayer inventory, TileTCProcessor tileTCProcessor) {
 		super(new ContainerProcessorTC(inventory, tileTCProcessor));
+		
+		this.processor = tileTCProcessor;
 		
 		xSize = 175;
 		ySize = 167;
@@ -25,8 +28,10 @@ public class GuiProcessorTC extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1, 1, 1, 1);		
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);	
 		
+		TileTCProcessor processor = ((TileTCProcessor)this.processor.worldObj.getBlockTileEntity(this.processor.xCoord, this.processor.yCoord, this.processor.zCoord));
+		drawTexturedModalRect(guiLeft+ 75, guiTop + 26, xSize, 0, 20 * (processor.time/processor.maxTime), 20);
 	}
 
 }

@@ -21,6 +21,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	public int time = 0;
 	public int maxTime = 100;
 	public String tagCompound;
+	public boolean active;
 	
 	 public static ItemStack[] ores = { 
 	    	new ItemStack(TMItems.processedIron), 
@@ -33,58 +34,70 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 
 	boolean ore1 = false;
 	boolean ore2 = false;
+	int f;
 	
 	@Override
 	public void updateEntity() {
-		int f = 0;
+		if(this.inventory[0] == null) {
+			this.time = 0;
+		}
 		if((ore1 || ore2) && this.inventory[0] != null) {
+			if(this.inventory[0].getTagCompound() == null) {
+				this.inventory[0].stackTagCompound = new NBTTagCompound();
+				this.inventory[0].stackTagCompound.setBoolean(this.tagCompound, false);
+			}
 			if(this.inventory[0].stackTagCompound.getBoolean(this.tagCompound)) {
 				return;
 			}
-			System.out.println("No Compound");
 			if(canProcess()) {
-				do {
-					if(this.inventory[0] != null) {
-						this.time++;
-					}else{
-						return;
-					}
-				}while(time < maxTime);					
-				System.out.println("Processes fine");
-				processStuff(f, ore1, ore2);
+				if(this.inventory[0] != null) {
+					this.active = true;
+					this.time++;
+				}else{
+					return;
+				}
+				if(this.time >= this.maxTime) {
+					getFuel();
+					processStuff(f, ore1, ore2);
+					this.time = 0;
+				}else{
+					return;
+				}
 			}
-		}		
+		}
+		this.active = false;
 		if(canProcess() && this.inventory[0] != null) {
-			System.out.println("ore1: " + ore1);
-			System.out.println("ore2: " + ore2);
 			String name = this.inventory[0].getUnlocalizedName();
-			if((name == Block.oreGold.getUnlocalizedName()) || (name  == Block.oreIron.getUnlocalizedName())  || (name  == TEBlocks.blockOre.getUnlocalizedName())) {
-				System.out.println("WTF?");
+			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(TEBlocks.blockOre.getUnlocalizedName())) {
 				ore2 = true;
 			}
 			for(int i = 0; i < this.ores.length; i++) {
 				if(this.inventory[0].getItem() == this.ores[i].getItem()) {
-					f = i;					
-					ore1 = true;
-					break;
+					if(this.inventory[0].getItemDamage() < 5) {
+						f = i;					
+						ore1 = true;
+						break;
+					}
 				}
 			}
 		}
 	}
 	
-	void processStuff(int f, boolean ore1, boolean ore2) {
+	void processStuff(int j, boolean ore1, boolean ore2) {
 		if(ore1) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(this.ores[f].getItem(), this.inventory[1].getItemDamage() + 1, 1);
+				ItemStack stack = new ItemStack(this.ores[j].getItem(), this.inventory[1].getItemDamage() + 1, 1);
+				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
 				this.inventory[0].stackSize -= 1;
 				if(this.inventory[0].stackSize == 0) {
 					this.inventory[0] = null;
 				}
-			}else if(this.inventory[1].getItem() == this.ores[f].getItem()) {
+			}else if(this.inventory[1].getItem() == this.ores[j].getItem()) {
 				if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 					this.inventory[1].stackSize += 1;
+					this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
 					this.inventory[0].stackSize -= 1;
 					if(this.inventory[0].stackSize == 0) {
 						this.inventory[0] = null;
@@ -94,13 +107,19 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		}
 		if(ore2) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()), 1, 1);
+				ItemStack stack = new ItemStack(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()), 1, 0);
+				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
+				this.inventory[0].stackSize -= 1;
+				if(this.inventory[0].stackSize == 0) {
+					this.inventory[0] = null;
+				}
 			}else if(this.inventory[1] != null) {
 				if(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()) == this.inventory[1].getItem()) {
 					if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 						this.inventory[1].stackSize += 1;
+						this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
 						this.inventory[0].stackSize -= 1;
 						if(this.inventory[0].stackSize == 0) {
 							this.inventory[0] = null;
@@ -112,11 +131,11 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	}
 	
 	Item getOreEquivalencies(String name, int meta) {
-		if(name == Block.oreGold.getUnlocalizedName() ) {
+		if(name.equals(Block.oreIron.getUnlocalizedName())) {
 			return this.ores[0].getItem();
-		}else if(name == Block.oreIron.getUnlocalizedName() ) {
+		}else if(name.equals(Block.oreGold.getUnlocalizedName())) {
 			return this.ores[1].getItem();
-		}else if(name == TEBlocks.blockOre.getUnlocalizedName() ) {
+		}else if(name.equals(TEBlocks.blockOre.getUnlocalizedName())) {
 			this.ores[2 + meta].getItem();
 		}
 		return null;		
@@ -126,10 +145,13 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		return true;
 	}	
 	
+	void getFuel() {}
+	
 	@Override
 	public void readCustomNBT(NBTTagCompound compound)  {
 	    this.facing = compound.getByte("Facing");
 	    this.time = compound.getInteger("Time");
+	    this.active = compound.getBoolean("Active");
 	    
 	   	NBTTagList nbttaglist = compound.getTagList("Items");
 	    this.inventory = new ItemStack[getSizeInventory()];
@@ -146,6 +168,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	public void writeCustomNBT(NBTTagCompound compound)  {
 		compound.setByte("Facing", this.facing);
 		compound.setInteger("Time", this.time);
+		compound.setBoolean("Active", this.active);
 		
 		NBTTagList nbttaglist = new NBTTagList();
 			for (int i = 0; i < this.inventory.length; i++) {

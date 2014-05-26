@@ -14,6 +14,12 @@ techno:itemBM.1.name=Life Coil
 techno:itemBO.0.name=Mana Coil
 techno:itemBO.1.name=Manasteel Gear
 techno:pureIron.name=Purified Iron
+techno:pureGold.name=Purified Gold
+techno:pureCopper.name=Purified Copper
+techno:pureTin.name=Purified Tin
+techno:pureSilver.name=Purified Silver
+techno:pureLead.name=Purified Lead
+techno:pureNickel.name=Purified Nickel
 
 #Block Names
 tile.techno:cosmeticOpaque.name=Quantized Glass

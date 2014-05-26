@@ -32,7 +32,25 @@ public class CraftingHandler {
 	
 	public static void initFurnaceRecipe() {
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedIron.itemID, i, new ItemStack(Item.ingotGold, 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedIron.itemID, i, new ItemStack(Item.ingotIron, 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedGold.itemID, i, new ItemStack(Item.ingotGold, 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedCopper.itemID, i, new ItemStack(TEItems.ingotCopper.getItem(), 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedTin.itemID, i, new ItemStack(TEItems.ingotTin.getItem(), 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedSilver.itemID, i, new ItemStack(TEItems.ingotSilver.getItem(), 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedLead.itemID, i, new ItemStack(TEItems.ingotLead.getItem(), 1 + i, 0), 100);
+		}
+		for(int i = 0; i < 5; i++) {
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedNickel.itemID, i, new ItemStack(TEItems.ingotNickel.getItem(), 1 + i, 0), 100);
 		}
 	}
 	
