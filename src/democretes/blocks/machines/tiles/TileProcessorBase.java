@@ -1,5 +1,7 @@
 package democretes.blocks.machines.tiles;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -42,12 +44,10 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 			this.time = 0;
 		}
 		if((ore1 || ore2) && this.inventory[0] != null) {
-			if(this.inventory[0].getTagCompound() == null) {
-				this.inventory[0].stackTagCompound = new NBTTagCompound();
-				this.inventory[0].stackTagCompound.setBoolean(this.tagCompound, false);
-			}
-			if(this.inventory[0].stackTagCompound.getBoolean(this.tagCompound)) {
-				return;
+			if(this.inventory[0].getTagCompound() != null) {
+				if(this.inventory[0].stackTagCompound.getBoolean(this.tagCompound)) {
+					return;
+				}
 			}
 			if(canProcess()) {
 				if(this.inventory[0] != null) {
@@ -90,6 +90,9 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
+				if(this.inventory[0].stackSize == 1) {
+					this.inventory[0] = null;
+				}
 				this.inventory[0].stackSize -= 1;
 				if(this.inventory[0].stackSize == 0) {
 					this.inventory[0] = null;
@@ -98,6 +101,9 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 					this.inventory[1].stackSize += 1;
 					this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
+					if(this.inventory[0].stackSize == 1) {
+						this.inventory[0] = null;
+					}
 					this.inventory[0].stackSize -= 1;
 					if(this.inventory[0].stackSize == 0) {
 						this.inventory[0] = null;
@@ -111,6 +117,9 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
+				if(this.inventory[0].stackSize == 1) {
+					this.inventory[0] = null;
+				}
 				this.inventory[0].stackSize -= 1;
 				if(this.inventory[0].stackSize == 0) {
 					this.inventory[0] = null;
@@ -120,6 +129,9 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 					if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 						this.inventory[1].stackSize += 1;
 						this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
+						if(this.inventory[0].stackSize == 1) {
+							this.inventory[0] = null;
+						}
 						this.inventory[0].stackSize -= 1;
 						if(this.inventory[0].stackSize == 0) {
 							this.inventory[0] = null;
@@ -147,41 +159,57 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	
 	void getFuel() {}
 	
+	@SideOnly(Side.CLIENT)
+	public int getTimeScaled(int j) {		
+		return this.time * j / this.maxTime;
+	}
+	
+	public boolean isActive() {
+		return this.active;
+	}
+	
 	@Override
 	public void readCustomNBT(NBTTagCompound compound)  {
 	    this.facing = compound.getByte("Facing");
 	    this.time = compound.getInteger("Time");
-	    this.active = compound.getBoolean("Active");
-	    
-	   	NBTTagList nbttaglist = compound.getTagList("Items");
-	    this.inventory = new ItemStack[getSizeInventory()];
-	    for (int i = 0; i < nbttaglist.tagCount(); i++) {
-	    	NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.tagAt(i);
-	    	byte b0 = nbttagcompound.getByte("Slot");
-	    	if ((b0 >= 0) && (b0 < this.inventory.length)) {
-	    		this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound);
-	    	}
-	    }
-	}
+	    this.active = compound.getBoolean("Active");	    
+	}	
 	
 	@Override
 	public void writeCustomNBT(NBTTagCompound compound)  {
 		compound.setByte("Facing", this.facing);
 		compound.setInteger("Time", this.time);
-		compound.setBoolean("Active", this.active);
-		
-		NBTTagList nbttaglist = new NBTTagList();
-			for (int i = 0; i < this.inventory.length; i++) {
-				if (this.inventory[i] != null) {
-					NBTTagCompound nbttagcompound = new NBTTagCompound();
-					nbttagcompound.setByte("Slot", (byte)i);
-					this.inventory[i].writeToNBT(nbttagcompound);
-					nbttaglist.appendTag(nbttagcompound);
-				}
-			}
-		compound.setTag("Items", nbttaglist);
+		compound.setBoolean("Active", this.active);		 
 	}	
 
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		NBTTagList nbttaglist = new NBTTagList();
+	    for (int i = 0; i < this.inventory.length; ++i) {
+	        if (this.inventory[i] != null) {
+	            NBTTagCompound compound1 = new NBTTagCompound();
+	            compound1.setByte("Slot", (byte)i);
+	            this.inventory[i].writeToNBT(compound1);
+	            nbttaglist.appendTag(compound1);
+	        }
+	    }
+	    compound.setTag("Items", nbttaglist);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		NBTTagList nbttaglist = compound.getTagList("Items");
+        this.inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound compound1 = (NBTTagCompound)nbttaglist.tagAt(i);
+            int j = compound1.getByte("Slot") & 255;
+            if (j >= 0 && j < this.inventory.length)            {
+                this.inventory[j] = ItemStack.loadItemStackFromNBT(compound1);
+            }
+        }
+	}
+	
 	@Override
 	public int getSizeInventory() {
 		return 2;

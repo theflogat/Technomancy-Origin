@@ -1,5 +1,7 @@
 package democretes.blocks.gui.container;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.lib.ThaumcraftCraftingManager;
 import thermalexpansion.util.crafting.FurnaceManager;
@@ -7,6 +9,7 @@ import democretes.blocks.machines.tiles.TileTCProcessor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
@@ -14,6 +17,9 @@ import net.minecraft.item.ItemStack;
 public class ContainerProcessorTC extends Container {
 
 	private TileTCProcessor processor;
+	
+	private int lastTime;
+	private int lastMax;
 	
 	public ContainerProcessorTC(InventoryPlayer inventory, TileTCProcessor processor) {
 		this.processor = processor;
@@ -30,6 +36,40 @@ public class ContainerProcessorTC extends Container {
 			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
 		}
 		
+	}
+	
+	@Override
+	public void addCraftingToCrafters(ICrafting craft) {
+		super.addCraftingToCrafters(craft);
+		craft.sendProgressBarUpdate(this, 0, this.processor.time);
+		craft.sendProgressBarUpdate(this, 1, this.processor.maxTime);		
+	}
+	
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		for (int i = 0; i < this.crafters.size(); i++) {
+			ICrafting craft = (ICrafting)this.crafters.get(i);
+			if(this.lastTime != this.processor.time) {
+				craft.sendProgressBarUpdate(this, 0, this.processor.time);
+		    }
+			if(this.lastMax != this.processor.maxTime) {
+				craft.sendProgressBarUpdate(this, 1, this.processor.maxTime);
+			}
+		}
+		this.lastTime = this.processor.time;
+		this.lastMax = this.processor.maxTime;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	  public void updateProgressBar(int i, int j)	  {
+		if(i == 0) {
+			this.processor.time = j;
+		}
+		if(i == 1) {
+			this.processor.maxTime = j;
+		}
 	}
 	
 	@Override
@@ -79,6 +119,6 @@ public class ContainerProcessorTC extends Container {
 	    	slot.onPickupFromSlot(player, stackInSlot);
 	    }
 	    return stack;
-	}
+	}	
 
 }

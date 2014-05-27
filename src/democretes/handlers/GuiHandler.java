@@ -12,12 +12,9 @@ public class GuiHandler implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		switch(ID) {
-		case 0: 
-			if(world.getBlockTileEntity(x, y, z) instanceof TileTCProcessor) {
-				return new ContainerProcessorTC(player.inventory, ((TileTCProcessor)world.getBlockTileEntity(x, y, z)));
-			}
-			break;
-	}
+			case 0: 
+				return new ContainerProcessorTC(player.inventory, ((TileTCProcessor)world.getBlockTileEntity(x, y, z)));	
+		}
 		return null;
 	}
 
@@ -25,10 +22,7 @@ public class GuiHandler implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,	int x, int y, int z) {
 		switch(ID) {
 			case 0: 
-				if(world.getBlockTileEntity(x, y, z) instanceof TileTCProcessor) {
-					return new GuiProcessorTC(player.inventory, ((TileTCProcessor)world.getBlockTileEntity(x, y, z)));
-				}
-				break;
+				return new GuiProcessorTC(player.inventory, ((TileTCProcessor)world.getBlockTileEntity(x, y, z)));
 		}
 		return null;
 	}

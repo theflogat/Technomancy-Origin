@@ -30,8 +30,11 @@ public class GuiProcessorTC extends GuiContainer {
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);	
 		
-		TileTCProcessor processor = ((TileTCProcessor)this.processor.worldObj.getBlockTileEntity(this.processor.xCoord, this.processor.yCoord, this.processor.zCoord));
-		drawTexturedModalRect(guiLeft+ 75, guiTop + 26, xSize, 0, 20 * (processor.time/processor.maxTime), 20);
+		int k = 0;
+		if(this.processor.isActive()) {
+			k = this.processor.getTimeScaled(20);
+		}
+		drawTexturedModalRect(guiLeft+ 74, guiTop + 25, xSize, 0, k, 20);
 	}
 
 }
