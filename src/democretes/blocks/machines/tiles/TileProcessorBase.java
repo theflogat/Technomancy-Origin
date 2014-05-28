@@ -60,6 +60,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 					getFuel();
 					processStuff(f, ore1, ore2);
 					this.time = 0;
+					return;
 				}else{
 					return;
 				}
@@ -86,7 +87,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	void processStuff(int j, boolean ore1, boolean ore2) {
 		if(ore1) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(this.ores[j].getItem(), this.inventory[1].getItemDamage() + 1, 1);
+				ItemStack stack = new ItemStack(this.ores[j].getItem(), this.inventory[0].getItemDamage() + 1, 1);
 				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();

@@ -2,7 +2,7 @@ package democretes.blocks.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import democretes.blocks.gui.container.ContainerProcessorTC;
+import democretes.blocks.gui.container.ContainerTCProcessor;
 import democretes.blocks.machines.tiles.TileTCProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -14,7 +14,7 @@ public class GuiProcessorTC extends GuiContainer {
 
 	TileTCProcessor processor;
 	public GuiProcessorTC(InventoryPlayer inventory, TileTCProcessor tileTCProcessor) {
-		super(new ContainerProcessorTC(inventory, tileTCProcessor));
+		super(new ContainerTCProcessor(inventory, tileTCProcessor));
 		
 		this.processor = tileTCProcessor;
 		

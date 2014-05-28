@@ -27,11 +27,6 @@ public class BlockNodeDynamo extends BlockBase {
 		return new TileNodeDynamo();
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public void RegisterIcons(IconRegister icon) {
-		this.iconDynamo = icon.registerIcon("technom:models/nodeDynamo");
-	}
-	
 	@Override
 	public boolean isOpaqueCube(){
 		return false;

@@ -62,6 +62,8 @@ public class ItemProcessedOre extends ItemBase {
 			list.add(StringHelper.getActivationText("info.techno:purity") + ": " + (stack.getItemDamage() + 1));
 			list.add(StringHelper.getFlavorText("info.techno:shift"));
 		}else{
+			list.clear();
+			list.add(StringHelper.localize(this.getUnlocalizedName()));
 			list.add(StringHelper.getActivationText("info.techno:purity") + ": " + (stack.getItemDamage() + 1));
 			list.add(StringHelper.localize("info.techno:process") + ":");
 			for(int i = 0; i < processors.length; i++) {
@@ -73,8 +75,7 @@ public class ItemProcessedOre extends ItemBase {
 	}
 
 	public static class ItemProcessedIron extends ItemProcessedOre {	
-
-
+		
 		public ItemProcessedIron(int id) {
 			super(id);
 			setMaxStackSize(64);
@@ -150,7 +151,7 @@ public class ItemProcessedOre extends ItemBase {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public int getColorFromItemStack(ItemStack stack, int par2)	  {
-			return 14414067;
+			return 15461355;
 		}    
 	}
 	

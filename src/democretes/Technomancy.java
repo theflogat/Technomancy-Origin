@@ -49,6 +49,8 @@ public class Technomancy {
     public void foreplay(FMLPreInitializationEvent event) {
         ConfigHandler.Init(new File(event.getModConfigurationDirectory(), "technomancy.cfg"));
         
+        TMBlocks.init();
+        
         if(ConfigHandler.thaumcraft) {
         	TMItems.initThaumcraft();
         	TMBlocks.initThaumcraft();

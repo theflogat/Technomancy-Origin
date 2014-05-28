@@ -1,39 +1,37 @@
 package democretes.blocks.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.common.lib.ThaumcraftCraftingManager;
-import thermalexpansion.util.crafting.FurnaceManager;
-import democretes.blocks.machines.tiles.TileTCProcessor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import democretes.blocks.machines.tiles.TileBMProcessor;
+import democretes.blocks.machines.tiles.TileProcessorBase;
+import democretes.blocks.machines.tiles.TileTCProcessor;
 
-public class ContainerProcessorTC extends Container {
+public class ContainerBMProcessor extends Container {
 
-	private TileTCProcessor processor;
+	private TileBMProcessor processor;
 	
 	private int lastTime;
 	private int lastMax;
 	
-	public ContainerProcessorTC(InventoryPlayer inventory, TileTCProcessor processor) {
+	public ContainerBMProcessor(InventoryPlayer inventory, TileBMProcessor processor) {
 		this.processor = processor;
-				
+		
 	    addSlotToContainer(new Slot(processor, 0, 50, 27));
 	    addSlotToContainer(new Slot(processor, 1, 107, 27));
 	    
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 56 + i * 18));
 		    }
 		}
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  113));
 		}
 		
 	}

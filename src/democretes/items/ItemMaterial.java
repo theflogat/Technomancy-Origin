@@ -45,6 +45,7 @@ public class ItemMaterial extends ItemBase {
 		return this.itemIcon[par];
 	}
 	
+	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		return Reference.MOD_PREFIX + LibNames.ITEM_MATERIAL_NAME + "." + stack.getItemDamage();
 	}

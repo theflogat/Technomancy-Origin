@@ -69,7 +69,6 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	}
 	  
 	protected void transferEnergy(int bSide){
-		this.updateAdjacentHandlers();
 		if (this.adjacentHandler == null){
 			return;
 		}		
@@ -81,28 +80,30 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 		if (ServerHelper.isClientWorld(this.worldObj)) {
 			return;
 		}
-		if (!this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord)) {
-			return;
-		}
 		if (!this.cached) {
-			updateAdjacentHandlers();
+	    	onNeighborBlockChange();
 		}
-		if (this.isActive) {
-			if (canGenerate()){
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord)) {
+			if (this.isActive) {
+				if (canGenerate()){
+					generate();
+					transferEnergy(this.facing);
+				}else{
+					this.isActive = false;
+				}
+			}else if (canGenerate()){
+				this.isActive = true;
 				generate();
 				transferEnergy(this.facing);
 			}else{
-				this.isActive = false;
-			}
-	    }else if (canGenerate()){
-	    	this.isActive = true;
-	      	generate();
-	      	transferEnergy(this.facing);
-	    }else{
-	    	attenuate();
-	    }	    
+				attenuate();
+			}	
+		}
 	    this.isActive = false;
 	    attenuate();
+	    if(this.worldObj.getTotalWorldTime() % 4L == 0L) {
+	    	onNeighborTileChange(this.xCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetX, this.yCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetY, this.zCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetZ);
+	    }
 	}
 	
 	public boolean rotateBlock() {
@@ -125,6 +126,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 		}
 		return false;
 	}
+	
 	  
 	protected void updateAdjacentHandlers() {
 		if (ServerHelper.isClientWorld(this.worldObj)) {
@@ -152,6 +154,7 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	    return this.isActive;
 	}
 	  
+	@Override
 	public void onNeighborBlockChange()	  {
 	    super.onNeighborBlockChange();
 	    updateAdjacentHandlers();

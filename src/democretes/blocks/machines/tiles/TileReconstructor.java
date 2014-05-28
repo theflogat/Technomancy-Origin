@@ -1,5 +1,7 @@
 package democretes.blocks.machines.tiles;
 
+import com.google.common.io.ByteArrayDataInput;
+
 import cofh.api.energy.EnergyStorage;
 import democretes.handlers.ConfigHandler;
 import net.minecraft.block.Block;
@@ -232,6 +234,9 @@ public class TileReconstructor extends TileMachineBase implements IAspectContain
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+	public static void handlePacket(ByteArrayDataInput data) {
+				
 	}
 
 }
