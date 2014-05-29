@@ -69,10 +69,10 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	}
 	  
 	protected void transferEnergy(int bSide){
-		if (this.adjacentHandler == null){
-			return;
-		}		
-		this.energyStorage.modifyEnergyStored(-this.adjacentHandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[(bSide ^ 0x1)], Math.min(this.maxTransfer, this.energyStorage.getEnergyStored()), false));
+		updateAdjacentHandlers();
+		if(this.adjacentHandler != null) {
+			this.energyStorage.modifyEnergyStored(-this.adjacentHandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[(bSide ^ 0x1)], Math.min(this.maxTransfer, this.energyStorage.getEnergyStored()), false));
+		}
 	}
 	  
 	@Override
@@ -258,5 +258,9 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	protected abstract boolean canGenerate();
 	  
 	protected abstract void generate();
+	
+	TileEntity getFacingEntity() {
+		return this.worldObj.getBlockTileEntity(this.xCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetX, this.yCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetY, this.zCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetZ);
+	}
 
 }

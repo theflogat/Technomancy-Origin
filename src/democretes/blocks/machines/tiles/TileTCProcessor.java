@@ -37,7 +37,7 @@ public class TileTCProcessor extends TileProcessorBase implements IAspectContain
 	
 	@Override
 	void getFuel() {
-		this.takeFromContainer(this.aspect, 1);
+		this.takeFromContainer(this.aspect, (1 * (this.multiplier + 1)));
 	}
 	
 	void fill() {

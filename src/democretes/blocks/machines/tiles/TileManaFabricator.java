@@ -43,7 +43,7 @@ public class TileManaFabricator extends TileMachineBase implements IManaPool {
 	
 	@Override
 	public boolean isFull() {
-		return this.mana < this.maxMana;
+		return this.mana >= this.maxMana;
 	}
 
 	@Override

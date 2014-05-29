@@ -17,7 +17,7 @@ import democretes.lib.Reference;
 
 public class ItemProcessedOre extends ItemBase {
 	
-	String[] processors = {"Thaumcraft", "Botania", "Blood Magic", "Ars Magica", "Witchery" };
+	String[] processors = {"Thaumcraft", "Botania", "Blood Magic", "Ars Magica", "Witchery", "Totemic" };
 	String name;
 	
 	public ItemProcessedOre(int id) {
@@ -62,10 +62,10 @@ public class ItemProcessedOre extends ItemBase {
 			list.add(StringHelper.getActivationText("info.techno:purity") + ": " + (stack.getItemDamage() + 1));
 			list.add(StringHelper.getFlavorText("info.techno:shift"));
 		}else{
-			list.clear();
 			list.add(StringHelper.localize(this.getUnlocalizedName()));
+			list.remove("item.null");
 			list.add(StringHelper.getActivationText("info.techno:purity") + ": " + (stack.getItemDamage() + 1));
-			list.add(StringHelper.localize("info.techno:process") + ":");
+			list.add(StringHelper.getInfoText("info.techno:process") + ":");
 			for(int i = 0; i < processors.length; i++) {
 				if(stack.stackTagCompound.getBoolean(processors[i])) {
 					list.add(processors[i]);
@@ -151,7 +151,7 @@ public class ItemProcessedOre extends ItemBase {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public int getColorFromItemStack(ItemStack stack, int par2)	  {
-			return 15461355;
+			return 13163770;
 		}    
 	}
 	

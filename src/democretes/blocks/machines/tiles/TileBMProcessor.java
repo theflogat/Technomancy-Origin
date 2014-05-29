@@ -11,11 +11,11 @@ public class TileBMProcessor extends TileProcessorBase {
 	public TileBMProcessor() {
 		this.tagCompound = "Blood Magic";
 	}
-		
+	
 	@Override
 	boolean canProcess() {
 		if(this.owner != null) {
-			if(SoulNetworkHandler.getCurrentEssence(this.owner) > 50) {
+			if(SoulNetworkHandler.getCurrentEssence(this.owner) > (50 * (this.multiplier + 1))) {
 				return true;
 			}
 		}
@@ -24,8 +24,8 @@ public class TileBMProcessor extends TileProcessorBase {
 	
 	@Override
 	void getFuel() {
-		if(SoulNetworkHandler.getCurrentEssence(this.owner) > 50) {
-			SoulNetworkHandler.setCurrentEssence(this.owner, (SoulNetworkHandler.getCurrentEssence(this.owner) - 50)); 
+		if(SoulNetworkHandler.getCurrentEssence(this.owner) > (50 * (this.multiplier + 1))) {
+			SoulNetworkHandler.setCurrentEssence(this.owner, (SoulNetworkHandler.getCurrentEssence(this.owner) - (50 * (this.multiplier + 1)))); 
 		}
 	}
 	

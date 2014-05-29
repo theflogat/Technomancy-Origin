@@ -24,16 +24,19 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	public int maxTime = 100;
 	public String tagCompound;
 	public boolean active;
+	public int multiplier = 0;
 	
-	 public static ItemStack[] ores = { 
-	    	new ItemStack(TMItems.processedIron), 
-	    	new ItemStack(TMItems.processedGold), 
-	    	new ItemStack(TMItems.processedCopper), 
-	    	new ItemStack(TMItems.processedTin), 
-	    	new ItemStack(TMItems.processedSilver), 
-	    	new ItemStack(TMItems.processedLead), 
-	    	new ItemStack(TMItems.processedNickel)};
+	public static ItemStack[] ores = { 
+	   	new ItemStack(TMItems.processedIron), 
+	   	new ItemStack(TMItems.processedGold), 
+	   	new ItemStack(TMItems.processedCopper), 
+	   	new ItemStack(TMItems.processedTin), 
+	   	new ItemStack(TMItems.processedSilver), 
+	  	new ItemStack(TMItems.processedLead), 
+	   	new ItemStack(TMItems.processedNickel)};
 
+	String[] processors = {"Thaumcraft", "Botania", "Blood Magic", "Ars Magica", "Witchery" }; 
+	 
 	boolean ore1 = false;
 	boolean ore2 = false;
 	int f;
@@ -53,6 +56,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				if(this.inventory[0] != null) {
 					this.active = true;
 					this.time++;
+					this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 				}else{
 					return;
 				}
@@ -71,6 +75,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 			String name = this.inventory[0].getUnlocalizedName();
 			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(TEBlocks.blockOre.getUnlocalizedName())) {
 				ore2 = true;
+				this.multiplier = this.inventory[0].getItemDamage();
 			}
 			for(int i = 0; i < this.ores.length; i++) {
 				if(this.inventory[0].getItem() == this.ores[i].getItem()) {
@@ -87,27 +92,29 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	void processStuff(int j, boolean ore1, boolean ore2) {
 		if(ore1) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(this.ores[j].getItem(), this.inventory[0].getItemDamage() + 1, 1);
+				ItemStack stack = new ItemStack(this.ores[j].getItem(), 1, this.inventory[0].getItemDamage() + 1);
 				stack.stackTagCompound = new NBTTagCompound();
+				for(int i = 0; i < processors.length; i++) {
+					if(this.inventory[0].stackTagCompound.hasKey(this.processors[i])) {
+						stack.stackTagCompound.setBoolean(this.processors[i], this.inventory[0].stackTagCompound.getBoolean(processors[i]));
+					}
+				}
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
-				if(this.inventory[0].stackSize == 1) {
-					this.inventory[0] = null;
-				}
-				this.inventory[0].stackSize -= 1;
-				if(this.inventory[0].stackSize == 0) {
-					this.inventory[0] = null;
+				if(this.inventory[0] != null) {
+					this.inventory[0].stackSize -= 1;
+					if(this.inventory[0].stackSize == 0) {
+						this.inventory[0] = null;
+					}
 				}
 			}else if(this.inventory[1].getItem() == this.ores[j].getItem()) {
 				if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 					this.inventory[1].stackSize += 1;
-					this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
-					if(this.inventory[0].stackSize == 1) {
-						this.inventory[0] = null;
-					}
-					this.inventory[0].stackSize -= 1;
-					if(this.inventory[0].stackSize == 0) {
-						this.inventory[0] = null;
+					if(this.inventory[0] != null) {
+						this.inventory[0].stackSize -= 1;
+						if(this.inventory[0].stackSize == 0) {
+							this.inventory[0] = null;
+						}
 					}
 				}
 			}
@@ -118,24 +125,22 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
-				if(this.inventory[0].stackSize == 1) {
-					this.inventory[0] = null;
-				}
-				this.inventory[0].stackSize -= 1;
-				if(this.inventory[0].stackSize == 0) {
-					this.inventory[0] = null;
+				if(this.inventory[0] != null) {
+					this.inventory[0].stackSize -= 1;
+					if(this.inventory[0].stackSize == 0) {
+						this.inventory[0] = null;
+					}
 				}
 			}else if(this.inventory[1] != null) {
 				if(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()) == this.inventory[1].getItem()) {
 					if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 						this.inventory[1].stackSize += 1;
 						this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
-						if(this.inventory[0].stackSize == 1) {
-							this.inventory[0] = null;
-						}
-						this.inventory[0].stackSize -= 1;
-						if(this.inventory[0].stackSize == 0) {
-							this.inventory[0] = null;
+						if(this.inventory[0] != null) {
+							this.inventory[0].stackSize -= 1;
+							if(this.inventory[0].stackSize == 0) {
+								this.inventory[0] = null;
+							}
 						}
 					}
 				}
@@ -155,7 +160,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	}
 	
 	boolean canProcess() {
-		return true;
+		return false;
 	}	
 	
 	void getFuel() {}

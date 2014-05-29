@@ -43,7 +43,9 @@ public class ConfigHandler {
         BlockIds.idBLOOD_FABRICATOR = config.getBlock(LibNames.BLOOD_FABRICATOR_NAME, BlockIds.idBLOOD_FABRICATOR_DEFAULT).getInt();
         BlockIds.idFLOWER_DYNAMO = config.getBlock(LibNames.FLOWER_DYNAMO_NAME, BlockIds.idFLOWER_DYNAMO_DEFAULT).getInt();
         BlockIds.idMANA_FABRICATOR = config.getBlock(LibNames.MANA_FABRICATOR_NAME, BlockIds.idMANA_FABRICATOR_DEFAULT).getInt();
-        BlockIds.idPROCESSOR = config.getBlock(LibNames.PROCESSOR_NAME, BlockIds.idPROCESSOR_DEFAULT).getInt();
+        BlockIds.idPROCESSOR_TC = config.getBlock(LibNames.PROCESSOR_NAME + "TC", BlockIds.idPROCESSOR_TC_DEFAULT).getInt();
+        BlockIds.idPROCESSOR_BM = config.getBlock(LibNames.PROCESSOR_NAME + "BM", BlockIds.idPROCESSOR_BM_DEFAULT).getInt();
+        BlockIds.idPROCESSOR_BO = config.getBlock(LibNames.PROCESSOR_NAME + "BO", BlockIds.idPROCESSOR_BO_DEFAULT).getInt();
 
         //Items        
         ItemIds.idESSENTIA_CANNON = config.getItem(LibNames.ESSENTIA_CANNON_NAME, ItemIds.idESSENTIA_CANNON_DEFAULT).getInt();

@@ -20,10 +20,6 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	private int maxAmount = 1;
 	private static int nodeRF = 36000;
 	
-	public TileNodeDynamo() {
-		this.facing = 0;
-	}
-	
 	protected boolean canGenerate() {
 		if (this.facing == 0) {
 			takeAspectsFromNode();
@@ -49,7 +45,7 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	}
 	
 	void takeAspectsFromNode() {
-		TileEntity te = this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
+		TileEntity te = getNode();
 		if (te != null && te instanceof INode) {
 			INode node = (INode)te;
 			AspectList aspects = node.getAspects();
@@ -72,6 +68,22 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 				}
 			}
 		}		
+	}
+	
+	TileEntity getNode() {
+		for(int y = 0; y < 6; y++) {
+			for(int x = -6; x < 7; x++) {
+				for(int z = -6; z < 7; x++) {
+					TileEntity te = this.worldObj.getBlockTileEntity(this.xCoord + x, this.yCoord + y, this.zCoord + z);
+					if(te != null) {
+						if(te instanceof INode) {
+							return te;
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
 	public void readCustomCompound(NBTTagCompound compound) {

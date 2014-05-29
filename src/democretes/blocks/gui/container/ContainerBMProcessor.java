@@ -22,7 +22,7 @@ public class ContainerBMProcessor extends Container {
 	public ContainerBMProcessor(InventoryPlayer inventory, TileBMProcessor processor) {
 		this.processor = processor;
 		
-	    addSlotToContainer(new Slot(processor, 0, 50, 27));
+	    addSlotToContainer(new Slot(processor, 0, 52, 27));
 	    addSlotToContainer(new Slot(processor, 1, 107, 27));
 	    
 		for (int i = 0; i < 3; i++) {
@@ -31,7 +31,7 @@ public class ContainerBMProcessor extends Container {
 		    }
 		}
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  113));
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  114));
 		}
 		
 	}

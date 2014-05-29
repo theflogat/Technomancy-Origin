@@ -21,6 +21,7 @@ import democretes.blocks.machines.BlockProcessor;
 import democretes.blocks.machines.BlockReconstructor;
 import democretes.blocks.machines.BlockTeslaCoil;
 import democretes.blocks.machines.tiles.TileBMProcessor;
+import democretes.blocks.machines.tiles.TileBOProcessor;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
 import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileCondenser;
@@ -60,7 +61,9 @@ public class TMBlocks {
 	public static Block bloodFabricator;
 	public static Block flowerDynamo;
 	public static Block manaFabricator;
-	public static Block processor;
+	public static Block processorTC;
+	public static Block processorBM;
+	public static Block processorBO;
 	
 	public static void initThaumcraft() {
 		//Block Initializaton
@@ -77,6 +80,7 @@ public class TMBlocks {
 		crystalBlock = new BlockCrystal(BlockIds.idCRYSTAL_BLOCK);
 		reconstructorBlock = new BlockReconstructor(BlockIds.idRECONSTRUCTOR);
 		condenserBlock = new BlockCondenser(BlockIds.idCONDENSER);
+		processorTC = new BlockProcessor.BlockTCProcessor(BlockIds.idPROCESSOR_TC);
 		
 		//Registry
 		GameRegistry.registerBlock(nodeDynamo, LibNames.NODE_DYNAMO_NAME);
@@ -92,6 +96,8 @@ public class TMBlocks {
 		GameRegistry.registerBlock(crystalBlock, LibNames.CRYSTAL_NAME);
 		GameRegistry.registerBlock(reconstructorBlock, LibNames.RECONSTRUCTOR_NAME);
 		GameRegistry.registerBlock(condenserBlock, LibNames.CONDENSER_NAME);
+		GameRegistry.registerBlock(processorTC, LibNames.PROCESSOR_NAME + "TC");
+
 		
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileEssentiaContainer.class, "TileEssentiacontainer");
@@ -113,10 +119,12 @@ public class TMBlocks {
 		//Block Initialization
 		bloodDynamo = new BlockBloodDynamo(BlockIds.idBLOOD_DYNAMO);	
 		bloodFabricator = new BlockBloodFabricator(BlockIds.idBLOOD_FABRICATOR);
-		
+		processorBM = new BlockProcessor.BlockBMProcessor(BlockIds.idPROCESSOR_BM);
+
 		//Registry
 		GameRegistry.registerBlock(bloodDynamo, LibNames.BLOOD_DYNAMO_NAME);
 		GameRegistry.registerBlock(bloodFabricator, LibNames.BLOOD_FABRICATOR_NAME);
+		GameRegistry.registerBlock(processorBM, LibNames.PROCESSOR_NAME + "BM");
 
 		//Tiles registry
 		GameRegistry.registerTileEntity(TileBloodDynamo.class, "TileBloodDynamo");
@@ -129,24 +137,18 @@ public class TMBlocks {
 		//Block Initialization
 		flowerDynamo = new BlockFlowerDynamo(BlockIds.idFLOWER_DYNAMO);
 		manaFabricator = new BlockManaFabricator(BlockIds.idMANA_FABRICATOR);
+		processorBO = new BlockProcessor.BlockBOProcessor(BlockIds.idPROCESSOR_BO);
 		
 		//Block Registry
 		GameRegistry.registerBlock(flowerDynamo, LibNames.FLOWER_DYNAMO_NAME);
 		GameRegistry.registerBlock(manaFabricator, LibNames.MANA_FABRICATOR_NAME);
-		
+		GameRegistry.registerBlock(processorBO, LibNames.PROCESSOR_NAME + "BO");
+
 		//Tile Registry
 		GameRegistry.registerTileEntity(TileFlowerDynamo.class, "TileFlowerDynamo");
 		GameRegistry.registerTileEntity(TileManaFabricator.class, "ManaFabricator");
-	}
-	
-	public static void init() {
-		//Block Initialization
-		processor = new BlockProcessor(BlockIds.idPROCESSOR);
-		
-		//Block Registry
-		GameRegistry.registerBlock(processor, LibNames.PROCESSOR_NAME);
-		
-		//Tile Registry
+		GameRegistry.registerTileEntity(TileBOProcessor.class, "TileProcessorBO");
+
 	}
 	
 

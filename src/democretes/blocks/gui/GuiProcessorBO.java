@@ -7,22 +7,22 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import democretes.blocks.gui.container.ContainerBMProcessor;
-import democretes.blocks.machines.tiles.TileBMProcessor;
+import democretes.blocks.gui.container.ContainerBOProcessor;
+import democretes.blocks.machines.tiles.TileBOProcessor;
 
-public class GuiProcessorBM extends GuiContainer {
+public class GuiProcessorBO extends GuiContainer {
 
-	TileBMProcessor processor;
-	public GuiProcessorBM(InventoryPlayer inventory, TileBMProcessor tileBMProcessor) {
-		super(new ContainerBMProcessor(inventory, tileBMProcessor));
+	TileBOProcessor processor;
+	public GuiProcessorBO(InventoryPlayer inventory, TileBOProcessor tileBOProcessor) {
+		super(new ContainerBOProcessor(inventory, tileBOProcessor));
 		
-		this.processor = tileBMProcessor;
+		this.processor = tileBOProcessor;
 		
 		xSize = 176;
 		ySize = 137;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("technom", "textures/gui/processorBM.png");
+	private static final ResourceLocation texture = new ResourceLocation("technom", "textures/gui/processorBO.png");
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
@@ -32,8 +32,8 @@ public class GuiProcessorBM extends GuiContainer {
 		
 		int k = 0;
 		if(this.processor.isActive()) {
-			k = this.processor.getTimeScaled(37);
+			k = this.processor.getTimeScaled(22);
 		}
-		drawTexturedModalRect(guiLeft+ 69, guiTop + 26, xSize + 1, 0, k, 16);
+		drawTexturedModalRect(guiLeft+ 75, guiTop + 24, xSize, 0, k, 22);
 	}
 }

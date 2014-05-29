@@ -42,8 +42,9 @@ tile.techno:condenserBlock.name=Energy Condenser
 tile.techno:bloodFabricator.name=Blood Fabricator
 tile.techno:flowerDynamo.name=Hippie Dynamo
 tile.techno:manaFabricator.name=Mana Fabricator
-tile.techno:processor.0.name=Ignis Incinerator
-tile.techno:processor.1.name=Sanguine Infuser
+tile.techno:processorTC.name=Ignis Incinerator
+tile.techno:processorBM.name=Sanguine Infuser
+tile.techno:processorBO.name=Botanical Purifier
 
 #Information
 info.techno:purity=Purity

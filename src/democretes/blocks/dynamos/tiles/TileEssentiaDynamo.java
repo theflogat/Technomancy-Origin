@@ -1,15 +1,17 @@
 package democretes.blocks.dynamos.tiles;
 
+import java.util.Random;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeDirection;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyStorage;
+import thaumcraft.common.lib.world.ThaumcraftWorldGenerator;
 
 public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContainer, IEssentiaTransport{
 
@@ -49,37 +51,146 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 	protected void generate() {
 		if (this.fuelRF <= 0) {
 			this.fuelRF += getFuelEnergy();
-			this.takeFromContainer(this.aspect, 1);
+			this.takeFromContainer(this.aspect, getFuelRemoval(this.aspect));
 		}
 		int energy = calcEnergy();
 		this.energyStorage.modifyEnergyStored(energy);
 		this.fuelRF -= energy;
 	}
 	
-	public static int getFuelEnergy() {				
+	@Override
+	protected void transferEnergy(int bSide){
+		updateAdjacentHandlers();
+		if(this.adjacentHandler != null) {
+			this.energyStorage.modifyEnergyStored(-this.adjacentHandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[(bSide ^ 0x1)], Math.min(this.maxTransfer * getTransferRate(this.aspect), this.energyStorage.getEnergyStored()), false));
+		}
+	}
+	
+	public int getFuelEnergy() {				
 		return ((getAspectFuel(aspect))*3/4);
 	}
 	
-	public static int getAspectFuel(Aspect aspect) {
-		if (aspect == Aspect.FIRE || aspect == Aspect.ENERGY) {
-			return 32000;}
-		if (aspect == Aspect.AIR ||  aspect == Aspect.WATER || aspect == Aspect.ENTROPY || aspect == Aspect.ORDER) {
-			return 12000;}
-		if (aspect == Aspect.AURA || aspect == Aspect.TAINT || aspect == Aspect.MAGIC  || aspect == Aspect.ELDRITCH ) {
-			return 24000;}
-		if (aspect == Aspect.MECHANISM || aspect == Aspect.METAL || aspect == Aspect.MOTION || aspect == Aspect.TOOL || aspect == Aspect.TRAP || 
+	public int getAspectFuel(Aspect aspect) {
+		if(aspect == Aspect.FIRE || aspect == Aspect.ENERGY) {
+			return 32000;
+		}
+		if(aspect == Aspect.AIR ||  aspect == Aspect.WATER  || aspect == Aspect.ORDER) {
+			return 12000;
+		}
+		if(aspect == Aspect.MAGIC  || aspect == Aspect.ELDRITCH ) {
+			return 24000;
+		}
+		if(aspect == Aspect.MECHANISM || aspect == Aspect.METAL || aspect == Aspect.MOTION || aspect == Aspect.TOOL || aspect == Aspect.TRAP || 
 				aspect == Aspect.MINE || aspect == Aspect.CRAFT || aspect == Aspect.TRAVEL) {
-			return 16000;}
-		if (aspect == Aspect.STONE || aspect == Aspect.CRYSTAL || aspect == Aspect.ICE || aspect == Aspect.EARTH || aspect == Aspect.LIGHT){
-			return 800;	}
-		if (aspect == Aspect.MAN || aspect == Aspect.SENSES | aspect == Aspect.HEAL || aspect == Aspect.HARVEST || aspect == Aspect.HUNGER ||
-				aspect == Aspect.FLIGHT || aspect == Aspect.DEATH || aspect == Aspect.BEAST ||  aspect == Aspect.POISON|| aspect == Aspect.MIND || 
+			return 16000;
+		}
+		if(aspect == Aspect.STONE || aspect == Aspect.CRYSTAL || aspect == Aspect.EARTH || aspect == Aspect.ENTROPY){
+			if(this.yCoord < 8) {
+				return 2000;
+			}
+			return 800;	
+		}
+		if(aspect == Aspect.MAN || aspect == Aspect.SENSES | aspect == Aspect.HEAL || aspect == Aspect.HARVEST || aspect == Aspect.HUNGER ||
+				aspect == Aspect.DEATH || aspect == Aspect.BEAST ||  aspect == Aspect.POISON|| aspect == Aspect.MIND || 
 				aspect == Aspect.SOUL || aspect == Aspect.UNDEAD || aspect == Aspect.WEAPON || aspect == Aspect.WEATHER || aspect == Aspect.UNDEAD) {
-			return 12000;}
-		if ( aspect == Aspect.TREE || aspect == Aspect.SLIME || aspect == Aspect.SEED || aspect == Aspect.PLANT || aspect == Aspect.CROP || 
-				aspect == Aspect.CLOTH || aspect == Aspect.VOID || aspect == Aspect.EXCHANGE || aspect == Aspect.FLESH) { 
-			return 8000;}		
+			return 12000;
+		}
+		if( aspect == Aspect.TREE || aspect == Aspect.SEED || aspect == Aspect.PLANT || aspect == Aspect.CROP || 
+				aspect == Aspect.CLOTH || aspect == Aspect.VOID || aspect == Aspect.FLESH) { 
+			return 8000;
+		}
+		if(aspect == Aspect.EXCHANGE) {
+			Random rand = new Random();
+			return rand.nextInt(2400);
+		}
+		if(aspect == Aspect.FLIGHT){
+			if(this.yCoord > 200) {
+				return 32000;
+			}
+			return 12000;
+		}
+		if(aspect == Aspect.ICE) {
+			return 8000;
+		}
+		if(aspect == Aspect.SLIME) {
+			return 16000;
+		}
+		if(aspect == Aspect.LIGHT) {
+			if(this.worldObj.isDaytime()) {
+				return 2400;
+			}
+			return 800;
+		}
+		if(aspect == Aspect.DARKNESS) {
+			if(!this.worldObj.isDaytime()) {
+				return 36000;
+			}
+			return 1200;
+		}
+		if(aspect == Aspect.AURA) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeMagicalForest.biomeID) {
+				return 32000;
+			}
+			return 24000;
+		}
+		if(aspect == Aspect.TAINT) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeTaint.biomeID) {
+				return 60000;
+			}
+			return 24000;
+		}
 		return 0;
+	}
+	
+	int getTransferRate(Aspect aspect) {
+		if(aspect == Aspect.AURA) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeMagicalForest.biomeID) {
+				return 2;
+			}
+		}
+		if(aspect == Aspect.TAINT) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeTaint.biomeID) {
+				return 4;
+			}
+		}
+		if(aspect == Aspect.SLIME) {
+			return 1/2;
+		}
+		if(aspect == Aspect.FIRE || aspect == Aspect.ENERGY) {
+			return 2;
+		}
+		if(aspect == Aspect.LIGHT && this.worldObj.isDaytime()) {
+			return 3;
+		}
+		if(aspect == Aspect.DARKNESS && !this.worldObj.isDaytime()) {
+			return 3;
+		}
+		return 1;
+	}
+	
+	boolean firstRemoval = true;
+	int getFuelRemoval(Aspect aspect) {
+		if(aspect == Aspect.WEATHER && this.worldObj.isThundering()) {
+			return 0;
+		}
+		BiomeGenBase bg = this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord);
+		if(aspect == Aspect.ICE &&  (bg == BiomeGenBase.frozenRiver || bg == BiomeGenBase.frozenOcean || bg == BiomeGenBase.iceMountains || bg == BiomeGenBase.icePlains || bg == BiomeGenBase.taiga || bg == BiomeGenBase.taigaHills)) {
+			if(firstRemoval) {
+				firstRemoval = false;
+				return 0;
+			}else{
+				firstRemoval = true;
+			}
+		}
+		if(aspect == Aspect.WATER && (bg == BiomeGenBase.ocean || bg == BiomeGenBase.river)) {
+			if(firstRemoval) {
+				firstRemoval = false;
+				return 0;
+			}else{
+				firstRemoval = true;
+			} 
+		}
+		return 1;
 	}
 
 	@Override
@@ -117,25 +228,6 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 				}
 			}
 		}
-	}
-
-	ForgeDirection findTube() {
-		if (!this.worldObj.isRemote) {
-			if (ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.UP) != null) {
-					return ForgeDirection.UP;				
-			}else if (ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.DOWN) !=null) {
-				return ForgeDirection.DOWN;
-			}else if(ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.EAST) != null) {
-				return ForgeDirection.EAST;				
-			}else if(ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.WEST) != null) {
-				return ForgeDirection.WEST;
-			}else if(ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.NORTH) != null) {
-				return ForgeDirection.NORTH;
-			}else if(ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.SOUTH) != null) {
-				return ForgeDirection.SOUTH;
-			}
-		}
-		return null;
 	}
 	
 	@Override

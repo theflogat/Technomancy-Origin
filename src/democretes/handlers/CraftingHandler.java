@@ -32,25 +32,25 @@ public class CraftingHandler {
 	
 	public static void initFurnaceRecipe() {
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedIron.itemID, i, new ItemStack(Item.ingotIron, 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedIron.itemID, i, new ItemStack(Item.ingotIron, 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedGold.itemID, i, new ItemStack(Item.ingotGold, 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedGold.itemID, i, new ItemStack(Item.ingotGold, 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedCopper.itemID, i, new ItemStack(TEItems.ingotCopper.getItem(), 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedCopper.itemID, i, new ItemStack(TEItems.ingotCopper.getItem(), 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedTin.itemID, i, new ItemStack(TEItems.ingotTin.getItem(), 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedTin.itemID, i, new ItemStack(TEItems.ingotTin.getItem(), 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedSilver.itemID, i, new ItemStack(TEItems.ingotSilver.getItem(), 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedSilver.itemID, i, new ItemStack(TEItems.ingotSilver.getItem(), 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedLead.itemID, i, new ItemStack(TEItems.ingotLead.getItem(), 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedLead.itemID, i, new ItemStack(TEItems.ingotLead.getItem(), 2 + i, 0), 100);
 		}
 		for(int i = 0; i < 5; i++) {
-			FurnaceRecipes.smelting().addSmelting(TMItems.processedNickel.itemID, i, new ItemStack(TEItems.ingotNickel.getItem(), 1 + i, 0), 100);
+			FurnaceRecipes.smelting().addSmelting(TMItems.processedNickel.itemID, i, new ItemStack(TEItems.ingotNickel.getItem(), 2 + i, 0), 100);
 		}
 	}
 	
@@ -151,9 +151,9 @@ public class CraftingHandler {
 	
 	public static void initBloodMagicRecipes() {
 		//Altar Recipes
-		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 1, 10000, 100, 100, true);
-		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 0), new ItemStack(Item.ingotIron), 0, 1000, 100, 100, true);
-		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 1), TEItems.powerCoilGold, 0, 1000, 100, 100, true);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMBlocks.bloodDynamo), new ItemStack(TEBlocks.blockDynamo), 2, 10000, 100, 100, false);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 0), new ItemStack(Item.ingotIron), 1, 1000, 100, 100, false);
+		AltarRecipeRegistry.registerAltarRecipe(new ItemStack(TMItems.itemBM, 1, 1), TEItems.powerCoilGold, 1, 1000, 100, 100, false);
 		
 		//Normal Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TMBlocks.bloodFabricator), 
@@ -162,7 +162,7 @@ public class CraftingHandler {
 			'I', new ItemStack(TMItems.itemBM, 1, 0),
 			'M', BlockMachine.machineFrame,
 			'C', new ItemStack(TMItems.itemBM, 1, 1),
-			'A', new ItemStack(BlockTesseract.tesseractFrameFull.getItem())		});
+			'A', BlockTesseract.tesseractFrameFull		});
 	}
 	
 	public static RecipeManaInfusion manaCoilRecipe;
@@ -187,7 +187,7 @@ public class CraftingHandler {
 				'C', new ItemStack(TMItems.itemBO, 1, 1),
 				'I', new ItemStack(ModItems.manaResource, 1, 0),
 				'D', new ItemStack(ModItems.manaResource, 1, 2),
-				'P', new ItemStack(Item.flowerPot)				});
+				'P', BlockTesseract.tesseractFrameFull			});
 	}
 	
 	static IRecipe oreDictRecipe(ItemStack res, Object[] params) {

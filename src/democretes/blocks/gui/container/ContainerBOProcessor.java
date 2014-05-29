@@ -8,30 +8,28 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import democretes.blocks.machines.tiles.TileBMProcessor;
-import democretes.blocks.machines.tiles.TileProcessorBase;
-import democretes.blocks.machines.tiles.TileTCProcessor;
+import democretes.blocks.machines.tiles.TileBOProcessor;
 
-public class ContainerTCProcessor extends Container {
+public class ContainerBOProcessor extends Container {
 
-	private TileTCProcessor processor;
+	private TileBOProcessor processor;
 	
 	private int lastTime;
 	private int lastMax;
 	
-	public ContainerTCProcessor(InventoryPlayer inventory, TileTCProcessor processor) {
+	public ContainerBOProcessor(InventoryPlayer inventory, TileBOProcessor processor) {
 		this.processor = processor;
-						
-	    addSlotToContainer(new Slot(processor, 0, 50, 27));
-	    addSlotToContainer(new Slot(processor, 1, 107, 27));
+		
+	    addSlotToContainer(new Slot(processor, 0, 52, 27));
+	    addSlotToContainer(new Slot(processor, 1, 108, 27));
 	    
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 56 + i * 18));
 		    }
 		}
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  142));
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  114));
 		}
 		
 	}
