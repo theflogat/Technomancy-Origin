@@ -36,7 +36,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	  	new ItemStack(TMItems.processedLead), 
 	   	new ItemStack(TMItems.processedNickel)};
 
-	String[] processors = {"Thaumcraft", "Botania", "Blood Magic", "Ars Magica", "Witchery" }; 
+	String[] processors = {"Thaumcraft", "Botania", "Blood Magic", "Ars Magica", "Witchery", "Totemic" }; 
 	 
 	boolean ore1 = false;
 	boolean ore2 = false;
@@ -74,8 +74,6 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		this.active = false;
 		if(canProcess() && this.inventory[0] != null) {
 			String name = this.inventory[0].getUnlocalizedName();
-			System.out.println(name);
-			System.out.println("Official: " + TEBlocks.blockOre.getUnlocalizedName());
 			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(BlockOre.oreCopper.getUnlocalizedName())
 					|| name.equals(BlockOre.oreTin.getUnlocalizedName()) || name.equals(BlockOre.oreSilver.getUnlocalizedName()) || name.equals(BlockOre.oreLead.getUnlocalizedName())
 					|| name.equals(BlockOre.oreNickel.getUnlocalizedName())) {
@@ -269,7 +267,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		return this.worldObj == null;
+		return true;
 	}
 
 	@Override
