@@ -68,7 +68,6 @@ public class TileNodeGenerator extends TileMachineBase implements IEssentiaTrans
 			}
 			if(this.active == true) {
 				this.rotation += 1;
-				System.out.println("Entity:" + this.rotation);
 				this.worldObj.markBlockForRenderUpdate(this.xCoord, this.yCoord, this.zCoord);
 				switch(this.facing) {
 				case 2:

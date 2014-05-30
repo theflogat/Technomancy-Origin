@@ -30,7 +30,8 @@ import democretes.proxies.CommonProxy;
 	dependencies = "required-after:Thaumcraft;required-after:ThermalExpansion;")
 
 @NetworkMod(channels = { Reference.CHANNEL_NAME }, 
-	clientSideRequired = true, serverSideRequired = false, 
+	clientSideRequired = true, 
+	serverSideRequired = false, 
 	packetHandler = PacketHandler.class)
 
 

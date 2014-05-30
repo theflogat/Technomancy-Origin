@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import thermalexpansion.block.TEBlocks;
+import thermalexpansion.block.simple.BlockOre;
 import democretes.blocks.TileTechnomancy;
 import democretes.items.TMItems;
 
@@ -73,7 +74,11 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		this.active = false;
 		if(canProcess() && this.inventory[0] != null) {
 			String name = this.inventory[0].getUnlocalizedName();
-			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(TEBlocks.blockOre.getUnlocalizedName())) {
+			System.out.println(name);
+			System.out.println("Official: " + TEBlocks.blockOre.getUnlocalizedName());
+			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(BlockOre.oreCopper.getUnlocalizedName())
+					|| name.equals(BlockOre.oreTin.getUnlocalizedName()) || name.equals(BlockOre.oreSilver.getUnlocalizedName()) || name.equals(BlockOre.oreLead.getUnlocalizedName())
+					|| name.equals(BlockOre.oreNickel.getUnlocalizedName())) {
 				ore2 = true;
 				this.multiplier = this.inventory[0].getItemDamage();
 			}
@@ -153,8 +158,12 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 			return this.ores[0].getItem();
 		}else if(name.equals(Block.oreGold.getUnlocalizedName())) {
 			return this.ores[1].getItem();
-		}else if(name.equals(TEBlocks.blockOre.getUnlocalizedName())) {
-			this.ores[2 + meta].getItem();
+		}else if(name.equals(BlockOre.oreCopper.getUnlocalizedName()) || 
+				name.equals(BlockOre.oreTin.getUnlocalizedName()) || 
+				name.equals(BlockOre.oreSilver.getUnlocalizedName()) || 
+				name.equals(BlockOre.oreLead.getUnlocalizedName())|| 
+				name.equals(BlockOre.oreNickel.getUnlocalizedName())) {
+			return this.ores[2 + meta].getItem();
 		}
 		return null;		
 	}
@@ -259,8 +268,8 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return true;
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return this.worldObj == null;
 	}
 
 	@Override

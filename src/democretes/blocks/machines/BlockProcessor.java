@@ -14,6 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import thaumcraft.common.lib.InventoryHelper;
 import vazkii.botania.api.IWandHUD;
+import vazkii.botania.common.Botania;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import democretes.Technomancy;
@@ -36,7 +37,7 @@ public class BlockProcessor extends BlockBase {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		if(player != null) {
+		if(player != null && tile != null) {
 			if(tile instanceof TileTCProcessor) {		
 				player.openGui(Technomancy.instance, 0, world, x, y, z);
 			}
@@ -108,30 +109,37 @@ public class BlockProcessor extends BlockBase {
 		return icons[1];		
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World w, int i, int j, int k, Random r)	  {
-		TileEntity te = w.getBlockTileEntity(i, j, k);
-	    if ((te != null) && ((te instanceof TileTCProcessor || te instanceof TileBMProcessor)))	    {
-	    	if (((TileProcessorBase)te).isActive()) {
-	    		float f = i + 0.5F;
-	    		float f1 = j + 0.2F + r.nextFloat() * 5.0F / 16.0F;
-	    		float f2 = k + 0.5F;
-	    		float f3 = 0.52F;
-	    		float f4 = r.nextFloat() * 0.5F - 0.25F;
-	      
-	    		w.spawnParticle("smoke", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
-	    		w.spawnParticle("flame", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+	public void randomDisplayTick(World world, int x, int y, int z, Random r)	  {
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+	    if ((te != null) && ((TileProcessorBase)te).isActive())	    {
+	    	float f = x + 0.5F;
+    		float f1 = y + 0.2F + r.nextFloat() * 5.0F / 16.0F;
+    		float f2 = z + 0.5F;
+    		float f3 = 0.52F;
+    		float f4 = r.nextFloat() * 0.5F - 0.25F;
+	    	if(te instanceof TileTCProcessor || te instanceof TileBMProcessor) {	      
+	    		world.spawnParticle("smoke", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("flame", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
 	        
-	    		w.spawnParticle("smoke", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
-	    		w.spawnParticle("flame", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("smoke", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("flame", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
 	        
-	    		w.spawnParticle("smoke", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
-	    		w.spawnParticle("flame", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("smoke", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("flame", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
 	        
-	    		w.spawnParticle("smoke", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
-	    		w.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("smoke", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
+	    		world.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
 	    	}
+	    	if(te instanceof TileBOProcessor) {
+		    	Botania.proxy.sparkleFX(world, (double)f - f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 - f3, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 + f3, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
+		    }
 	    }
+	    
 	}
 	
 	@Override

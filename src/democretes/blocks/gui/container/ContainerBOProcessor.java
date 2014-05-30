@@ -30,8 +30,7 @@ public class ContainerBOProcessor extends Container {
 		}
 		for (int i = 0; i < 9; i++) {
 			addSlotToContainer(new Slot(inventory, i, 8 + i * 18,  114));
-		}
-		
+		}		
 	}
 	
 	@Override

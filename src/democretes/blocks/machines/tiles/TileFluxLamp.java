@@ -53,15 +53,21 @@ public class TileFluxLamp extends TileTechnomancy implements IAspectContainer, I
 		this.tank.readFromNBT(compound);
 	}
 
+	int count;
 	@Override
 	public void updateEntity() {
 		if(!this.worldObj.isRemote) {
-			TileEntity tile = getMatrix();
+			TileEntity tile = null;
+			if ((!this.worldObj.isRemote) && (++this.count % 10 == 0)) {
+				if(this.amount < this.maxAmount) {
+					fill();
+				}
+				tile = getMatrix();
+			}
 			if(tile == null) {
 				return;
 			}
 			TileInfusionMatrix matrix = (TileInfusionMatrix)tile;
-
 			if(!matrix.crafting) {
 				this.stabilize = true;
 			}	
@@ -76,10 +82,7 @@ public class TileFluxLamp extends TileTechnomancy implements IAspectContainer, I
 					}						
 				}
 				this.stabilize = false;
-			}					
-			if((this.amount < this.maxAmount)) {
-				fill();
-			}
+			}			
 		}		
 	}
 	

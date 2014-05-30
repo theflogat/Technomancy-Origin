@@ -20,6 +20,10 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	private int maxAmount = 1;
 	private static int nodeRF = 36000;
 	
+	public TileNodeDynamo() {
+		this.facing = 0;
+	}
+	
 	protected boolean canGenerate() {
 		if (this.facing == 0) {
 			takeAspectsFromNode();
@@ -53,8 +57,8 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 			for (int i = 0; i < as.length;) {
 				Aspect aspect = as[i];
 				int nodeAmount = node.containerContains(aspect);
-				if (this.amount < this.maxAmount){
-					if (nodeAmount != 1)
+				if(this.amount < this.maxAmount){
+					if(nodeAmount != 1)
 						if(node.takeFromContainer(aspect, 1) ) {
 							this.amount += 1;
 							break;				
@@ -71,15 +75,13 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	}
 	
 	TileEntity getNode() {
-		for(int y = 0; y < 6; y++) {
-			for(int x = -6; x < 7; x++) {
-				for(int z = -6; z < 7; x++) {
-					TileEntity te = this.worldObj.getBlockTileEntity(this.xCoord + x, this.yCoord + y, this.zCoord + z);
-					if(te != null) {
-						if(te instanceof INode) {
+		for(int xx = -8; xx <= 8; xx++) {
+			for(int yy = -8; yy <= 8; yy++) {
+				for(int zz = -8; zz <= 8; zz++) {
+					TileEntity te = this.worldObj.getBlockTileEntity(this.xCoord + xx, this.yCoord + yy, this.zCoord + zz);
+					if(te instanceof INode) {
 							return te;
-						}
-					}
+					}					
 				}
 			}
 		}
@@ -174,11 +176,6 @@ public class TileNodeDynamo extends TileDynamoBase implements IAspectContainer{
 	@Override
 	public int containerContains(Aspect tag) {
 		return 0;
-	}
-	
-	@Override
-	public boolean canInterface(ForgeDirection from)	  {
-	    return true;
 	}
 	
 

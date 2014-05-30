@@ -50,7 +50,7 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 	@Override
 	protected void generate() {
 		if (this.fuelRF <= 0) {
-			this.fuelRF += getFuelEnergy();
+			this.fuelRF += ((getAspectFuel(aspect))*3/4);
 			this.takeFromContainer(this.aspect, getFuelRemoval(this.aspect));
 		}
 		int energy = calcEnergy();
@@ -66,10 +66,6 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 		}
 	}
 	
-	public int getFuelEnergy() {				
-		return ((getAspectFuel(aspect))*3/4);
-	}
-	
 	public int getAspectFuel(Aspect aspect) {
 		if(aspect == Aspect.FIRE || aspect == Aspect.ENERGY) {
 			return 32000;
@@ -78,7 +74,10 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 			return 12000;
 		}
 		if(aspect == Aspect.MAGIC  || aspect == Aspect.ELDRITCH ) {
-			return 24000;
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == BiomeGenBase.sky) {
+				return 36000;
+			}
+			return 18000;
 		}
 		if(aspect == Aspect.MECHANISM || aspect == Aspect.METAL || aspect == Aspect.MOTION || aspect == Aspect.TOOL || aspect == Aspect.TRAP || 
 				aspect == Aspect.MINE || aspect == Aspect.CRAFT || aspect == Aspect.TRAVEL) {
@@ -92,16 +91,19 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 		}
 		if(aspect == Aspect.MAN || aspect == Aspect.SENSES | aspect == Aspect.HEAL || aspect == Aspect.HARVEST || aspect == Aspect.HUNGER ||
 				aspect == Aspect.DEATH || aspect == Aspect.BEAST ||  aspect == Aspect.POISON|| aspect == Aspect.MIND || 
-				aspect == Aspect.SOUL || aspect == Aspect.UNDEAD || aspect == Aspect.WEAPON || aspect == Aspect.WEATHER || aspect == Aspect.UNDEAD) {
+				aspect == Aspect.SOUL || aspect == Aspect.WEAPON || aspect == Aspect.WEATHER || aspect == Aspect.UNDEAD) {
 			return 12000;
 		}
-		if( aspect == Aspect.TREE || aspect == Aspect.SEED || aspect == Aspect.PLANT || aspect == Aspect.CROP || 
-				aspect == Aspect.CLOTH || aspect == Aspect.VOID || aspect == Aspect.FLESH) { 
+		if( aspect == Aspect.TREE || aspect == Aspect.SEED || aspect == Aspect.PLANT || aspect == Aspect.CROP || aspect == Aspect.CLOTH || aspect == Aspect.VOID || aspect == Aspect.FLESH) { 
 			return 8000;
+		}
+		if(aspect == Aspect.UNDEAD) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == BiomeGenBase.sky)
+			return 12000;
 		}
 		if(aspect == Aspect.EXCHANGE) {
 			Random rand = new Random();
-			return rand.nextInt(2400);
+			return rand.nextInt(24000);
 		}
 		if(aspect == Aspect.FLIGHT){
 			if(this.yCoord > 200) {
@@ -128,28 +130,28 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 			return 1200;
 		}
 		if(aspect == Aspect.AURA) {
-			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeMagicalForest.biomeID) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == ThaumcraftWorldGenerator.biomeMagicalForest) {
 				return 32000;
 			}
 			return 24000;
 		}
 		if(aspect == Aspect.TAINT) {
-			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeTaint.biomeID) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == ThaumcraftWorldGenerator.biomeTaint) {
 				return 60000;
 			}
 			return 24000;
 		}
-		return 0;
+		return 1000;
 	}
 	
 	int getTransferRate(Aspect aspect) {
 		if(aspect == Aspect.AURA) {
-			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeMagicalForest.biomeID) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == ThaumcraftWorldGenerator.biomeMagicalForest) {
 				return 2;
 			}
 		}
 		if(aspect == Aspect.TAINT) {
-			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord).biomeID == ThaumcraftWorldGenerator.biomeTaint.biomeID) {
+			if(this.worldObj.getBiomeGenForCoords(this.xCoord, this.yCoord) == ThaumcraftWorldGenerator.biomeTaint) {
 				return 4;
 			}
 		}
@@ -164,6 +166,9 @@ public class TileEssentiaDynamo extends TileDynamoBase implements IAspectContain
 		}
 		if(aspect == Aspect.DARKNESS && !this.worldObj.isDaytime()) {
 			return 3;
+		}
+		if(aspect == Aspect.MECHANISM || aspect == Aspect.METAL || aspect == Aspect.MOTION) {
+			return 2;
 		}
 		return 1;
 	}

@@ -225,9 +225,6 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	}
 	  
 	public boolean canInterface(ForgeDirection from)	  {
-		if(this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) instanceof TileNodeDynamo) {
-			return true;
-		}
 	    return from.ordinal() == this.facing;
 	}
 	  
@@ -258,9 +255,6 @@ public abstract class TileDynamoBase extends TileTechnomancy implements IEnergyH
 	protected abstract boolean canGenerate();
 	  
 	protected abstract void generate();
-	
-	TileEntity getFacingEntity() {
-		return this.worldObj.getBlockTileEntity(this.xCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetX, this.yCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetY, this.zCoord + ForgeDirection.VALID_DIRECTIONS[this.facing].offsetZ);
-	}
+
 
 }
