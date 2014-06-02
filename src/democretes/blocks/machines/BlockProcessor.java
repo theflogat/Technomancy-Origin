@@ -68,8 +68,7 @@ public class BlockProcessor extends BlockBase {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public Icon[] icons = new Icon[4];
-	
+	public Icon[] icons = new Icon[4];	
 	
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -133,10 +132,13 @@ public class BlockProcessor extends BlockBase {
 	    		world.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
 	    	}
 	    	if(te instanceof TileBOProcessor) {
-		    	Botania.proxy.sparkleFX(world, (double)f - f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
-		    	Botania.proxy.sparkleFX(world, (double)f + f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
-		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 - f3, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
-		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 + f3, r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat() * 2, 10);
+	    		f += 0.1F;
+	    		f1 += 0.1F;
+	    		f2 += 0.1F;
+		    	Botania.proxy.sparkleFX(world, (double)f - f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), 1.0F, r.nextFloat() * 4, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f3, (double)f1, f2 + f4, r.nextFloat(), r.nextFloat(), 1.0F, r.nextFloat() * 4, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 - f3, r.nextFloat(), r.nextFloat(), 1.0F, r.nextFloat() * 4, 10);
+		    	Botania.proxy.sparkleFX(world, (double)f + f4, (double)f1, f2 + f3, r.nextFloat(), r.nextFloat(), 1.0F, r.nextFloat() * 4, 10);
 		    }
 	    }
 	    

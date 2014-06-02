@@ -15,7 +15,7 @@ public class TileBMProcessor extends TileProcessorBase {
 	@Override
 	boolean canProcess() {
 		if(this.owner != null) {
-			if(SoulNetworkHandler.getCurrentEssence(this.owner) > (50 * (this.multiplier + 1))) {
+			if(SoulNetworkHandler.getCurrentEssence(this.owner) > (250 * (this.multiplier + 1))) {
 				return true;
 			}
 		}
@@ -24,8 +24,8 @@ public class TileBMProcessor extends TileProcessorBase {
 	
 	@Override
 	void getFuel() {
-		if(SoulNetworkHandler.getCurrentEssence(this.owner) > (50 * (this.multiplier + 1))) {
-			SoulNetworkHandler.setCurrentEssence(this.owner, (SoulNetworkHandler.getCurrentEssence(this.owner) - (50 * (this.multiplier + 1)))); 
+		if(SoulNetworkHandler.getCurrentEssence(this.owner) > (250 * (this.multiplier + 1))) {
+			SoulNetworkHandler.setCurrentEssence(this.owner, (SoulNetworkHandler.getCurrentEssence(this.owner) - (250 * (this.multiplier + 1)))); 
 		}
 	}
 	

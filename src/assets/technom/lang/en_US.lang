@@ -9,7 +9,7 @@ techno:itemMaterial.3.name=Pen Core
 techno:itemMaterial.4.name=Coil Coupler
 techno:pen.name=Pen
 techno:wandCores.0.name=Energized Wand Core
-techno:itemBM.0.name=SacrificialIngot
+techno:itemBM.0.name=Sacrificial Ingot
 techno:itemBM.1.name=Life Coil
 techno:itemBO.0.name=Mana Coil
 techno:itemBO.1.name=Manasteel Gear
@@ -102,5 +102,10 @@ techno.research_page.ELECTRICBELLOWS.1=After messing around with the power of be
 tc.research_name.CONDENSER=Condensing Energy
 tc.research_text.CONDENSER=WE NEED MORE POWAH
 techno.research_page.CONDENSER.1=Too much power is never a thing, and now you've got a machine to put it to good use. By hooking up a Energy Condenser to some conduits, you can turn RF into some potentia. The potentia can then easily be piped out of the condenser into your favorite jar.
+
+tc.research_name.PROCESSOR=Processing Ores
+tc.research_text.PROCESSOR=Because Thaumcraft can't do it right.
+techno.research_page.PROCESSOR.1=You've been hunting down a way to increase your ore output without using silly purification methods, and now you've found one. By placing blocks in the left slot and adding Ignis essentia, you've successfully acquired ore doubling through purification. These new purified ores can be processed through other magical devices similar to this one to increase ore output further. To obtain the ingots after the ore has been processed as many times as desired, throw the purified ore into a furnace in order to cook it.
+
 #Creative Tab
 itemGroup.Technomancy=Technomancy

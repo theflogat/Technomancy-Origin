@@ -16,7 +16,6 @@ import democretes.blocks.TMBlocks;
 import democretes.handlers.CompatibilityHandler;
 import democretes.handlers.ConfigHandler;
 import democretes.handlers.CraftingHandler;
-import democretes.handlers.GuiHandler;
 import democretes.handlers.ResearchHandler;
 import democretes.items.TMItems;
 import democretes.lib.CreativeTabTM;
@@ -27,7 +26,7 @@ import democretes.proxies.CommonProxy;
 @Mod(modid = Reference.MOD_ID, 
 	name = Reference.MOD_NAME, 
 	version = Reference.MOD_VERSION, 
-	dependencies = "required-after:Thaumcraft;required-after:ThermalExpansion;")
+	dependencies = "after:Thaumcraft;required-after:ThermalExpansion;")
 
 @NetworkMod(channels = { Reference.CHANNEL_NAME }, 
 	clientSideRequired = true, 
@@ -68,7 +67,7 @@ public class Technomancy {
     @EventHandler
     public void penetration(FMLInitializationEvent event) {    	
     	proxy.initRenderers();
-    	NetworkRegistry.instance().registerGuiHandler(Technomancy.instance, new GuiHandler());
+    	NetworkRegistry.instance().registerGuiHandler(instance, proxy);
     }
 
     @EventHandler

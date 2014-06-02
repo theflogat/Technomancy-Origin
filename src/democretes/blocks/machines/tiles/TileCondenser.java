@@ -21,13 +21,17 @@ public class TileCondenser extends TileMachineBase implements IEssentiaTransport
 		this.maxReceive = 50000;
 		this.energyStorage = new EnergyStorage(capacity);
 	}
+	
+	int count;
 	@Override
 	public void updateEntity() {
 		if(this.energyStorage.getEnergyStored() >= 10000000 && this.amount < this.maxAmount) {
 			this.energyStorage.extractEnergy(10000000, false);
 			this.addToContainer(Aspect.ENERGY, 1);
 		}
-		fill();
+		if ((!this.worldObj.isRemote) && (++this.count % 10 == 0)) {
+			fill();
+		}
 	}
 	
 	void fill() {
@@ -136,7 +140,7 @@ public class TileCondenser extends TileMachineBase implements IEssentiaTransport
 
 	@Override
 	public int getMinimumSuction() {
-		  return 128;
+		  return 16;
 	}
 
 	@Override
@@ -160,7 +164,7 @@ public class TileCondenser extends TileMachineBase implements IEssentiaTransport
 
 	@Override
 	public int getSuctionAmount(ForgeDirection face) {
-	return 0;
+		return 0;
 	}
 
 	@Override

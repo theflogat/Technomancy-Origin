@@ -1,15 +1,22 @@
 package democretes.proxies;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import thaumcraft.client.fx.FXEssentiaTrail;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.network.IGuiHandler;
 import democretes.blocks.dynamos.tiles.TileBloodDynamo;
 import democretes.blocks.dynamos.tiles.TileEssentiaDynamo;
 import democretes.blocks.dynamos.tiles.TileFlowerDynamo;
 import democretes.blocks.dynamos.tiles.TileNodeDynamo;
+import democretes.blocks.gui.GuiProcessorBM;
+import democretes.blocks.gui.GuiProcessorBO;
+import democretes.blocks.gui.GuiProcessorTC;
+import democretes.blocks.machines.tiles.TileBMProcessor;
+import democretes.blocks.machines.tiles.TileBOProcessor;
 import democretes.blocks.machines.tiles.TileBiomeMorpher;
 import democretes.blocks.machines.tiles.TileBloodFabricator;
 import democretes.blocks.machines.tiles.TileElectricBellows;
@@ -17,6 +24,7 @@ import democretes.blocks.machines.tiles.TileFluxLamp;
 import democretes.blocks.machines.tiles.TileManaFabricator;
 import democretes.blocks.machines.tiles.TileNodeGenerator;
 import democretes.blocks.machines.tiles.TileReconstructor;
+import democretes.blocks.machines.tiles.TileTCProcessor;
 import democretes.blocks.machines.tiles.TileTeslaCoil;
 import democretes.blocks.storage.TileCreativeJar;
 import democretes.blocks.storage.TileEssentiaContainer;
@@ -51,7 +59,7 @@ import democretes.renderer.tiles.TileNodeGeneratorRenderer;
 import democretes.renderer.tiles.TileReconstructorRenderer;
 import democretes.renderer.tiles.TileTeslaCoilRenderer;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends CommonProxy implements IGuiHandler{
 
     @Override
     public void initSounds() {
@@ -138,5 +146,20 @@ public class ClientProxy extends CommonProxy {
     	FXEssentiaTrail fx = new FXEssentiaTrail(world, tx, ty, tz, x, y, z, 25, color, 1.0F);
         Minecraft.getMinecraft().effectRenderer.addEffect(fx);
     }
+
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world,	int x, int y, int z) {
+		if(world instanceof WorldClient) {
+			switch(ID) {
+				case 0: 
+					return new GuiProcessorTC(player.inventory, ((TileTCProcessor)world.getBlockTileEntity(x, y, z)));
+				case 1:
+					return new GuiProcessorBM(player.inventory, ((TileBMProcessor)world.getBlockTileEntity(x, y, z)));
+				case 2:
+					return new GuiProcessorBO(player.inventory, ((TileBOProcessor)world.getBlockTileEntity(x, y, z)));
+			}
+		}
+		return null;
+	}
 
 }

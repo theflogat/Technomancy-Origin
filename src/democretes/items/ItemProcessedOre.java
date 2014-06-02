@@ -67,8 +67,10 @@ public class ItemProcessedOre extends ItemBase {
 			list.add(StringHelper.getActivationText("info.techno:purity") + ": " + (stack.getItemDamage() + 1));
 			list.add(StringHelper.getInfoText("info.techno:process") + ":");
 			for(int i = 0; i < processors.length; i++) {
-				if(stack.stackTagCompound.getBoolean(processors[i])) {
-					list.add(processors[i]);
+				if(stack.stackTagCompound != null) {
+					if(stack.stackTagCompound.getBoolean(processors[i])) {
+						list.add(processors[i]);
+					}
 				}
 			}
 		}

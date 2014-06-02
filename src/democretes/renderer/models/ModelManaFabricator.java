@@ -61,7 +61,7 @@ public class ModelManaFabricator extends ModelBase {
       Bud.setRotationPoint(0F, 11F, 0F);
       Bud.setTextureSize(64, 32);
       Bud.mirror = true;
-      setRotation(Bud, 0.5235988F, 0F, -0.5235988F);
+      setRotation(Bud, 0F, 0F, 0F);
       Petal1 = new ModelRenderer(this, 0, 8);
       Petal1.addBox(0.5F, 0F, 0.5F, 3, 0, 3);
       Petal1.setRotationPoint(0F, 11F, 0F);
@@ -70,7 +70,7 @@ public class ModelManaFabricator extends ModelBase {
       setRotation(Petal1, 0.5235988F, 0F, -0.5235988F);
       Petal2 = new ModelRenderer(this, 0, 8);
       Petal2.addBox(0.5F, 0F, 0.5F, 3, 0, 3);
-      Petal2.setRotationPoint(0F, 11F, 0F);
+      Petal2.setRotationPoint(0F, 12F, 0F);
       Petal2.setTextureSize(64, 32);
       Petal2.mirror = true;
       setRotation(Petal2, 0.5235988F, 1.570796F, -0.5235988F);
@@ -97,7 +97,7 @@ public class ModelManaFabricator extends ModelBase {
       Petal6.setRotationPoint(0F, 11F, 0F);
       Petal6.setTextureSize(64, 32);
       Petal6.mirror = true;
-      setRotation(Petal6, 0.5235988F, -0.7853982F, -0.5235988F);
+      setRotation(Petal6, 0.5235988F, 0.7853982F, -0.5235988F);
       Petal7 = new ModelRenderer(this, 0, 8);
       Petal7.addBox(0.5F, 0F, 0.5F, 3, 0, 3);
       Petal7.setRotationPoint(0F, 11F, 0F);
@@ -113,7 +113,7 @@ public class ModelManaFabricator extends ModelBase {
   }
   
   public void render()  {
-	  final float f5 = 1F/16F;
+	  final float f5 = 0.0625F;
 	  PotBase.render(f5);
 	  PotTop.render(f5);
 	  Stem.render(f5);
@@ -128,6 +128,7 @@ public class ModelManaFabricator extends ModelBase {
 	  Petal6.render(f5);
 	  Petal7.render(f5);
 	  Petal8.render(f5);
+	  
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)  {

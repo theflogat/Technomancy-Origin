@@ -27,7 +27,6 @@ public class TileManaFabricatorRenderer extends TileEntitySpecialRenderer{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		bindTexture(modelTexture);
 		model.render();
-		
 		GL11.glPopMatrix();
 	}
 	

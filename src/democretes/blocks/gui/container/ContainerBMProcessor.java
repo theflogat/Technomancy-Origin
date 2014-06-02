@@ -72,7 +72,7 @@ public class ContainerBMProcessor extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return processor.isUseableByPlayer(entityplayer);
-	}
+	}	
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i)  {
@@ -116,6 +116,6 @@ public class ContainerBMProcessor extends Container {
 	    	slot.onPickupFromSlot(player, stackInSlot);
 	    }
 	    return stack;
-	}	
+	}		
 
 }

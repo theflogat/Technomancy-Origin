@@ -54,6 +54,9 @@ public class BlockElectricBellows extends BlockBase{
 		case 5:
 			offsetX += 1;
 		}
+		if(world.getBlockTileEntity(x + offsetX, y, z + offsetZ) instanceof TileAlchemyFurnace || world.getBlockTileEntity(x + (offsetX*2), y, z + (offsetZ*2)) instanceof TileArcaneFurnace) {
+			return true;
+		}
 		return false;
 	}	
 

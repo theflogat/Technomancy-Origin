@@ -15,6 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import thermalexpansion.block.TEBlocks;
 import thermalexpansion.block.simple.BlockOre;
 import democretes.blocks.TileTechnomancy;
+import democretes.items.ItemProcessedOre;
 import democretes.items.TMItems;
 
 public class TileProcessorBase extends TileTechnomancy implements ISidedInventory {
@@ -27,7 +28,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	public boolean active;
 	public int multiplier = 0;
 	
-	public static ItemStack[] ores = { 
+	public static ItemStack[] pureOres = { 
 	   	new ItemStack(TMItems.processedIron), 
 	   	new ItemStack(TMItems.processedGold), 
 	   	new ItemStack(TMItems.processedCopper), 
@@ -54,6 +55,20 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 				}
 			}
 			if(canProcess()) {
+				if(this.inventory[1] != null) {
+					if(ore2) {
+						if(this.inventory[1].getItem().itemID != getOreEquivalencies(OreDictionary.getOreID(this.inventory[0])).itemID) {
+							this.active = false;
+							return;
+						}
+					}
+					if(ore1) {
+						if(this.inventory[0].getItem().itemID != this.inventory[1].getItem().itemID) {
+							this.active = false;
+							return;
+						}
+					}
+				}
 				if(this.inventory[0] != null) {
 					this.active = true;
 					this.time++;
@@ -73,15 +88,13 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		}
 		this.active = false;
 		if(canProcess() && this.inventory[0] != null) {
-			String name = this.inventory[0].getUnlocalizedName();
-			if(name.equals(Block.oreGold.getUnlocalizedName()) || name.equals(Block.oreIron.getUnlocalizedName())  || name.equals(BlockOre.oreCopper.getUnlocalizedName())
-					|| name.equals(BlockOre.oreTin.getUnlocalizedName()) || name.equals(BlockOre.oreSilver.getUnlocalizedName()) || name.equals(BlockOre.oreLead.getUnlocalizedName())
-					|| name.equals(BlockOre.oreNickel.getUnlocalizedName())) {
+			int id = OreDictionary.getOreID(this.inventory[0]);
+			if(!OreDictionary.getOres(id).isEmpty()) {
 				ore2 = true;
-				this.multiplier = this.inventory[0].getItemDamage();
+				this.multiplier = this.inventory[0].getItemDamage() + 1;
 			}
-			for(int i = 0; i < this.ores.length; i++) {
-				if(this.inventory[0].getItem() == this.ores[i].getItem()) {
+			for(int i = 0; i < this.pureOres.length; i++) {
+				if(this.inventory[0].getItem() == this.pureOres[i].getItem()) {
 					if(this.inventory[0].getItemDamage() < 5) {
 						f = i;					
 						ore1 = true;
@@ -95,7 +108,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	void processStuff(int j, boolean ore1, boolean ore2) {
 		if(ore1) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(this.ores[j].getItem(), 1, this.inventory[0].getItemDamage() + 1);
+				ItemStack stack = new ItemStack(this.pureOres[j].getItem(), 1, this.inventory[0].getItemDamage() + 1);
 				stack.stackTagCompound = new NBTTagCompound();
 				for(int i = 0; i < processors.length; i++) {
 					if(this.inventory[0].stackTagCompound.hasKey(this.processors[i])) {
@@ -110,7 +123,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 						this.inventory[0] = null;
 					}
 				}
-			}else if(this.inventory[1].getItem() == this.ores[j].getItem()) {
+			}else if(this.inventory[1].getItem() == this.pureOres[j].getItem()) {
 				if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 					this.inventory[1].stackSize += 1;
 					if(this.inventory[0] != null) {
@@ -124,7 +137,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		}
 		if(ore2) {
 			if(this.inventory[1] == null) {
-				ItemStack stack = new ItemStack(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()), 1, 0);
+				ItemStack stack = new ItemStack(getOreEquivalencies(OreDictionary.getOreID(this.inventory[0])), 1, 0);
 				stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setBoolean(this.tagCompound, true);
 				this.inventory[1] = stack.copy();
@@ -135,7 +148,7 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 					}
 				}
 			}else if(this.inventory[1] != null) {
-				if(getOreEquivalencies(this.inventory[0].getUnlocalizedName(), this.inventory[0].getItemDamage()) == this.inventory[1].getItem()) {
+				if(getOreEquivalencies(OreDictionary.getOreID(this.inventory[0])) == this.inventory[1].getItem()) {
 					if(this.inventory[1].stackSize < this.inventory[1].getMaxStackSize()) {
 						this.inventory[1].stackSize += 1;
 						this.inventory[1].stackTagCompound.setBoolean(this.tagCompound, true);
@@ -151,17 +164,21 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 		}
 	}
 	
-	Item getOreEquivalencies(String name, int meta) {
-		if(name.equals(Block.oreIron.getUnlocalizedName())) {
-			return this.ores[0].getItem();
-		}else if(name.equals(Block.oreGold.getUnlocalizedName())) {
-			return this.ores[1].getItem();
-		}else if(name.equals(BlockOre.oreCopper.getUnlocalizedName()) || 
-				name.equals(BlockOre.oreTin.getUnlocalizedName()) || 
-				name.equals(BlockOre.oreSilver.getUnlocalizedName()) || 
-				name.equals(BlockOre.oreLead.getUnlocalizedName())|| 
-				name.equals(BlockOre.oreNickel.getUnlocalizedName())) {
-			return this.ores[2 + meta].getItem();
+	Item getOreEquivalencies(int id) {
+		if(OreDictionary.getOreName(id).equals("oreIron")) {
+			return this.pureOres[0].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreGold")) {
+			return this.pureOres[1].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreCopper")) {
+			return this.pureOres[2].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreTin")) {
+			return this.pureOres[3].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreSilver")) {
+			return this.pureOres[4].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreLead")) {
+			return this.pureOres[5].getItem();
+		}else if(OreDictionary.getOreName(id).equals("oreNickel")) {
+			return this.pureOres[6].getItem();
 		}
 		return null;		
 	}
@@ -235,19 +252,37 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		ItemStack stack = this.inventory[i].copy();
-		stack.stackSize = this.inventory[i].stackSize - j;
-		return stack;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
+		if(this.inventory[i] != null) {
+			if(this.inventory[i].stackSize <= j) {
+				ItemStack stack = this.inventory[i];
+				this.inventory[i] = null;
+				return stack;
+			}
+			ItemStack stack = this.inventory[i].splitStack(j);
+		    if (this.inventory[i].stackSize == 0) {
+		    	this.inventory[i] = null;
+		    }
+		    return stack;
+		}
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		this.inventory[i] = itemstack;		
+	public ItemStack getStackInSlotOnClosing(int i) {
+		if(this.inventory[i] != null) {
+			return this.inventory[i];
+		}
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int i, ItemStack stack) {
+		this.inventory[i] = stack;
+		if(stack != null) {
+			if(stack.stackSize > this.getInventoryStackLimit()) {
+				this.inventory[i].stackSize = this.getInventoryStackLimit();
+			}
+		}
 	}
 
 	@Override
@@ -282,8 +317,11 @@ public class TileProcessorBase extends TileTechnomancy implements ISidedInventor
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int i) {		
-		return new int[] { 1, 0, 1, 1, 1, 1};
+	public int[] getAccessibleSlotsFromSide(int i) {
+		if(i == 0 || i == 1) {
+			return new int[] {0};
+		}
+		return new int[] {1};
 	}
 
 	@Override

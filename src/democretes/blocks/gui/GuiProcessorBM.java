@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import democretes.blocks.gui.container.ContainerBMProcessor;
 import democretes.blocks.machines.tiles.TileBMProcessor;
 
@@ -14,8 +16,7 @@ public class GuiProcessorBM extends GuiContainer {
 
 	TileBMProcessor processor;
 	public GuiProcessorBM(InventoryPlayer inventory, TileBMProcessor tileBMProcessor) {
-		super(new ContainerBMProcessor(inventory, tileBMProcessor));
-		
+		super(new ContainerBMProcessor(inventory, tileBMProcessor));		
 		this.processor = tileBMProcessor;
 		
 		xSize = 176;
